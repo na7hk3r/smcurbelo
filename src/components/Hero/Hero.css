@@ -1,0 +1,36 @@
+.container{
+    align-items: center;
+    color: var(--cream);
+    display: flex;
+    height: auto;
+    justify-content: center;
+    width: 100vw;
+    padding: 5rem 13rem;
+}
+.right-container{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.right-container img{
+    width: 40rem;
+}
+.left-container{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.left-container h1{
+    font-size: 3em;
+    font-weight: 600;
+    margin: .3em 0;
+}
+.left-container h1 span{
+    font-weight: 800;
+}
+.left-container p{
+    font-size: 1.5em;
+    line-height: 1.4;
+    font-weight: 400;
+}
