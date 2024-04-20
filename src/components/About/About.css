@@ -1,0 +1,21 @@
+.about-container{
+    padding: 5rem;
+}
+.about-left{
+    width: 60vw;
+    align-items: center;
+    margin-right: 2rem;
+}
+.about-left img{
+    width: 45vw;
+}
+.about-right{
+    width: 40vw;
+}
+.about-right h1{
+    font-size: 2.2em;
+    margin-bottom: 1.5rem;
+}
+.about-right p{
+    font-size: 1.3em;
+}
