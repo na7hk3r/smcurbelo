@@ -12,6 +12,7 @@ const Hero = () => {
         </div>
         <div className="right-container">
             <img src={home_img} alt="Home Image" />
+            <p>*yea, dog is oversized.</p>
         </div>
     </div>
   )

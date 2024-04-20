@@ -2,16 +2,20 @@
     align-items: center;
     color: var(--cream);
     display: flex;
-    height: auto;
+    height: 100vh;
     justify-content: center;
-    width: 100vw;
+    width: 98vw;
     padding: 5rem 13rem;
 }
 .right-container{
     width: 50%;
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column
+}
+.right-container p{
+    font-size: .8rem;
 }
 .right-container img{
     width: 40rem;
