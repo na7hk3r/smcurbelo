@@ -1,8 +1,5 @@
 .tools{
-    -webkit-filter: drop-shadow(5px 5px 5px var(--primary));
-    backdrop-filter: blur(15px);
     background: rgba(41, 41, 41, 0.2);
-    filter: drop-shadow(5px 5px 5px var(--primary));
     padding: 1em;
     width: 100%;
 }

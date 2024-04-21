@@ -8,20 +8,20 @@
     padding: 5rem 13rem;
 }
 .right-container{
-    width: 50%;
+    width: 50vw;
     display: flex;
     align-items: flex-end;
     justify-content: center;
     flex-direction: column
 }
-.right-container p{
-    font-size: .8rem;
-}
 .right-container img{
     width: 40rem;
 }
+.right-container p{
+    font-size: .8rem;
+}
 .left-container{
-    width: 50%;
+    width: 50vw;
     display: flex;
     flex-direction: column;
 }
