@@ -1,0 +1,61 @@
+.left{
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 3rem;
+    border: 1px solid var(--primary);
+    padding: 5rem 5rem 5rem 1.5rem;
+    border-radius: 15px;
+    height: 50vh;
+    backdrop-filter: blur(15px);
+    background: rgba(41, 41, 41, 0.2);
+    -webkit-filter: drop-shadow(5px 5px 5px var(--primary));
+    filter: drop-shadow(5px 5px 5px var(--primary));
+}
+.right{
+    width: 60vw;
+    height: 50vh;
+    backdrop-filter: blur(15px);
+    background: rgba(41, 41, 41, 0.2);
+    -webkit-filter: drop-shadow(5px 5px 5px var(--primary));
+    filter: drop-shadow(5px 5px 5px var(--primary));
+    margin: 1rem;
+    border: 1px solid var(--primary);
+    padding: 5rem 5rem 5rem 1.5rem;
+    border-radius: 15px;
+    overflow-y: scroll;
+}
+.language-section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 15px;
+    gap: 1em;
+    margin-bottom: 1rem;
+}
+.language-section img{
+    width: 40px;
+    height: 40px;
+    -webkit-filter: drop-shadow(.5px .5px .5px var(--cream));
+    filter: drop-shadow(.5px .5px .5px var(--cream));
+}
+.course-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.course-img img{
+    width: 10rem;
+    margin-right: 2rem;
+}
+.course-description{
+    width: 25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    line-height: 1.4;
+}
