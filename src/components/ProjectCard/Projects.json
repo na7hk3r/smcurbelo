@@ -2,7 +2,7 @@
   {
     "id": "01",
     "title": "SapceX Launches App",
-    "img": "../src/assets/spacex.png",
+    "img": "./src/assets/spacex.png",
     "tags": {
       "span_1": "#Astro",
       "span_2": "#Tailwind",
