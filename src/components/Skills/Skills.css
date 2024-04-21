@@ -10,7 +10,8 @@
     border-radius: 15px;
     height: 50vh;
     backdrop-filter: blur(15px);
-    background: rgba(41, 41, 41, 0.7);
+    background: rgba(43, 65, 98, 0.5);
+    rgb(43, 65, 98)
     -webkit-filter: drop-shadow(5px 5px 5px var(--primary));
     filter: drop-shadow(5px 5px 5px var(--primary));
 }
@@ -31,8 +32,8 @@
 .language-section img{
     width: 40px;
     height: 40px;
-    -webkit-filter: drop-shadow(.5px .5px .5px var(--cream));
-    filter: drop-shadow(.5px .5px .5px var(--cream));
+    /* -webkit-filter: drop-shadow( 1px  1px  1px var(--cream));
+    filter: drop-shadow( 1px  1px  1px var(--cream)); */
 }
 .right{
     -webkit-filter: drop-shadow(5px 5px 5px var(--primary));
