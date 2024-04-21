@@ -19,3 +19,7 @@
 .about-right p{
     font-size: 1.3em;
 }
+.skills{
+    display: flex;
+    
+}
