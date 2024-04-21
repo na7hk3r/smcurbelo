@@ -1,34 +1,36 @@
 import React from "react";
 import './ProjectCard.css'
-import weather_img from '../../assets/weather.png';
+import ProjectsData from './Projects.json';
 import code_icon from '../../assets/code.png';
 import web_icon from '../../assets/web.png';
 
 const ProjectCard = () => {
   return (
     <>
-      <div className="card-project">
-        <div className="img-container">
-          <img src={weather_img} alt="" />
-        </div>
-        <div className="card-info">
-          <h2>WeatherApp</h2>
-          <div className="tags">
-            <span>#React</span>
-            <span>#CSS3</span>
-            <span>#Firebase</span>
+      {ProjectsData.map(project => (
+        <div key={project.id} className="card-project">
+          <div className="img-container">
+            <img src={project.img} alt="" />
           </div>
-          <p>Simple web application with a search input to know weather information of any city in the world.</p>
-          <div className="buttons">
-            <a href="https://github.com/na7hk3r/" target="_blank">
+          <div className="card-info">
+            <h2>{project.title}</h2>
+            <div className="tags">
+              <span>{project.tags.span_1}</span>
+              <span>{project.tags.span_2}</span>
+              <span>{project.tags.span_3}</span>
+            </div>
+            <p>{project.description}</p>
+            <div className="buttons">
+              <a href={project.href_source} target="_blank" rel="noopener noreferrer">
                 <img src={code_icon} alt="Source Code" />
-            </a>
-            <a href="https://github.com/na7hk3r/" target="_blank">
+              </a>
+              <a href={project.href_source_2} target="_blank" rel="noopener noreferrer">
                 <img src={web_icon} alt="Live Preview" />
-            </a>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      ))}
     </>
   );
 };

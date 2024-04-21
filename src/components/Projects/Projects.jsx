@@ -7,11 +7,6 @@ const Projects = () => {
   return (
     <div className='container projects-container'>
         <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
     </div>
   )
 }
