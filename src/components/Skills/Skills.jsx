@@ -38,9 +38,10 @@ const Skills = () => {
   return (
     <div className="container skills-container">
       <div className="left">
+        <h2>Skills</h2>
         <h1>Languages and tools I use</h1>
         <br />
-        <h3>Front</h3>
+        <h3>Frontend</h3>
         <div className="language-section">
           <img src={javascript_logo} alt="JavaScript" />
           <img src={react_logo} alt="React" />
@@ -51,7 +52,7 @@ const Skills = () => {
           <img src={vite_logo} alt="Vite" />
           <img src={astro_logo} alt="Astro" />
         </div>
-        <h3>Back</h3>
+        <h3>Backend</h3>
         <div className="language-section">
           <img src={java_logo} alt="Java" />
           <img src={spring_logo} alt="Springboot" />
@@ -61,17 +62,18 @@ const Skills = () => {
           <img src={sql_logo} alt="MySQL" />
           <img src={firebase_logo} alt="Firebase" />
         </div>
-        <h3>DevOps & Other tools</h3>
+        <h3>DevOps</h3>
+        <h5>& Other</h5>
         <div className="language-section">
-          <img src={docker_logo} alt="Docker" />
-          <img src={aws_logo} alt="AWS" />
           <img src={python_logo} alt="Python" />
           <img src={jest_logo} alt="JEST" />
           <img src={selenium_logo} alt="Selenium" />
+          <img src={docker_logo} alt="Docker" />
+          <img src={aws_logo} alt="AWS" />
           <img src={git_logo} alt="Git" />
           <img src={bash_logo} alt="Bash" />
-          <img src={figma_logo} alt="Figma" />
           <img src={ubuntu_logo} alt="Ubuntu" />
+          <img src={figma_logo} alt="Figma" />
         </div>
       </div>
       <div className="right">

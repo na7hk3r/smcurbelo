@@ -11,15 +11,15 @@
     height: 50vh;
     backdrop-filter: blur(15px);
     background: rgba(43, 65, 98, 0.5);
-    rgb(43, 65, 98)
     -webkit-filter: drop-shadow(5px 5px 5px var(--primary));
     filter: drop-shadow(5px 5px 5px var(--primary));
 }
-.left h3{
+.left h3,
+.left h5{
     margin-left: 15px;
 }
 .left h3:first-of-type{
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 .language-section{
     width: 100%;

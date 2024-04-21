@@ -4,7 +4,7 @@ import home_img from '../../assets/home_img.png'
 
 const Hero = () => {
   return (
-    <div className="container">
+    <div className="container hero">
         <div className="left-container">
             <h2>Howdy! 👋</h2>
             <h1><span>I'm Sergio.</span><br/> I make things for the web.</h1>
