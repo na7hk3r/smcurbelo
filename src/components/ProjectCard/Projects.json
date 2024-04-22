@@ -2,7 +2,7 @@
   {
     "id": "01",
     "title": "SapceX Launches App",
-    "img": "/spacex.png",
+    "img": "./spacex.png",
     "tags": {
       "span_1": "#Astro",
       "span_2": "#Tailwind",
@@ -14,7 +14,7 @@
   },
   {
     "id": "02",
-    "img": "/natural.png",
+    "img": "./natural.png",
     "title": "Naturalmente Vane",
     "tags": {
       "span_1": "React",
@@ -27,7 +27,7 @@
   },
   {
     "id": "03",
-    "img": "/weather.png",
+    "img": "./weather.png",
     "title": "Weather App",
     "tags": {
       "span_1": "#React",
