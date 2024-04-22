@@ -13,11 +13,11 @@ const Navbar = () => {
   }
 
   return (
-    <div>
+    <>
         <nav className='navbar'>
             <img src={logo} alt="logo" className="logo" />
             <ul className={mobileMenu?'':'hide-mobile-menu'}>
-                <li><Link to='hero' smooth={true} offset={0} duration={700}>Home</Link></li>
+                <li><Link to='hero' smooth={true} offset={0} duration={900}>Home</Link></li>
                 <li><Link to='about-container' smooth={true} offset={0} duration={700}>About</Link></li>
                 <li><Link to='skills-container' smooth={true} offset={0} duration={700}>Skills</Link></li>
                 <li><Link to='projects-container' smooth={true} offset={0} duration={700}>Projects</Link></li>
@@ -26,7 +26,7 @@ const Navbar = () => {
             </ul>
               <img src={menu_icon} alt="" className="menu-icon" onClick={toggleMenu} />
         </nav>
-    </div>
+    </>
   )
 }
 

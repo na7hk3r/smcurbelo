@@ -8,7 +8,7 @@ const Hero = () => {
         <div className="left-container">
             <h2>Howdy! 👋</h2>
             <h1><span>I'm Sergio.</span><br/> I make things for the web.</h1>
-            <p>Uruguay-based web developer. Let me show you my work!</p>
+            <p>Uruguay based web developer. Let me show you my work!</p>
         </div>
         <div className="right-container">
             <img src={home_img} alt="Home Image" />

@@ -1,12 +1,19 @@
+.contact{
+    gap: 10%;
+}
 .form-text{
     flex-direction: column;
+    height: 60vh;
+    align-items: flex-start;
 }
 .contact-container{
     display: flex;
     width: 100%;
-    justify-content: space-around;
-    align-items: center;
-    padding: 25px;
+    justify-content: flex-start;
+    align-content: center;
+    padding: 25px 0 25px 0;
+    align-items: stretch;
+    gap: 1.5em;
 }
 .contact-container img{
     width: 48px;
@@ -22,6 +29,10 @@
 .contact-col{
     flex-basis: 48%;
     color: var(--cream);
+    height: 60vh;
+}
+.contact-col h1{
+    margin-bottom: .8em;
 }
 .contact form input, .contact form textarea{
     display: block;
@@ -35,6 +46,7 @@
     margin-top: 5px;
     resize: none;
     font-size: 16px;
+    border-radius: 8px;
 }
 .contact form input::placeholder,
 .contact form textarea::placeholder{
@@ -44,7 +56,9 @@
     display: block;
     margin: 20px 0;
 }
-
+iframe{
+    border-radius: 10px;
+}
 .btn{
     background: var(--primary);
     color: var(--cream);

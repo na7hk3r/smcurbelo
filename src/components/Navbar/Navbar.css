@@ -61,14 +61,14 @@
     }
     .menu-icon{
         display: block;
-        width: 45px;
+        width: 30px;
         cursor: pointer;
     }
     .hide-mobile-menu{
         right: -300px;
     }
     .logo{
-        width: 300px;
+        width: 200px;
         margin-left: 1.5rem;
     }
 }

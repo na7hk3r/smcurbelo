@@ -42,11 +42,11 @@ const Contact = () => {
           <a href="mailto:sergiomcurbelo5@gmail.com" target="_blank">
             <img src={mail_icon} alt="EMail" />
           </a>
-          <a href="https://linkedin.com/in/smcurbelo/" target="_blank">
-            <img src={linkedin_icon} alt="LinkedIn" />
-          </a>
           <a href="tel:+59897266076" target="_blank">
             <img src={whatsapp_icon} alt="Whatsapp" />
+          </a>
+          <a href="https://linkedin.com/in/smcurbelo/" target="_blank">
+            <img src={linkedin_icon} alt="LinkedIn" />
           </a>
           <a href="https://github.com/na7hk3r/" target="_blank">
             <img src={github_icon} alt="Github" />
@@ -66,6 +66,7 @@ const Contact = () => {
         />
       </div>
       <div className="contact-col">
+        <h1>Contact form:</h1>
         <form onSubmit={onSubmit}>
           <label>What's your name?:</label>
           <input type="text" name="name" placeholder="John Doe" required />
@@ -86,7 +87,7 @@ const Contact = () => {
           <label>Send me some love!</label>
           <textarea
             name="message"
-            rows="6"
+            rows="10"
             placeholder="Your incredible message here!"
             required
           ></textarea>

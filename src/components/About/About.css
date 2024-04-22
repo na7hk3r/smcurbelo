@@ -1,5 +1,6 @@
 .about-container{
     padding: 5rem;
+    gap: 1.4em
 }
 .about-left{
     width: 60vw;
@@ -21,5 +22,24 @@
 }
 .skills{
     display: flex;
-    
+}
+
+/* -------------- Media Query -------------- */
+
+@media (max-width: 840px){
+    .about-container{
+        flex-direction: column-reverse;
+    }
+    .right-container,
+    .left-container{
+        width: 100vw;
+        justify-content: center;
+    }
+    .left-container{
+        font-size: 70%;
+        margin-bottom: 1.5rem;
+    }
+    .right-container img{
+        width: 100vw;
+    }
 }

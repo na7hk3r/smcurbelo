@@ -1,4 +1,4 @@
-.container{
+.hero{
     align-items: center;
     color: var(--cream);
     display: flex;
@@ -37,4 +37,27 @@
     font-size: 1.5em;
     line-height: 1.4;
     font-weight: 400;
+}
+
+/* -------------- Media Query -------------- */
+
+@media (max-width: 840px){
+    .hero{
+        flex-direction: column-reverse;
+    }
+    .left-container{
+        width: 100vw;
+        font-size: 60%;
+    }
+    .right-container{
+        display: block;
+        margin: 0;
+        width: 100vw;
+    }
+    .right-container img{
+        width: 18rem;
+    }
+    .right-container p{
+        display: none;
+    }
 }

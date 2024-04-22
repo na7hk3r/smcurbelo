@@ -5,4 +5,5 @@
     align-items: center;
     justify-content: space-around;
     align-content: stretch;
+    gap: 1.4em;
 }
