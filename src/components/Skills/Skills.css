@@ -8,7 +8,7 @@
     display: flex;
     filter: drop-shadow(5px 5px 5px var(--primary));
     flex-direction: column;
-    height: 50vh;
+    height: 60vh;
     justify-content: center;
     margin: 1rem;
     padding: 1.5%;
@@ -32,7 +32,7 @@
     border-right: 1px dashed var(--cream);
     border-top: 1px dashed var(--cream);
     filter: drop-shadow(5px 5px 5px var(--primary));
-    height: 50vh;
+    height: 60vh;
     margin: 1rem;
     overflow-y: scroll;
     padding: 3%;
