@@ -37,44 +37,5 @@
     "description": "A simple web app that shows the current weather of any city  in the world.",
     "href_source": "https://github.com/na7hk3r/weather-app",
     "href_source_2": "https://weather-app-smc.vercel.app/"
-  },
-  {
-    "id": "04",
-    "img": "/weather.png",
-    "title": "",
-    "tags": {
-      "span_1": "",
-      "span_2": "",
-      "span_3": ""
-    },
-    "description": "",
-    "href_source": "https://github.com/na7hk3r/",
-    "href_source_2": "https://.vercel.app/"
-  },
-  {
-    "id": "05",
-    "img": "./src/assets/.png",
-    "title": "",
-    "tags": {
-      "span_1": "",
-      "span_2": "",
-      "span_3": ""
-    },
-    "description": "",
-    "href_source": "https://github.com/na7hk3r/",
-    "href_source_2": "https://.vercel.app/"
-  },
-  {
-    "id": "06",
-    "img": "./src/assets/.png",
-    "title": "",
-    "tags": {
-      "span_1": "",
-      "span_2": "",
-      "span_3": ""
-    },
-    "description": "",
-    "href_source": "https://github.com/na7hk3r/",
-    "href_source_2": "https://.vercel.app/"
   }
 ]
