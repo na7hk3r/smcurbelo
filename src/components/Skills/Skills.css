@@ -42,3 +42,35 @@
     margin-top: 0;
 }
 
+/* Mobile responsive */
+
+@media (max-width: 840px)  {
+    .skills-container{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .left{
+        width: 100vw;
+        font-size: 70%;
+        margin-bottom: .3rem;
+        padding: 20px;
+        height: 50vh;
+    }
+    .language-section{
+        gap: 0;
+        width: 90%;
+        flex-wrap: wrap;
+    }
+    .right{
+        width: 100vw;
+        font-size: 60%;
+        padding: 20px;
+        height: 50vh;
+    }
+    .course-card{
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+}

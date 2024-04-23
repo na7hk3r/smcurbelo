@@ -49,11 +49,11 @@
         bottom: 0;
         background: var(--primary);
         z-index: -1;
-        width: 200px;
+        width: 100%;
         padding-top: 70px;
         transition: 0.5s;
         flex-direction: column;
-        height: 100vh;
+        height: 60vh;
     }
     nav ul li{
         display: block;

@@ -66,10 +66,8 @@ a{
   cursor: pointer;
 }
 
-.app-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  flex-direction: column;
+@media (max-width: 840px){
+  .container{
+    height: auto;
+  }
 }

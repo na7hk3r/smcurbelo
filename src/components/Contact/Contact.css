@@ -82,8 +82,31 @@ iframe{
 @media (max-width: 700px){
     .contact{
         display: block;
+        flex-direction: column;
+        width: 100vw;
+        font-size: 75%;
+    }
+    .form-text{
+        width: 100vw;
     }
     .contact-col{
         padding: 20px;
+        width: 100vw;
+    }
+    iframe{
+        width: 100%;
+    }
+    .projects-container{
+        flex-wrap: nowrap;
+        flex-direction: column;
+        height: auto;
+    }
+    .container{
+        height: auto;
+    }
+    .card-project{
+        width: 90vw;
+        backdrop-filter: none;
+        height: auto;
     }
 }
