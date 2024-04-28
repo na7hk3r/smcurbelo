@@ -35,9 +35,11 @@ const Contact = () => {
   return (
     <div className="container contact">
       <div className="form-text">
-        <h2>Keep in touch!</h2>
-        <h1>Send me a message</h1>
-        <p>Or contact me in these places! 😎</p>
+        <div className="contact-title">
+          <h2>Keep in touch!</h2>
+          <h1>Send me a message</h1>
+          <p>Or contact me in these places! 😎</p>
+        </div>
         <div className="contact-container">
           <a href="mailto:sergiomcurbelo5@gmail.com" target="_blank">
             <img src={mail_icon} alt="EMail" />
@@ -52,6 +54,7 @@ const Contact = () => {
             <img src={github_icon} alt="Github" />
           </a>
         </div>
+        <div className="map-container">
         <h2>In mood for adventure? 🧐</h2>
         <p>Try to find me in here!</p>
         <br />
@@ -64,6 +67,7 @@ const Contact = () => {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />
+        </div>
       </div>
       <div className="contact-col">
         <h1>Contact form:</h1>

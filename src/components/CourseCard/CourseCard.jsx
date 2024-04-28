@@ -16,7 +16,7 @@ const CourseCard = () => {
       <img src={utu_logo} alt="UTU" />
     </div>
     <div className="course-description">
-      <h2>Bachelor's degree in IT</h2>
+      <h2>Bachelor&lsquo;s degree in IT</h2>
       <span>UTU, Uruguay. 2023 - Ongoing</span>
       <p>
         Technical Degree in Computer Science from UTU, Uruguay, providing
@@ -111,7 +111,7 @@ const CourseCard = () => {
         focusing on mastering the latest tools and
         technologies for building robust and scalable web applications,
         with a comprehensive understanding of both front-end and back-end
-        development as part of a license from Ceibal in "VeranoJAP".
+        development as part of a license from Ceibal in &quot;VeranoJAP&quot;.
       </p>
     </div>
   </div>

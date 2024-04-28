@@ -41,21 +41,21 @@
 
 /* -------------- Media Query -------------- */
 
-@media (max-width: 840px){
+@media (max-width: 960px){
     .hero{
         flex-direction: column-reverse;
     }
     .left-container{
-        width: 100vw;
-        font-size: 60%;
+        width: 100%;
+        font-size: 80%;
     }
     .right-container{
         display: block;
         margin: 0;
-        width: 100vw;
-    }
-    .right-container img{
-        width: 18rem;
+        width: 100%;
+        align-items: center;
+        display: flex;
+        justify-content: center;
     }
     .right-container p{
         display: none;

@@ -1,6 +1,7 @@
 .about-container{
     padding: 5rem;
-    gap: 1.4em
+    gap: 1.4em;
+    height: 100vh;
 }
 .about-left{
     width: 60vw;
@@ -8,7 +9,7 @@
     margin-right: 2rem;
 }
 .about-left img{
-    width: 45vw;
+    width: 100%;
 }
 .about-right{
     width: 40vw;
@@ -26,20 +27,16 @@
 
 /* -------------- Media Query -------------- */
 
-@media (max-width: 840px){
+@media (max-width: 960px){
     .about-container{
         flex-direction: column-reverse;
     }
-    .right-container,
-    .left-container{
-        width: 100vw;
+    .about-right,
+    .about-left{
+        width: 100%;
         justify-content: center;
     }
-    .left-container{
-        font-size: 70%;
-        margin-bottom: 1.5rem;
-    }
-    .right-container img{
-        width: 100vw;
+    .about-right{
+        padding-top: 15%;
     }
 }

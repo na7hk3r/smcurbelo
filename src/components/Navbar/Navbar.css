@@ -37,7 +37,7 @@
 
 /* -------------- Media Query -------------- */
 
-@media (max-width: 840px){
+@media (max-width: 960px){
     nav{
         padding: 15px 0;
         height: 100vh;
@@ -65,7 +65,7 @@
         cursor: pointer;
     }
     .hide-mobile-menu{
-        right: -300px;
+        right: -500px;
     }
     .logo{
         width: 200px;

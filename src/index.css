@@ -38,25 +38,20 @@ html::-webkit-scrollbar-thumb {
 }
 
 body {
-  /* background-color: var(--primary); */
   background: linear-gradient(315deg, var(--primary) 0%, var(--black) 74%);
   background-position: cover;
   font-family: "Montserrat", sans-serif;
   margin: 0;
-  /* min-height: 100vh;
-  min-width: 320px; */
   place-items: center;
-  /* width: 100vw; */
 }
 
 .container{
   align-items: center;
   color: var(--cream);
   display: flex;
-  height: 100vh;
   justify-content: center;
   width: 100%;
-  padding: 5rem 13rem;
+  padding: 15%;
 }
 
 a{
@@ -66,7 +61,7 @@ a{
   cursor: pointer;
 }
 
-@media (max-width: 840px){
+@media (max-width: 960px){
   .container{
     height: auto;
   }

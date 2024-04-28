@@ -79,34 +79,20 @@ iframe{
 
 /* --------- Media Query ---------- */
 
-@media (max-width: 700px){
+@media (max-width: 960px){
     .contact{
-        display: block;
+        display: flex;
         flex-direction: column;
-        width: 100vw;
-        font-size: 75%;
+        width: 100%;
     }
     .form-text{
-        width: 100vw;
+        width: 100%;
     }
     .contact-col{
         padding: 20px;
-        width: 100vw;
+        width: 100%;
     }
     iframe{
         width: 100%;
-    }
-    .projects-container{
-        flex-wrap: nowrap;
-        flex-direction: column;
-        height: auto;
-    }
-    .container{
-        height: auto;
-    }
-    .card-project{
-        width: 90vw;
-        backdrop-filter: none;
-        height: auto;
     }
 }
