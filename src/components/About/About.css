@@ -40,3 +40,19 @@
         padding-top: 15%;
     }
 }
+
+@media (max-width: 480px){
+    .about-container{
+        height: 100vh;
+        padding: 10%;
+    }
+    .about-right h2{
+        font-size: .9rem;
+    }
+    .about-right h1{
+        font-size: 1.3rem;
+    }
+    .about-right p{
+        font-size: 1.2em;
+    }
+}
