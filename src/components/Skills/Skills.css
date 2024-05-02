@@ -66,4 +66,22 @@
     }
 }
 
-@media (max-width: 414px)  {}
+@media (max-width: 480px){
+    .left{
+        height: 100vh;
+    }
+    .left h1,
+    .left h2{
+        font-size: 100%;
+    }
+    .language-section{
+        flex-wrap: wrap;
+    }
+    .tools h3{
+        font-size: 100%;
+    }
+    .language-section img{
+        width: 25px;
+    }
+
+}
