@@ -72,3 +72,15 @@
         margin-left: 1.5rem;
     }
 }
+
+@media (max-width: 480px){
+    .logo{
+        margin-left: 0;
+    }
+    .navbar ul{
+        width: 8rem;
+        backdrop-filter: blur(15px);
+        background: rgba(43, 65, 98, 0.6);
+        border-radius: 15px 0;
+    }
+}
