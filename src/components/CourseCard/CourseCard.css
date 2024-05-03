@@ -30,6 +30,24 @@
     padding: 0 0 .8rem 0;
 }
 
-@media (max-width: 960px)  {
+@media (max-width: 480px)  {
+    .course-card{
+        flex-direction: column;
+    }
+    .course-img{
+        width: 100%;
+        align-content: center;
+        justify-content: center;
+        padding: 5% 0;
+    }
+    .course-img img{
+        width: 60%;
+    }
 
+    .course-description h2{
+        font-size: 1.2em;
+    }
+    .course-description p{
+        font-size: .9em;
+    }
 }

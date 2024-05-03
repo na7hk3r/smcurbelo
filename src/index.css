@@ -69,7 +69,7 @@ a{
 
 @media (max-width: 480px){
   .container{
-    height: 100vh;
+    height: auto;
     padding: 10%;
   }
 }

@@ -16,7 +16,7 @@
 
 /* --------- Media Query ---------- */
 
-@media (max-width: 600px){
+@media (max-width: 960px){
     .footer{
         display: block;
         text-align: center;
