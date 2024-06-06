@@ -27,7 +27,7 @@
 
 /* -------------- Media Query -------------- */
 
-@media (max-width: 960px){
+@media screen and (max-width:960px){
     .about-container{
         flex-direction: column-reverse;
     }
@@ -39,20 +39,28 @@
     .about-right{
         padding-top: 15%;
     }
+    .about-right p{
+        font-size: 1.5em;
+    }
 }
 
-@media (max-width: 480px){
+@media screen and (max-width: 480px){
     .about-container{
         height: 100vh;
         padding: 10%;
+        margin-top: 15%;
     }
     .about-right h2{
-        font-size: .9rem;
+        font-size: .8rem;
     }
     .about-right h1{
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
     .about-right p{
         font-size: 1.2em;
+        line-height: 1.4;
+    }
+    .about-left{
+        margin-top: 5%;
     }
 }

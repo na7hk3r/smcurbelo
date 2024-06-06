@@ -30,6 +30,8 @@ const Tools = () => {
   return (
     <>
       <div className="tools">
+        <h2>Skills</h2>
+        <h1>Languages and tools I use</h1>
         <h3>Frontend</h3>
         <div className="language-section">
           <img src={javascript_logo} alt="JavaScript" />

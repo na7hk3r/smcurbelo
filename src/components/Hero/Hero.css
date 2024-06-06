@@ -5,10 +5,10 @@
     height: 100vh;
     justify-content: center;
     width: 98vw;
-    padding: 5rem 13rem;
+    /* padding: 5rem 13rem; */
 }
 .right-container{
-    width: 50vw;
+    /* width: 50vw; */
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -21,7 +21,7 @@
     font-size: .8rem;
 }
 .left-container{
-    width: 50vw;
+    /* width: 50vw; */
     display: flex;
     flex-direction: column;
 }
@@ -40,7 +40,6 @@
 }
 
 /* -------------- Media Query -------------- */
-
 @media (max-width: 960px){
     .hero{
         flex-direction: column-reverse;
@@ -50,8 +49,6 @@
         font-size: 80%;
     }
     .right-container{
-        display: block;
-        margin: 0;
         width: 100%;
         align-items: center;
         display: flex;
@@ -65,5 +62,8 @@
 @media (max-width: 480px){
     .right-container img{
         width: 100%;
+    }
+    .right-container{
+        margin-top: 30%;
     }
 }

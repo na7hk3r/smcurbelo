@@ -11,7 +11,12 @@ import ibm_logo from "../../assets/ibm-logo.png";
 const CourseCard = () => {
   return (
     <>
-    <div className="course-card">
+      <div className="courses-title">
+        <h2>Where I learned?</h2>
+        <h1>Courses & Certificates</h1>
+      </div>
+      <section className="courses-container">
+        <div className="course-card">
     <div className="course-img">
       <img src={utu_logo} alt="UTU" />
     </div>
@@ -25,8 +30,8 @@ const CourseCard = () => {
         IT solutions.
       </p>
     </div>
-  </div>
-  <div className="course-card">
+        </div>
+        <div className="course-card">
     <div className="course-img">
       <img src={ctd_logo} alt="Certified Tech Developer" />
     </div>
@@ -39,8 +44,8 @@ const CourseCard = () => {
         management methodologies.
       </p>
     </div>
-  </div>
-  <div className="course-card">
+        </div>
+        <div className="course-card">
     <div className="course-img">
       <img src={jap_logo} alt="Jovenes A Programar" />
     </div>
@@ -52,8 +57,8 @@ const CourseCard = () => {
         build dynamic web applications.
       </p>
     </div>
-  </div>
-  <div className="course-card">
+        </div>
+        <div className="course-card">
     <div className="course-img">
       <img src={one_logo} alt="Jovenes A Programar" />
     </div>
@@ -66,8 +71,8 @@ const CourseCard = () => {
         efficient backend systems with Springboot.
       </p>
     </div>
-  </div>
-  <div className="course-card">
+        </div>
+        <div className="course-card">
     <div className="course-img">
       <img src={voxy_logo} alt="Jovenes A Programar" />
     </div>
@@ -81,8 +86,8 @@ const CourseCard = () => {
         speaking practice and other activities.
       </p>
     </div>
-  </div>
-  <div className="course-card">
+        </div>
+        <div className="course-card">
     <div className="course-img">
       <img src={fcc_logo} alt="Jovenes A Programar" />
     </div>
@@ -98,8 +103,8 @@ const CourseCard = () => {
         structures effectively.
       </p>
     </div>
-  </div>
-  <div className="course-card">
+        </div>
+        <div className="course-card">
     <div className="course-img">
       <img src={ibm_logo} alt="Jovenes A Programar" />
     </div>
@@ -114,7 +119,8 @@ const CourseCard = () => {
         development as part of a license from Ceibal in &quot;VeranoJAP&quot;.
       </p>
     </div>
-  </div>
+        </div>
+      </section>
   </>
   )
 }
