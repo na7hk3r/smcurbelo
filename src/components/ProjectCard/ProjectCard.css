@@ -64,3 +64,16 @@
 .buttons img{
     width: 25px;
 }
+
+@media screen and (max-width: 480px){
+    .card-info{
+        padding: 1em;
+        height: auto;
+    }
+    .img-container{
+        height: 40%;
+    }
+    .card-info h2{
+        font-size: 1.3em;
+    }
+}

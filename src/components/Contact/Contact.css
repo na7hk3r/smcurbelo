@@ -30,6 +30,7 @@
     flex-basis: 48%;
     color: var(--cream);
     height: 60vh;
+    margin-top: 0;
 }
 .contact-col h1{
     margin-bottom: .8em;
@@ -78,8 +79,19 @@ iframe{
 }
 
 /* --------- Media Query ---------- */
+@media screen and (max-width: 480px){
+    .contact{
+        margin: 0 auto;
+        max-width: 100%;
+        padding: 0;
+        height: auto;
+    }
+    .contact-col{
+        margin-top: 50%;
+    }
+}
 
-@media (max-width: 960px){
+@media screen and (max-width: 960px){
     .contact{
         display: flex;
         flex-direction: column;
@@ -94,14 +106,5 @@ iframe{
     }
     iframe{
         width: 100%;
-    }
-}
-
-@media (max-width: 480px){
-    .contact{
-        margin: 0 auto;
-        max-width: 100%;
-        padding: 0;
-        height: auto;
     }
 }

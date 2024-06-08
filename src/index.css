@@ -42,7 +42,7 @@ body {
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 15%;
+  padding: 10%;
 }
 
 a{
@@ -62,5 +62,10 @@ a{
   .container{
     height: auto;
     padding: 10%;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+  .container:first-of-type{
+    margin-bottom: 0;
   }
 }

@@ -5,5 +5,12 @@
     align-items: center;
     justify-content: space-around;
     align-content: stretch;
-    gap: 1.4em;
+    gap: 1.5em;
+    height: 100vh;
+}
+
+@media screen and (max-width: 480px){
+    .projects-container{
+        margin-top: 3rem;
+    }
 }
