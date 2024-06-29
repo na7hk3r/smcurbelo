@@ -17,6 +17,7 @@
     justify-content: space-evenly;
     width: 40%;
     align-items: center;
+    user-select: none;
 }
 .navbar ul li{
     cursor: pointer;
@@ -33,6 +34,8 @@
     width: 15%;
     -webkit-filter: drop-shadow(5px 5px 5px #000);
     filter: drop-shadow(5px 5px 5px #000);
+    cursor: grab;
+    user-select: none;
 }
 
 /* -------------- Media Query -------------- */
