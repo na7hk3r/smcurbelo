@@ -16,28 +16,238 @@
 }
 .right-container img{
     width: 40rem;
+    user-select: none;
 }
 .right-container p{
     font-size: .8rem;
+    user-select: none;
 }
 .left-container{
     /* width: 50vw; */
     display: flex;
     flex-direction: column;
-}
-.left-container h1{
-    font-size: 3em;
-    font-weight: 600;
-    margin: .3em 0;
+    line-height: 1.4;
 }
 .left-container h1 span{
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: .3em 0;
     font-weight: 800;
 }
+
 .left-container p{
     font-size: 1.5em;
     line-height: 1.4;
     font-weight: 400;
 }
+
+
+/* SCROLL */
+
+.mouse-wrap{
+    display:inline-block;
+    position:absolute;
+    left:50%;
+    bottom: 15%;
+    transform:translate(-50%,-50%);
+  }
+  
+  .mouse {
+    top:0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width:35px;
+    animation: nudgeMouse 5.5s ease-out infinite;
+  }
+  
+  .mouse:after {
+    content: '';
+    background-color: #ffffff;
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    animation: trackBallSlide 5.5s linear infinite;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    transform:translateY(20px);
+  }
+  
+  .mouse .frame {
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .mouse .frame path {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 3;
+    opacity:0.5;
+  }
+  
+  .mouse .mouse-left,
+  .mouse .mouse-right {
+    width: 50%;
+    position: absolute;
+    z-index: 2;
+  }
+  
+  .mouse .mouse-right {
+    right: 0;
+  }
+  
+  .mouse .Animate-Draw {
+    fill: none;
+    stroke: #FFFFFF;
+    stroke-width: 3;
+    fill-opacity: 1;
+  }
+  
+  .mouse .mouse-left .Animate-Draw {
+    animation: DrawLine 5.5s ease-out infinite;
+  }
+  
+  .mouse .mouse-right .Animate-Draw {
+    animation: DrawLineBack 5.5s ease-out infinite;
+  }
+  
+  
+  /*Keyframes*/
+  
+  @keyframes DrawLine {
+    0% {
+      stroke-dashOffset: 0;
+      stroke-dasharray: 120;
+      stroke-opacity:1;
+    }
+    22% {
+      stroke-dashOffset: 0;
+      stroke-dasharray: 120;
+      stroke-opacity:1;
+    }
+    38%{
+      stroke-dashOffset: 125;
+      stroke-dasharray: 120;
+      stroke-opacity:1;
+    }
+    38.1%{
+      stroke-dashOffset: 0;
+      stroke-dasharray: 120;
+      stroke-opacity:0;
+    }
+    48%{
+      stroke-dashOffset: 0;
+      stroke-dasharray: 120;
+      stroke-opacity:1;
+    }
+    64%{
+      stroke-dashOffset: 125;
+      stroke-dasharray: 120;
+      stroke-opacity:1;
+    }
+    64.1%{
+      stroke-dashOffset: 0;
+      stroke-dasharray: 120;
+      stroke-opacity:0;
+    }
+    74%{
+      stroke-dashOffset: 0;
+      stroke-dasharray: 120;
+      stroke-opacity:1;
+    }
+    90%{
+      stroke-opacity:1;
+      stroke-dashOffset: 125;
+      stroke-dasharray: 120;
+    }
+    90.1%{
+      stroke-dashOffset: 0;
+      stroke-dasharray: 120;
+      stroke-opacity:0;
+    }
+  }
+  
+  @keyframes DrawLineBack {
+    0% {
+      stroke-dashOffset: 0;
+      stroke-dasharray: 120;
+      stroke-opacity:1;
+    }
+    22% {
+      stroke-dashOffset: 0;
+      stroke-dasharray: 120;
+      stroke-opacity:1;
+    }
+    38%{
+      stroke-dashOffset: -114;
+      stroke-dasharray: 120;
+      stroke-opacity:1;
+    }
+    38.1%{
+      stroke-dashOffset: 0;
+      stroke-dasharray: 120;
+      stroke-opacity:0;
+    }
+    48%{
+      stroke-dashOffset: 0;
+      stroke-dasharray: 120;
+      stroke-opacity:1;
+    }
+    64%{
+      stroke-dashOffset: -114;
+      stroke-dasharray: 120;
+      stroke-opacity:1;
+    }
+    64.1%{
+      stroke-dashOffset: 0;
+      stroke-dasharray: 120;
+      stroke-opacity:0;
+    }
+    74%{
+      stroke-dashOffset: 0;
+      stroke-dasharray: 120;
+      stroke-opacity:1;
+    }
+    90%{
+      stroke-opacity:1;
+      stroke-dashOffset: -114;
+      stroke-dasharray: 120;
+    }
+    90.1%{
+      stroke-dashOffset: 0;
+      stroke-dasharray: 120;
+      stroke-opacity:0;
+    }
+  }
+  
+  @keyframes nudgeMouse {
+    0% {
+      transform: translateY(0) translateX(-50%);
+    }
+    22% {
+      transform: translateY(0px) translateX(-50%);
+    }
+    38%{
+      transform: translateY(9px) translateX(-50%);
+    }
+    48%{
+      transform: translateY(0px) translateX(-50%);
+    }
+    64%{
+      transform: translateY(9px) translateX(-50%);
+    }
+    74%{
+      transform: translateY(0px) translateX(-50%);
+    }
+    90%{
+      transform: translateY(9px) translateX(-50%);
+    }
+  }
 
 /* -------------- Media Query -------------- */
 @media (max-width: 960px){
@@ -46,7 +256,6 @@
     }
     .left-container{
         width: 100%;
-        font-size: 80%;
     }
     .right-container{
         width: 100%;
@@ -59,11 +268,24 @@
     }
 }
 
+
 @media (max-width: 480px){
     .right-container img{
         width: 100%;
     }
     .right-container{
-        margin-top: 30%;
+        margin-top: 5%;
+    }
+    .left-container h1 span{
+        font-size: 1em;
+        font-weight: 600;
+        margin: .3em 0;
+        font-weight: 800;
+    }
+    .left-container p{
+        font-size: 1em;
+    }
+    .mouse-wrap{
+        display: none;
     }
 }
