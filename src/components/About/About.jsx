@@ -20,6 +20,12 @@ const About = () => {
     viewport: { once: true },
   };
 
+  const floatAnimation = {
+    animation: 'floatAnimation 3s ease infinite alternate',
+    zIndex: -20,
+    filter: 'drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.1))',
+  };
+
   return (
     <div className="container about-container">
       <motion.div 
@@ -27,7 +33,11 @@ const About = () => {
         {...initialAnimation}
         transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
       >
-        <img src={about_img} alt="AboutMe Image" />
+        <motion.img 
+          src={about_img} 
+          alt="AboutMe Image" 
+          style={floatAnimation}
+          />
       </motion.div>
 
       <motion.div 
