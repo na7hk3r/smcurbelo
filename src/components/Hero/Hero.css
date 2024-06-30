@@ -28,6 +28,7 @@
     flex-direction: column;
     line-height: 1.4;
     user-select: none;
+    outline: none;
 }
 .left-container h1 span{
     font-size: 1.5em;

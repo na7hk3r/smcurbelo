@@ -29,6 +29,7 @@ const Navbar = () => {
           height,
         }}
       >
+        <Link to="hero" smooth={true} offset={0} duration={900}>
         <motion.img
           src={logo}
           alt="logo"
@@ -40,6 +41,7 @@ const Navbar = () => {
           dragElastic={0.5}
           whileTap={{ cursor: "grabbing" }}
         />
+        </Link>
         <ul className={mobileMenu ? "" : "hide-mobile-menu"}>
           <motion.li whileHover={{ scale: 1.1, transition: 0.5 }}>
             <Link to="hero" smooth={true} offset={0} duration={900}>
