@@ -7,12 +7,14 @@
     width: 60vw;
     align-items: center;
     margin-right: 2rem;
+    padding: 2%;
 }
 .about-left img{
     width: 100%;
 }
 .about-right{
     width: 40vw;
+    line-height: 1.4;
 }
 .about-right h1{
     font-size: 2.2em;

@@ -23,7 +23,7 @@ const About = () => {
   return (
     <div className="container about-container">
       <motion.div 
-        className="right-container about-left"
+        className="about-left"
         {...initialAnimation}
         transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
       >
@@ -31,7 +31,7 @@ const About = () => {
       </motion.div>
 
       <motion.div 
-        className="left-container about-right"
+        className="about-right"
         {...initialAnimation}
         transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
       >
