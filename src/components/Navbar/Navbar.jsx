@@ -4,7 +4,7 @@ import logo from "../../assets/logo.png";
 import ToggleButton from "../ToggleButton/ToggleButton.jsx";
 import { Link } from "react-scroll";
 import menu_icon from "../../assets/menu.png";
-import { motion, useViewportScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -12,7 +12,7 @@ const Navbar = () => {
     mobileMenu ? setMobileMenu(false) : setMobileMenu(true);
   };
 
-  const { scrollY } = useViewportScroll();
+  const { scrollY } = useScroll();
   const background = useTransform(
     scrollY,
     [0, 100],
