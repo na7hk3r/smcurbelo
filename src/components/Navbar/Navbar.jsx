@@ -10,7 +10,13 @@ const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const toggleMenu = () => {
     mobileMenu ? setMobileMenu(false) : setMobileMenu(true);
+    // setMobileMenu(!mobileMenu);
   };
+
+  const closeMobileMenu = () => {
+    setMobileMenu(false);
+  };
+
 
   const { scrollY } = useScroll();
   const background = useTransform(
@@ -42,7 +48,7 @@ const Navbar = () => {
           whileTap={{ cursor: "grabbing" }}
         />
         </Link>
-        <ul className={mobileMenu ? "" : "hide-mobile-menu"}>
+        {/* <ul className={mobileMenu ? "" : "hide-mobile-menu"}>
           <motion.li whileHover={{ scale: 1.1, transition: 0.5 }}>
             <Link to="hero" smooth={true} offset={0} duration={900}>
               Home
@@ -74,7 +80,69 @@ const Navbar = () => {
             </Link>
           </motion.li>
           <ToggleButton />
+        </ul> */}
+
+<ul className={mobileMenu ? "" : "hide-mobile-menu"}>
+          <motion.li 
+            whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.3)", transition: 0.5 }}
+          >
+            <Link to="hero" 
+              smooth={true} 
+              offset={0} 
+              duration={700}
+              onClick={closeMobileMenu}
+            >
+              Home
+            </Link>
+          </motion.li>
+          <motion.li 
+            whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.3)", transition: 0.5 }}
+          >
+            <Link to="about-container" 
+              smooth={true} 
+              offset={0} 
+              duration={700}
+              onClick={closeMobileMenu}
+            >
+              About
+            </Link>
+          </motion.li>
+          <motion.li 
+            whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.3)", transition: 0.5 }}
+          >
+            <Link to="skills-container"  
+            smooth={true} 
+            offset={0} 
+            duration={700}
+            onClick={closeMobileMenu}>
+              Skills
+            </Link>
+          </motion.li>
+          <motion.li 
+            whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.3)", transition: 0.5 }}
+          >
+            <Link to="projects-container"  
+            smooth={true} 
+            offset={0} 
+            duration={700}
+            onClick={closeMobileMenu}>
+              Projects
+            </Link>
+          </motion.li>
+          <motion.li 
+            whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.3)", transition: 0.5 }}
+          >
+            <Link to="contact"  
+            smooth={true} 
+            offset={0} 
+            duration={700}
+            onClick={closeMobileMenu}>
+              Contact
+            </Link>
+          </motion.li>
+          <ToggleButton />
         </ul>
+
         <img
           src={menu_icon}
           alt=""
