@@ -27,6 +27,10 @@
     width: 40px;
     height: 40px;
 }
+.language-section img:hover{
+    scale: 1.2;
+    transition: ease-in-out 0.1s;
+}
 @media screen and (max-width: 480px){
     .tools h1{
         font-size: 1.3rem;
