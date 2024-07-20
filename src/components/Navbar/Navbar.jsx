@@ -48,43 +48,11 @@ const Navbar = () => {
           whileTap={{ cursor: "grabbing" }}
         />
         </Link>
-        {/* <ul className={mobileMenu ? "" : "hide-mobile-menu"}>
-          <motion.li whileHover={{ scale: 1.1, transition: 0.5 }}>
-            <Link to="hero" smooth={true} offset={0} duration={900}>
-              Home
-            </Link>
-          </motion.li>
-          <motion.li whileHover={{ scale: 1.1, transition: 0.5 }}>
-            <Link to="about-container" smooth={true} offset={0} duration={700}>
-              About
-            </Link>
-          </motion.li>
-          <motion.li whileHover={{ scale: 1.1, transition: 0.5 }}>
-            <Link to="skills-container" smooth={true} offset={0} duration={700}>
-              Skills
-            </Link>
-          </motion.li>
-          <motion.li whileHover={{ scale: 1.1, transition: 0.5 }}>
-            <Link
-              to="projects-container"
-              smooth={true}
-              offset={0}
-              duration={700}
-            >
-              Projects
-            </Link>
-          </motion.li>
-          <motion.li whileHover={{ scale: 1.1, transition: 0.5 }}>
-            <Link to="contact" smooth={true} offset={0} duration={700}>
-              Contact
-            </Link>
-          </motion.li>
-          <ToggleButton />
-        </ul> */}
+
 
 <ul className={mobileMenu ? "" : "hide-mobile-menu"}>
           <motion.li 
-            whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.3)", transition: 0.5 }}
+            whileHover={{ scale: 1.2, transition: 0.5, fontWeight: 900 }}
           >
             <Link to="hero" 
               smooth={true} 
@@ -96,7 +64,7 @@ const Navbar = () => {
             </Link>
           </motion.li>
           <motion.li 
-            whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.3)", transition: 0.5 }}
+            whileHover={{ scale: 1.2, transition: 0.5, fontWeight: 900 }}
           >
             <Link to="about-container" 
               smooth={true} 
@@ -108,7 +76,7 @@ const Navbar = () => {
             </Link>
           </motion.li>
           <motion.li 
-            whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.3)", transition: 0.5 }}
+            whileHover={{ scale: 1.2, transition: 0.5, fontWeight: 900 }}
           >
             <Link to="skills-container"  
             smooth={true} 
@@ -119,7 +87,7 @@ const Navbar = () => {
             </Link>
           </motion.li>
           <motion.li 
-            whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.3)", transition: 0.5 }}
+            whileHover={{ scale: 1.2, transition: 0.5, fontWeight: 900 }}
           >
             <Link to="projects-container"  
             smooth={true} 
@@ -130,7 +98,7 @@ const Navbar = () => {
             </Link>
           </motion.li>
           <motion.li 
-            whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.3)", transition: 0.5 }}
+            whileHover={{ scale: 1.2, transition: 0.5, fontWeight: 900 }}
           >
             <Link to="contact"  
             smooth={true} 
@@ -145,7 +113,7 @@ const Navbar = () => {
 
         <img
           src={menu_icon}
-          alt=""
+          alt="Menu Icon"
           className="menu-icon"
           onClick={toggleMenu}
         />
