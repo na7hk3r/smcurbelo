@@ -15,13 +15,13 @@
   {
     "id": "02",
     "img": "./natural.png",
-    "title": "Naturalmente Vane",
+    "title": "Naturalmente Vane - Landing",
     "tags": {
       "span_1": "React",
       "span_2": "CSS3",
       "span_3": "🌼"
     },
-    "description": "WebPage for a medicinal herbal products brand.",
+    "description": "WebPage for herbal products brand.",
     "href_source": "https://github.com/na7hk3r/react_responsive",
     "href_source_2": "https://naturalmente-vane.vercel.app/"
   },
@@ -34,8 +34,86 @@
       "span_2": "#CSS3",
       "span_3": "#OpenWeatherAPI"
     },
-    "description": "A simple web app that shows the current weather of any city  in the world.",
+    "description": "A simple web app that shows the current weather of any city in the world.",
     "href_source": "https://github.com/na7hk3r/weather-app",
     "href_source_2": "https://weather-app-smc.vercel.app/"
+  },
+  {
+    "id": "04",
+    "img": "./clinica.webp",
+    "title": "Dental Clinic Management App",
+    "tags": {
+      "span_1": "#Java",
+      "span_2": "#Spring Boot",
+      "span_3": "#Maven"
+    },
+    "description": "A Spring Boot-based backend project. Includes a H2 database and follows MVC and DAO patterns for structured code organization.",
+    "href_source": "https://github.com/na7hk3r/clinicaOdontologica",
+    "href_source_2": "https://github.com/na7hk3r/clinicaOdontologica"
+  },
+  {
+    "id": "05",
+    "img": "./constru.webp",
+    "title": "UY Construcciones",
+    "tags": {
+      "span_1": "#JavaScript",
+      "span_2": "#AOS",
+      "span_3": "#Bootstrap"
+    },
+    "description": "Landing page for a local construction company.",
+    "href_source": "https://github.com/na7hk3r/uy_construcciones",
+    "href_source_2": "https://uyconstrucciones.com.uy/"
+  },
+  {
+    "id": "06",
+    "img": "./emercado.webp",
+    "title": "eMercado - Ecommerce",
+    "tags": {
+      "span_1": "#JavaScript",
+      "span_2": "#NodeJS",
+      "span_3": "#CSS3"
+    },
+    "description": "Ecommerce developed as final project for Jovenes a Programar 2022",
+    "href_source": "https://github.com/na7hk3r/ecommercejap",
+    "href_source_2": "https://na7hk3r.github.io/workspace-inicial/"
+  },
+  {
+    "id": "07",
+    "img": "./encoder.webp",
+    "title": "Text Encryptor",
+    "tags": {
+      "span_1": "#JavaScript",
+      "span_2": "#HTML",
+      "span_3": "#CSS"
+    },
+    "description": "Really simple text encryptor made for Alura ONE Challenge.",
+    "href_source": "https://github.com/na7hk3r/encriptador_javascript",
+    "href_source_2": "https://na7hk3r.github.io/encriptador_javascript/"
+  },
+  {
+    "id": "08",
+    "img": "./oldportfol.webp",
+    "title": "Previous Portfolio",
+    "tags": {
+      "span_1": "#JavaScript",
+      "span_2": "#CSS3",
+      "span_3": "#HTML5"
+    },
+    "description": "My previous portfolio design, with really cool animations!",
+    "href_source": "https://github.com/na7hk3r/portafolio",
+    "href_source_2": "https://smcurbelo.netlify.app/"
+  },
+  {
+    "id": "09",
+    "img": "./sportit.webp",
+    "title": "SportIt - Frontend proyect",
+    "tags": {
+      "span_1": "#CSS",
+      "span_2": "#HTML",
+      "span_3": "#🎾"
+    },
+    "description": "Final project for the Frontend I subject in Certified Tech Developer 2nd semester. Note: 10",
+    "href_source": "https://github.com/na7hk3r/proyecto_fe1",
+    "href_source_2": "https://pr-integrador-fe1.netlify.app/"
   }
 ]
