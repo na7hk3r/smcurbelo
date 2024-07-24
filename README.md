@@ -10,6 +10,8 @@
 - **<a href="https://smcurbelo.com" target="_blank">react-parallax-tilt</a>**: Componente para efectos de inclinación y parallax.
 - **CSS**: Para el diseño y la presentación.
 
+- *Implementación de buenas prácticas y optimización para mejora del SEO*
+
 
 <div align="center">
   
