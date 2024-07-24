@@ -96,7 +96,7 @@ const Contact = () => {
             required
           ></textarea>
           <button type="submit" className="btn">
-            Send! <img src={arrow} alt="" />
+            Send! <img src={arrow} alt="Send button" />
           </button>
         </form>
         <span>{result}</span>

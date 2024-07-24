@@ -2,9 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--cream);
+    /* color: var(--cream); */
     padding: 1.5rem 7rem;
-    margin: 10px auto;
     border-top: 1px solid var(--cream);
     font-weight: 400;
     backdrop-filter: blur(15px);
