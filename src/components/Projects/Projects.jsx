@@ -1,14 +1,16 @@
-import React from 'react'
-import './Projects.css'
-import ProjectCard from '../ProjectCard/ProjectCard'
+import React, { Suspense, lazy } from 'react';
+import './Projects.css';
 
+const ProjectCard = lazy(() => import('../ProjectCard/ProjectCard'));
 
 const Projects = () => {
   return (
-    <div className='container projects-container'>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className='container projects-container'>
         <ProjectCard />
-    </div>
-  )
-}
+      </div>
+    </Suspense>
+  );
+};
 
-export default Projects
+export default Projects;

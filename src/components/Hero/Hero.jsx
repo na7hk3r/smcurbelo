@@ -1,5 +1,5 @@
 import "./Hero.css";
-import home_img from "../../assets/home_img.png";
+import home_img from "../../assets/home_img.webp";
 import { motion } from "framer-motion";
 
 const Hero = () => {

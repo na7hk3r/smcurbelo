@@ -88,7 +88,7 @@ const Contact = () => {
             placeholder="hello@mail.com"
             required
           />
-          <label>Send me some love!</label>
+          <label>Send me something nice!</label>
           <textarea
             name="message"
             rows="10"

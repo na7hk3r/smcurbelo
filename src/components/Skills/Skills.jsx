@@ -1,20 +1,23 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import "./Skills.css";
-import CourseCard from "../CourseCard/CourseCard.jsx";
-import Tools from "../Tools/Tools.jsx";
+
+const CourseCard = lazy(() => import("../CourseCard/CourseCard.jsx"));
+const Tools = lazy(() => import("../Tools/Tools.jsx"));
 
 
 
 const Skills = () => {
   return (
-    <div className="container skills-container">
-      <div className="left">
-        <Tools />
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className="container skills-container">
+        <div className="left">
+          <Tools />
+        </div>
+        <div className="right">
+          <CourseCard />
+        </div>
       </div>
-      <div className="right">
-        <CourseCard />
-      </div>
-    </div>
+    </Suspense>
   );
 };
 

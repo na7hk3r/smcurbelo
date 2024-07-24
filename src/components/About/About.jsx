@@ -1,6 +1,6 @@
 // import React from "react";
 import "./About.css";
-import about_img from "../../assets/about.png";
+import about_img from "../../assets/about.webp";
 import { motion } from "framer-motion";
 
 const About = () => {
@@ -35,6 +35,7 @@ const About = () => {
       >
         <motion.img 
           src={about_img} 
+          loading="lazy"
           alt="AboutMe Image" 
           style={floatAnimation}
           />
