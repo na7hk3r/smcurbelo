@@ -2,11 +2,29 @@ import { useState } from "react";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
 import ToggleButton from "../ToggleButton/ToggleButton.jsx";
+import LanguageToggleButton from "../LanguageToggleButton/LanguageToggleButton.jsx";
 import { Link } from "react-scroll";
 import menu_icon from "../../assets/menu.png";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-const Navbar = () => {
+const Navbar = ({ language }) => {
+  const content = {
+    en: {
+      home: "Home",
+      about: "About",
+      skills: "Skills",
+      projects: "Projects",
+      contact: "Contact",
+    },
+    es: {
+      home: "Inicio",
+      about: "Sobre",
+      skills: "Habilidades",
+      projects: "Proyectos",
+      contact: "Contacto",
+    },
+  };
+
   const [mobileMenu, setMobileMenu] = useState(false);
   const toggleMenu = () => {
     mobileMenu ? setMobileMenu(false) : setMobileMenu(true);
@@ -60,7 +78,7 @@ const Navbar = () => {
               duration={700}
               onClick={closeMobileMenu}
             >
-              Home
+              {content[language].home}
             </Link>
           </motion.li>
           <motion.li 
@@ -72,7 +90,7 @@ const Navbar = () => {
               duration={700}
               onClick={closeMobileMenu}
             >
-              About
+              {content[language].about}
             </Link>
           </motion.li>
           <motion.li 
@@ -83,7 +101,7 @@ const Navbar = () => {
             offset={0} 
             duration={700}
             onClick={closeMobileMenu}>
-              Skills
+              {content[language].skills}
             </Link>
           </motion.li>
           <motion.li 
@@ -94,7 +112,7 @@ const Navbar = () => {
             offset={0} 
             duration={700}
             onClick={closeMobileMenu}>
-              Projects
+              {content[language].projects}
             </Link>
           </motion.li>
           <motion.li 
@@ -105,10 +123,13 @@ const Navbar = () => {
             offset={0} 
             duration={700}
             onClick={closeMobileMenu}>
-              Contact
+              {content[language].contact}
             </Link>
           </motion.li>
-          <ToggleButton />
+          <div className="toggle-buttons">
+            <ToggleButton />
+            <LanguageToggleButton />
+          </div>
         </ul>
 
         <img

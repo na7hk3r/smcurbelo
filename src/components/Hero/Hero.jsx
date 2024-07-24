@@ -2,7 +2,26 @@ import "./Hero.css";
 import home_img from "../../assets/home_img.webp";
 import { motion } from "framer-motion";
 
-const Hero = () => {
+const Hero = ({ language }) => {
+  const content = {
+    en: {
+      title: "Howdy! 👋",
+      subtitle1: "I'm Mathias.",
+      subtitle2: "I make things for the web.",
+      text1: "Uruguay based web developer.",
+      text2: "Let me show you my work!",
+      joke: "*yea, dog is oversized.",
+    },
+    es: {
+      title: "Hola! 👋",
+      subtitle1: "Soy Mathias.",
+      subtitle2: "Hago 'cosas' para la web.",
+      text1: "Me encuentro viviendo en Uruguay,",
+      text2: "¡Déjame mostrarte mi trabajo!",
+      joke: "*si, el perro está gigante."
+    },
+  };
+
   const initialAnimation = {
     variants: {
       initial: {
@@ -43,13 +62,13 @@ const Hero = () => {
         transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
         className="left-container"
       >
-        <h2>Howdy! 👋</h2>
+        <h2>{content[language].title}</h2>
         <h1>
-          <span>I&lsquo;m Mathias.</span>
+          <span>{content[language].subtitle1}</span>
         </h1>
-        <h1>I make things for the web.</h1>
-        <p>Uruguay based web developer.</p>
-        <p>Let me show you my work!</p>
+        <h1>{content[language].subtitle2}</h1>
+        <p>{content[language].text1}</p>
+        <p>{content[language].text2}</p>
       </motion.div>
 
       <div className="right-container">
@@ -63,7 +82,7 @@ const Hero = () => {
           {...leftAnimation}
           transition={{ delay: 3, type: "spring", stiffness: 100 }}
         >
-          *yea, dog is oversized.
+          {content[language].joke}
         </motion.p>
       </div>
 

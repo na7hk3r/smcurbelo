@@ -27,6 +27,16 @@
     list-style: none;
     margin: 5px 20px;
 }
+
+.navbar .toggle-buttons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar .toggle-buttons > *:not(:last-child) {
+    margin-right: 10px; /* Añade un margen entre los botones */
+  }
+  
 .menu-icon{
     display: none;
 }
