@@ -1,6 +1,6 @@
 .hero{
     align-items: center;
-    color: var(--cream);
+    /* color: var(--cream); */
     display: flex;
     height: 100vh;
     justify-content: center;
@@ -276,7 +276,7 @@
         width: 100%;
     }
     .right-container{
-        margin-top: 5%;
+        padding-top: 5%;
     }
     .left-container h1 span{
         font-size: 1em;
