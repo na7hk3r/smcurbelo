@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero';
 import About from './components/About/About';
@@ -12,15 +13,16 @@ import { SpeedInsights } from "@vercel/speed-insights/react"
 
 const AppContent = () => {
   const { theme } = useTheme();
+  const { language } = useLanguage();
   return (
     <div className={`App ${theme}`}>
-      <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
-      <Footer />
+      <Navbar language={language} />
+      <Hero language={language} />
+      <About language={language} />
+      <Skills language={language} />
+      <Projects language={language} />
+      <Contact language={language} />
+      <Footer language={language} />
       <Analytics />
       <SpeedInsights />
     </div>
@@ -30,7 +32,9 @@ const AppContent = () => {
 function App() {
   return (
     <ThemeProvider>
-      <AppContent />
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
     </ThemeProvider>
   );
 }
