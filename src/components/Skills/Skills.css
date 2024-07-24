@@ -15,6 +15,7 @@
     justify-content: center;
     padding: 1.5%;
     width: 60vw;
+    height: 80%;
 }
 .right{
     backdrop-filter: blur(15px);
@@ -22,6 +23,7 @@
     border-radius: 15px;
     border: none;
     width: 60vw;
+    height: 80%;
 }
 
 /* Mediaqueries */

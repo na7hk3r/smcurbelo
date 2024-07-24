@@ -10,6 +10,7 @@
     height: 23rem;
     justify-content: flex-start;
     width: 28rem;
+    color: var(--cream);
 }
 .img-container{
     align-items: flex-start;
