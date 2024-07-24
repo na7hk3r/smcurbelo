@@ -1,3 +1,5 @@
+import React from 'react';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero';
 import About from './components/About/About';
@@ -8,21 +10,29 @@ import Footer from './components/Footer/Footer';
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
 
-function App() {
-
+const AppContent = () => {
+  const { theme } = useTheme();
   return (
-    <>
+    <div className={`App ${theme}`}>
       <Navbar />
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
+      <Hero />
+      <About />
+      <Skills />
+      <Projects />
+      <Contact />
       <Footer />
       <Analytics />
-      <SpeedInsights/>
-    </>
-  )
+      <SpeedInsights />
+    </div>
+  );
+};
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;

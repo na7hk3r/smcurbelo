@@ -5,7 +5,7 @@
   --black-blur: rgba(41, 41, 41, 0.2);
   --primary: #2b4162;
   --cream: #F9F6F0;
-  --beige-light: #C4AE78;
+  --beige-light: #e3ba7e;
   --beige-dark: #6F5B3E;
 }
 
@@ -28,8 +28,18 @@ html::-webkit-scrollbar-thumb {
   background-color: var(--primary);
 }
 
-body {
+.App {
+  background: linear-gradient(315deg,var(--beige-dark) 0%, var(--beige-light) 50%, var(--beige-dark) 100%);
+  color: var(--black);
+}
+
+.App.dark {
   background: linear-gradient(315deg, var(--primary) 0%, var(--black) 74%);
+  color: var(--cream);
+}
+
+body {
+  /* background: linear-gradient(315deg, var(--primary) 0%, var(--black) 74%); */
   background-position: cover;
   font-family: "Montserrat", sans-serif;
   margin: 0;
@@ -38,7 +48,7 @@ body {
 
 .container{
   align-items: center;
-  color: var(--cream);
+  /* color: var(--cream); */
   display: flex;
   justify-content: center;
   width: 100%;
@@ -62,7 +72,7 @@ a{
   .container{
     height: auto;
     padding: 10%;
-    margin-top: 5rem;
+    padding-top: 6rem;
     margin-bottom: 5rem;
   }
 }
