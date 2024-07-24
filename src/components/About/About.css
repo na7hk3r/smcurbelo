@@ -11,7 +11,9 @@
 }
 .about-left img{
     width: 100%;
+    filter: drop-shadow(15px 26px 10px var(--black));
 }
+
 .about-right{
     width: 40vw;
     line-height: 1.4;

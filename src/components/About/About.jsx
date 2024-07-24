@@ -37,7 +37,7 @@ const About = ({ language }) => {
   const floatAnimation = {
     animation: 'floatAnimation 3s ease infinite alternate',
     zIndex: -20,
-    filter: 'drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.1))',
+    // filter: 'drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.1))',
   };
 
   return (
@@ -49,6 +49,7 @@ const About = ({ language }) => {
       >
         <motion.img 
           src={about_img} 
+          className="about-img"
           loading="lazy"
           alt="AboutMe Image" 
           style={floatAnimation}

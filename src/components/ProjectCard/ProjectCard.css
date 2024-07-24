@@ -1,16 +1,16 @@
 .card-project{
     align-items: center;
     backdrop-filter: blur(30px);
-    background-image: linear-gradient(315deg, var(--primary) 0%, var(--black) 94%);
+    background-image: linear-gradient(315deg, var(--primary) 0%, var(--black-blur) 94%);
     border-radius: 25px 0;
     border: none;
-    box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     display: flex;
     flex-direction: column;
     height: 23rem;
     justify-content: flex-start;
     width: 28rem;
-    color: var(--cream);
+    /* color: var(--cream); */
 }
 .img-container{
     align-items: flex-start;
@@ -41,7 +41,7 @@
 }
 .tags span{
     border-radius: 5px;
-    border: solid 1px white;
+    border: solid 1px var(--primary);
     cursor: pointer;
     font-size: 10px;
     margin: .2rem;

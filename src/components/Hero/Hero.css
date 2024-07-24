@@ -17,6 +17,7 @@
 .right-container img{
     width: 40rem;
     user-select: none;
+    filter: drop-shadow(5px 15px 10px var(--black));
 }
 .right-container p{
     font-size: .8rem;
