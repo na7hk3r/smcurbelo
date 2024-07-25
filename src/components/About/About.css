@@ -17,6 +17,8 @@
 .about-right{
     width: 40vw;
     line-height: 1.4;
+    display: flex;
+    flex-direction: column;
 }
 .about-right h1{
     font-size: 2.2em;
@@ -25,6 +27,30 @@
 .about-right p{
     font-size: 1.3em;
 }
+.about-right a{
+    align-items: center;
+    align-self: flex-end;
+    background: var(--black-blur);
+    border-radius: 15px;
+    border: 1px dotted white;
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    font-weight: 600;
+    height: 3rem;
+    justify-content: center;
+    margin-top: 15px;
+    padding: 10px;
+    text-decoration: none;
+    width: 10rem;
+}
+
+.about-right a:hover{
+    background: var(--primary);
+    color: white;
+    transition: ease-in-out .3s;
+}
+
 .skills{
     display: flex;
 }
