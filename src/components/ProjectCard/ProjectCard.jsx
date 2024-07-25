@@ -9,7 +9,7 @@ const ProjectCard = () => {
   return (
     <>
       {ProjectsData.map(project => (
-        <Tilt key={project.id}>
+        <Tilt className="tilt" key={project.id}>
           <div className="card-project">
             <div className="img-container">
               <img src={project.img} alt="" />

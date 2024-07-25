@@ -96,10 +96,18 @@
         font-size: 1rem;
     }
     .about-right p{
-        font-size: 1.2em;
+        font-size: 1em;
         line-height: 1.4;
+    }
+    .about-right a{
+        font-size: 12px;
+        font-weight: 600;
+        height: 2rem;
+        margin-top: 15px;
+        width: 10rem;
     }
     .about-left{
         margin-top: 5%;
     }
+
 }

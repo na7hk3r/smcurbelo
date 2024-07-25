@@ -83,4 +83,7 @@
     .card-info h2{
         font-size: 1.3em;
     }
+    .tilt {
+        transform: none !important;
+    }
 }
