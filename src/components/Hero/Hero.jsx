@@ -1,24 +1,24 @@
-import "./Hero.css";
-import home_img from "../../assets/home_img.webp";
-import { motion } from "framer-motion";
+import './Hero.css';
+import home_img from '../../assets/home_img.webp';
+import { motion } from 'framer-motion';
 
 const Hero = ({ language }) => {
   const content = {
     en: {
-      title: "Howdy! 👋",
+      title: 'Howdy! 👋',
       subtitle1: "I'm Mathias.",
-      subtitle2: "I make things for the web.",
-      text1: "Uruguay based web developer.",
-      text2: "Let me show you my work!",
-      joke: "*yea, dog is oversized.",
+      subtitle2: 'I make things for the web.',
+      text1: 'Uruguay based web developer.',
+      text2: 'Let me show you my work!',
+      joke: '*yea, dog is oversized.',
     },
     es: {
-      title: "Hola! 👋",
-      subtitle1: "Soy Mathias.",
+      title: 'Hola! 👋',
+      subtitle1: 'Soy Mathias.',
       subtitle2: "Hago 'cosas' para la web.",
-      text1: "Me encuentro viviendo en Uruguay,",
-      text2: "¡Déjame mostrarte mi trabajo!",
-      joke: "*si, el perro está gigante."
+      text1: 'Me encuentro viviendo en Uruguay,',
+      text2: '¡Déjame mostrarte mi trabajo!',
+      joke: '*si, el perro está gigante.',
     },
   };
 
@@ -33,8 +33,8 @@ const Hero = ({ language }) => {
         y: 0,
       },
     },
-    initial: "initial",
-    whileInView: "animate",
+    initial: 'initial',
+    whileInView: 'animate',
     viewport: { once: true },
   };
 
@@ -49,17 +49,16 @@ const Hero = ({ language }) => {
         x: 50,
       },
     },
-    initial: "initial",
-    whileInView: "animate",
+    initial: 'initial',
+    whileInView: 'animate',
     viewport: { once: true },
   };
 
   return (
     <div className="container hero">
-
       <motion.div
         {...initialAnimation}
-        transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
+        transition={{ delay: 0.5, type: 'spring', stiffness: 100 }}
         className="left-container"
       >
         <h2>{content[language].title}</h2>
@@ -74,22 +73,27 @@ const Hero = ({ language }) => {
       <div className="right-container">
         <motion.img
           {...initialAnimation}
-          transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
+          transition={{ delay: 0.5, type: 'spring', stiffness: 100 }}
           src={home_img}
           alt="Home Image"
         />
         <motion.p
           {...leftAnimation}
-          transition={{ delay: 3, type: "spring", stiffness: 100 }}
+          transition={{ delay: 3, type: 'spring', stiffness: 100 }}
         >
           {content[language].joke}
         </motion.p>
       </div>
 
-      <motion.div 
-      {...initialAnimation}
-      transition={{ delay: 0.7, type: "spring", stiffness: 100, ease: "easeInOut"}}
-      className="mouse-wrap"
+      <motion.div
+        {...initialAnimation}
+        transition={{
+          delay: 0.7,
+          type: 'spring',
+          stiffness: 100,
+          ease: 'easeInOut',
+        }}
+        className="mouse-wrap"
       >
         <div className="mouse">
           <div className="frame">
@@ -101,7 +105,7 @@ const Hero = ({ language }) => {
               x="0px"
               y="0px"
               viewBox="0 0 54.9 91"
-              style={{ enableBackground: "new 0 0 54.9 91" }}
+              style={{ enableBackground: 'new 0 0 54.9 91' }}
               xmlSpace="preserve"
             >
               <path
@@ -123,7 +127,7 @@ const Hero = ({ language }) => {
               x="0px"
               y="0px"
               viewBox="0 0 27.4 91"
-              style={{ enableBackground: "new 0 0 27.4 91" }}
+              style={{ enableBackground: 'new 0 0 27.4 91' }}
               xmlSpace="preserve"
             >
               <path
@@ -143,7 +147,7 @@ const Hero = ({ language }) => {
               x="0px"
               y="0px"
               viewBox="0 0 27.4 91"
-              style={{ enableBackground: "new 0 0 27.4 91" }}
+              style={{ enableBackground: 'new 0 0 27.4 91' }}
               xmlSpace="preserve"
             >
               <path
@@ -156,7 +160,6 @@ const Hero = ({ language }) => {
           </div>
         </div>
       </motion.div>
-
     </div>
   );
 };

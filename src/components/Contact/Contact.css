@@ -1,125 +1,126 @@
-.contact{
-    gap: 10%;
+.contact {
+  gap: 10%;
 }
-.form-text{
-    flex-direction: column;
-    height: 60vh;
-    align-items: flex-start;
+.form-text {
+  flex-direction: column;
+  height: 60vh;
+  align-items: flex-start;
 }
-.contact-container{
-    display: flex;
-    width: 100%;
-    justify-content: flex-start;
-    align-content: center;
-    padding: 25px 0 25px 0;
-    align-items: stretch;
-    gap: 1.5em;
+.contact-container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-content: center;
+  padding: 25px 0 25px 0;
+  align-items: stretch;
+  gap: 1.5em;
 }
-.contact-container img{
-    width: 48px;
-    height: 48px;
+.contact-container img {
+  width: 48px;
+  height: 48px;
 }
-.contact-container img:hover{
-    scale: 1.3;
-    transition: ease-in-out 0.2s;
-    rotate: 10deg;
+.contact-container img:hover {
+  scale: 1.3;
+  transition: ease-in-out 0.2s;
+  rotate: 10deg;
 }
-.contact{
-    align-content: center;
-    display: flex;
-    justify-content: space-between;
-    margin: 80px auto;
-    max-width: 90%;
+.contact {
+  align-content: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 80px auto;
+  max-width: 90%;
 }
-.contact-col{
-    flex-basis: 48%;
-    /* color: var(--cream); */
-    height: 60vh;
-    margin-top: 0;
+.contact-col {
+  flex-basis: 48%;
+  /* color: var(--cream); */
+  height: 60vh;
+  margin-top: 0;
 }
-.contact-col h1{
-    margin-bottom: .8em;
+.contact-col h1 {
+  margin-bottom: 0.8em;
 }
-.contact form input, .contact form textarea{
-    display: block;
-    width: 100%;
-    background: rgba(249, 246, 240, 0.3);
-    color: var(--cream);
-    padding: 15px;
-    border: 0;
-    outline: 0;
-    margin-bottom: 15px;
-    margin-top: 5px;
-    resize: none;
-    font-size: 16px;
-    border-radius: 8px;
+.contact form input,
+.contact form textarea {
+  display: block;
+  width: 100%;
+  background: rgba(249, 246, 240, 0.3);
+  color: var(--cream);
+  padding: 15px;
+  border: 0;
+  outline: 0;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  resize: none;
+  font-size: 16px;
+  border-radius: 8px;
 }
 .contact form input::placeholder,
-.contact form textarea::placeholder{
-    color: var(--black);
+.contact form textarea::placeholder {
+  color: var(--black);
 }
 
 .contact form input:focus,
-.contact form textarea:focus{
-    border: 1.5px solid white;
+.contact form textarea:focus {
+  border: 1.5px solid white;
 }
 
-.contact-col span{
-    display: block;
-    margin: 20px 0;
+.contact-col span {
+  display: block;
+  margin: 20px 0;
 }
-iframe{
-    border-radius: 10px;
+iframe {
+  border-radius: 10px;
 }
-.btn{
-    background: var(--black-blur);
-    color: var(--cream);
-    padding: 14px 25px;
-    font-size: 16px;
-    border-radius: 30px;
-    cursor: pointer;
-    border: solid 1px var(--cream);
-    outline: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+.btn {
+  background: var(--black-blur);
+  color: var(--cream);
+  padding: 14px 25px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  border: solid 1px var(--cream);
+  outline: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
-.btn:hover{
-    scale: 1.1;
-    transition: ease-in-out 0.1s;
+.btn:hover {
+  scale: 1.1;
+  transition: ease-in-out 0.1s;
 }
-.btn img{
-    width: 20px;
-    margin-left: 10px;
+.btn img {
+  width: 20px;
+  margin-left: 10px;
 }
 
 /* --------- Media Query ---------- */
-@media screen and (max-width: 480px){
-    .contact{
-        margin: 0 auto;
-        max-width: 100%;
-        padding: 0;
-        height: auto;
-    }
-    .contact-col{
-        margin-top: 50%;
-    }
+@media screen and (max-width: 480px) {
+  .contact {
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 0;
+    height: auto;
+  }
+  .contact-col {
+    margin-top: 50%;
+  }
 }
 
-@media screen and (max-width: 960px){
-    .contact{
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-    .form-text{
-        width: 100%;
-    }
-    .contact-col{
-        padding: 20px;
-        width: 100%;
-    }
-    iframe{
-        width: 100%;
-    }
+@media screen and (max-width: 960px) {
+  .contact {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .form-text {
+    width: 100%;
+  }
+  .contact-col {
+    padding: 20px;
+    width: 100%;
+  }
+  iframe {
+    width: 100%;
+  }
 }

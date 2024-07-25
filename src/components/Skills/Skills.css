@@ -1,74 +1,73 @@
-.skills-container{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 1.5rem;
+.skills-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.5rem;
 }
 
-.left{
-    background: rgba(43, 65, 98, 0.5);
-    border-radius: 15px;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 1.5%;
-    width: 60vw;
-    height: 80%;
+.left {
+  background: rgba(43, 65, 98, 0.5);
+  border-radius: 15px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5%;
+  width: 60vw;
+  height: 80%;
 }
-.right{
-    backdrop-filter: blur(15px);
-    background: rgba(41, 41, 41, 0.2);
-    border-radius: 15px;
-    border: none;
-    width: 60vw;
-    height: 80%;
+.right {
+  backdrop-filter: blur(15px);
+  background: rgba(41, 41, 41, 0.2);
+  border-radius: 15px;
+  border: none;
+  width: 60vw;
+  height: 80%;
 }
 
 /* Mediaqueries */
 
-@media screen and (max-width:960px)  {
-    .skills-container{
-        flex-direction: column;
-        width: 100%;
-    }
-    .left{
-        width: 100%;
-        margin-bottom: .3rem;
-        padding: 20px;
-        height: 50vh;
-    }
-    .right{
-        width: 100%;
-        padding: 5%;
-    }
+@media screen and (max-width: 960px) {
+  .skills-container {
+    flex-direction: column;
+    width: 100%;
+  }
+  .left {
+    width: 100%;
+    margin-bottom: 0.3rem;
+    padding: 20px;
+    height: 50vh;
+  }
+  .right {
+    width: 100%;
+    padding: 5%;
+  }
 }
 
-@media screen and (max-width: 480px){
-    .left,
-    .right {
-        height: auto;
-    }
-    .left h1,
-    .left h2{
-        font-size: 100%;
-    }
-    .language-section{
-        flex-wrap: wrap;
-    }
-    .tools h3{
-        font-size: 100%;
-    }
-    .language-section img{
-        width: 25px;
-    }
+@media screen and (max-width: 480px) {
+  .left,
+  .right {
+    height: auto;
+  }
+  .left h1,
+  .left h2 {
+    font-size: 100%;
+  }
+  .language-section {
+    flex-wrap: wrap;
+  }
+  .tools h3 {
+    font-size: 100%;
+  }
+  .language-section img {
+    width: 25px;
+  }
 
-    .right h1{
-        font-size: 1.7em;
-    }
-    .right h2{
-        font-size: 1.3em;
-    }
-
+  .right h1 {
+    font-size: 1.7em;
+  }
+  .right h2 {
+    font-size: 1.3em;
+  }
 }
