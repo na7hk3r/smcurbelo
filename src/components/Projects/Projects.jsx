@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import './Projects.css';
 
 const ProjectCard = lazy(() => import('../ProjectCard/ProjectCard'));
