@@ -90,6 +90,7 @@
   .card-project {
     height: 25rem;
     width: 20rem;
+    transform: none !important;
   }
 
   .card-info h2 {

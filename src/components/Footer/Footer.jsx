@@ -1,5 +1,5 @@
 import './Footer.css';
-import { FaGithub, FaLinkedin, FaHeart } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import logo_sword from '../../assets/logo_sword.png';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
