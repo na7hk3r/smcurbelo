@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CourseCard.css';
+import CertificateModal from '../CertificateModal/CertificateModal.jsx';
 
 import utu_logo from '../../assets/utu-logo.png';
 import ctd_logo from '../../assets/ctd-logo.png';
@@ -10,6 +11,14 @@ import fcc_logo from '../../assets/fcc-logo.png';
 import ibm_logo from '../../assets/ibm-logo.png';
 
 const CourseCard = ({ language }) => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [pdfUrl, setPdfUrl] = useState('');
+
+  const openModal = (url) => {
+    setPdfUrl(url);
+    setModalIsOpen(true);
+  };
+
   const content = {
     en: {
       coursesTitle: 'Where I learned?',
@@ -92,7 +101,7 @@ const CourseCard = ({ language }) => {
             <p>{content[language].ctdDescription}</p>
           </div>
         </div>
-        <div className="course-card">
+        <div className="course-card clickable" onClick={() => openModal('/certificates/jap.pdf')}>
           <div className="course-img">
             <img src={jap_logo} alt="Jovenes A Programar" />
           </div>
@@ -102,7 +111,7 @@ const CourseCard = ({ language }) => {
             <p>{content[language].japDescription}</p>
           </div>
         </div>
-        <div className="course-card">
+        <div className="course-card clickable" onClick={() => openModal('/certificates/one.pdf')}>
           <div className="course-img">
             <img src={one_logo} alt="Oracle ONE" />
           </div>
@@ -122,7 +131,7 @@ const CourseCard = ({ language }) => {
             <p>{content[language].voxyDescription}</p>
           </div>
         </div>
-        <div className="course-card">
+        <div className="course-card clickable" onClick={() => openModal('/certificates/fcc.pdf')}>
           <div className="course-img">
             <img src={fcc_logo} alt="Free Code Camp" />
           </div>
@@ -132,7 +141,7 @@ const CourseCard = ({ language }) => {
             <p>{content[language].fccDescription}</p>
           </div>
         </div>
-        <div className="course-card">
+        <div className="course-card clickable" onClick={() => openModal('/certificates/ibm.pdf')}>
           <div className="course-img">
             <img src={ibm_logo} alt="IBM Skills Network" />
           </div>
@@ -143,6 +152,11 @@ const CourseCard = ({ language }) => {
           </div>
         </div>
       </section>
+      <CertificateModal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        pdfUrl={pdfUrl}
+      />
     </>
   );
 };
