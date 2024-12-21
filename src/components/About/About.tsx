@@ -1,7 +1,7 @@
 // import React from "react";
 import './About.css';
-import about_img from '../../assets/about.webp';
 import { motion } from 'framer-motion';
+import { imageLinks } from '../../assets/imageLinks';
 
 const About = ({ language }) => {
   const content = {
@@ -55,7 +55,7 @@ const About = ({ language }) => {
         transition={{ delay: 0.5, type: 'spring', stiffness: 100 }}
       >
         <motion.img
-          src={about_img}
+          src={imageLinks.about_img}
           className="about-img"
           loading="lazy"
           alt="AboutMe Image"

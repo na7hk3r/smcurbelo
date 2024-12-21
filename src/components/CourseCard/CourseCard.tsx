@@ -1,16 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import './CourseCard.css';
-import CertificateModal from '../CertificateModal/CertificateModal.jsx';
+import CertificateModal from '../CertificateModal/CertificateModal.tsx';
+import { imageLinks } from '../../assets/imageLinks';
 
-import utu_logo from '../../assets/utu-logo.png';
-import ctd_logo from '../../assets/ctd-logo.png';
-import jap_logo from '../../assets/jap-logo.png';
-import one_logo from '../../assets/one-logo.png';
-import voxy_logo from '../../assets/voxy-logo.png';
-import fcc_logo from '../../assets/fcc-logo.png';
-import ibm_logo from '../../assets/ibm-logo.png';
-
-const CourseCard = ({ language }) => {
+const CourseCard = React.memo(({ language }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [pdfUrl, setPdfUrl] = useState('');
 
@@ -19,7 +12,7 @@ const CourseCard = ({ language }) => {
     setModalIsOpen(true);
   };
 
-  const content = {
+  const content = useMemo(() => ({
     en: {
       coursesTitle: 'Where I learned?',
       coursesSubtitle: 'Courses & Certificates',
@@ -70,7 +63,7 @@ const CourseCard = ({ language }) => {
       ibmDescription:
         'Inscrito en el curso de Desarrollo Web Fullstack a través de Coursera, enfocado en dominar las últimas herramientas y tecnologías para construir aplicaciones web robustas y escalables, con una comprensión integral tanto del desarrollo front-end como back-end como parte de una licencia de Ceibal en VeranoJAP.',
     },
-  };
+  }), [language]);
 
   return (
     <>
@@ -81,7 +74,7 @@ const CourseCard = ({ language }) => {
       <section className="courses-container">
         <div className="course-card">
           <div className="course-img">
-            <img src={utu_logo} alt="UTU" />
+            <img src={imageLinks.utu_logo} alt="UTU" />
           </div>
           <div className="course-description">
             <h2>{content[language].utuTitle}</h2>
@@ -91,7 +84,7 @@ const CourseCard = ({ language }) => {
         </div>
         <div className="course-card">
           <div className="course-img">
-            <img src={ctd_logo} alt="Certified Tech Developer" />
+            <img src={imageLinks.ctd_logo} alt="Certified Tech Developer" />
           </div>
           <div className="course-description">
             <h2>Certified Tech Developer</h2>
@@ -103,7 +96,7 @@ const CourseCard = ({ language }) => {
         </div>
         <div className="course-card clickable" onClick={() => openModal('/certificates/jap.pdf')}>
           <div className="course-img">
-            <img src={jap_logo} alt="Jovenes A Programar" />
+            <img src={imageLinks.jap_logo} alt="Jovenes A Programar" />
           </div>
           <div className="course-description">
             <h2>Fullstack Web Development</h2>
@@ -113,7 +106,7 @@ const CourseCard = ({ language }) => {
         </div>
         <div className="course-card clickable" onClick={() => openModal('/certificates/one.pdf')}>
           <div className="course-img">
-            <img src={one_logo} alt="Oracle ONE" />
+            <img src={imageLinks.one_logo} alt="Oracle ONE" />
           </div>
           <div className="course-description">
             <h2>{content[language].oneTitle}</h2>
@@ -123,7 +116,7 @@ const CourseCard = ({ language }) => {
         </div>
         <div className="course-card">
           <div className="course-img">
-            <img src={voxy_logo} alt="Voxy" />
+            <img src={imageLinks.voxy_logo} alt="Voxy" />
           </div>
           <div className="course-description">
             <h2>{content[language].voxyTitle}</h2>
@@ -133,7 +126,7 @@ const CourseCard = ({ language }) => {
         </div>
         <div className="course-card clickable" onClick={() => openModal('/certificates/fcc.pdf')}>
           <div className="course-img">
-            <img src={fcc_logo} alt="Free Code Camp" />
+            <img src={imageLinks.fcc_logo} alt="Free Code Camp" />
           </div>
           <div className="course-description">
             <h2>{content[language].fccTitle}</h2>
@@ -143,7 +136,7 @@ const CourseCard = ({ language }) => {
         </div>
         <div className="course-card clickable" onClick={() => openModal('/certificates/ibm.pdf')}>
           <div className="course-img">
-            <img src={ibm_logo} alt="IBM Skills Network" />
+            <img src={imageLinks.ibm_logo} alt="IBM Skills Network" />
           </div>
           <div className="course-description">
             <h2>{content[language].ibmTitle}</h2>
@@ -159,6 +152,6 @@ const CourseCard = ({ language }) => {
       />
     </>
   );
-};
+});
 
 export default CourseCard;

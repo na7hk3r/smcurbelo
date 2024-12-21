@@ -5,7 +5,7 @@
       "en": "SpaceX Launches App",
       "es": "Aplicación de Lanzamientos SpaceX"
     },
-    "img": "./spacex_web.png",
+    "img": "https://firebasestorage.googleapis.com/v0/b/shotgunseven73.appspot.com/o/smcurbelo%2Fspacex_web.png?alt=media&token=1acf7bae-15a8-4df8-b241-b28ca95e4e17",
     "tags": {
       "span_1": "#Astro",
       "span_2": "#Tailwind",
@@ -20,7 +20,7 @@
   },
   {
     "id": "02",
-    "img": "./natural.png",
+    "img": "https://firebasestorage.googleapis.com/v0/b/shotgunseven73.appspot.com/o/smcurbelo%2Fnatural.png?alt=media&token=6bc9e859-b250-47f7-ae09-b5171c1e5a34",
     "title": {
       "en": "Naturalmente Vane - Landing",
       "es": "Naturalmente Vane"
@@ -39,7 +39,7 @@
   },
   {
     "id": "03",
-    "img": "./weather.png",
+    "img": "https://firebasestorage.googleapis.com/v0/b/shotgunseven73.appspot.com/o/smcurbelo%2Fweather.png?alt=media&token=d1f7b967-ac04-4dcb-a302-c686c9d18ef4",
     "title": {
       "en": "Weather App",
       "es": "Aplicación del Clima"
@@ -58,7 +58,7 @@
   },
   {
     "id": "04",
-    "img": "./clinica.webp",
+    "img": "https://firebasestorage.googleapis.com/v0/b/shotgunseven73.appspot.com/o/smcurbelo%2Fclinica.webp?alt=media&token=3e4d02dd-76f9-48f1-979d-68c00026df9e",
     "title": {
       "en": "Dental Clinic Management App",
       "es": "Aplicación de Gestión de Clínica Dental"
@@ -76,27 +76,8 @@
     "href_source_2": "https://github.com/na7hk3r/clinicaOdontologica"
   },
   {
-    "id": "05",
-    "img": "./constru.webp",
-    "title": {
-      "en": "UY Construcciones",
-      "es": "UY Construcciones"
-    },
-    "tags": {
-      "span_1": "#JavaScript",
-      "span_2": "#AOS",
-      "span_3": "#Bootstrap"
-    },
-    "description": {
-      "en": "Landing page for a local construction company.",
-      "es": "Página de aterrizaje para una empresa local de construcción."
-    },
-    "href_source": "https://github.com/na7hk3r/uy_construcciones",
-    "href_source_2": "https://uyconstrucciones.com.uy/"
-  },
-  {
     "id": "06",
-    "img": "./emercado.webp",
+    "img": "https://firebasestorage.googleapis.com/v0/b/shotgunseven73.appspot.com/o/smcurbelo%2Femercado.webp?alt=media&token=2a4fc538-84e5-4e0d-ba77-0a932fd555c2",
     "title": {
       "en": "eMercado - Ecommerce",
       "es": "eMercado - Comercio Electrónico"
@@ -115,7 +96,7 @@
   },
   {
     "id": "07",
-    "img": "./encoder.webp",
+    "img": "https://firebasestorage.googleapis.com/v0/b/shotgunseven73.appspot.com/o/smcurbelo%2Fencoder.webp?alt=media&token=520a1e7c-bf03-4c46-8cd4-c641821ae2a3",
     "title": {
       "en": "Text Encryptor",
       "es": "Encriptador de Texto"
@@ -134,7 +115,7 @@
   },
   {
     "id": "08",
-    "img": "./oldportfol.webp",
+    "img": "https://firebasestorage.googleapis.com/v0/b/shotgunseven73.appspot.com/o/smcurbelo%2Foldportfol.webp?alt=media&token=e5234579-708f-45ee-9a2d-0a4839264fb4",
     "title": {
       "en": "Previous Portfolio",
       "es": "Portafolio Anterior"
@@ -153,7 +134,7 @@
   },
   {
     "id": "09",
-    "img": "./sportit.webp",
+    "img": "https://firebasestorage.googleapis.com/v0/b/shotgunseven73.appspot.com/o/smcurbelo%2Fsportit.webp?alt=media&token=c9714447-cd52-46cd-8af0-eda7e8130b33",
     "title": {
       "en": "SportIt - Frontend project",
       "es": "SportIt - Proyecto Frontend"

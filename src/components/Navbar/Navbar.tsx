@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import './Navbar.css';
-import logo from '../../assets/logo.png';
-import ToggleButton from '../ToggleButton/ToggleButton.jsx';
-import LanguageToggleButton from '../LanguageToggleButton/LanguageToggleButton.jsx';
+import ToggleButton from '../ToggleButton/ToggleButton.tsx';
+import LanguageToggleButton from '../LanguageToggleButton/LanguageToggleButton.tsx';
 import { Link } from 'react-scroll';
-import menu_icon from '../../assets/menu.png';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { imageLinks } from '../../assets/imageLinks';
 
 const Navbar = ({ language }) => {
   const content = {
@@ -54,7 +53,7 @@ const Navbar = ({ language }) => {
       >
         <Link to="hero" smooth={true} offset={0} duration={900}>
           <motion.img
-            src={logo}
+            src={imageLinks.logo}
             alt="logo"
             className="logo"
             drag
@@ -139,7 +138,7 @@ const Navbar = ({ language }) => {
         </ul>
 
         <img
-          src={menu_icon}
+          src={imageLinks.menu_icon}
           alt="Menu Icon"
           className="menu-icon"
           onClick={toggleMenu}

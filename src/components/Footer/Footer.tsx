@@ -1,9 +1,9 @@
 import './Footer.css';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import logo_sword from '../../assets/logo_sword.png';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { Link } from 'react-scroll';
+import { imageLinks } from '../../assets/imageLinks';
 
 const Footer = () => {
   const { theme } = useTheme();
@@ -35,7 +35,7 @@ const Footer = () => {
     <footer className={`footer ${theme}`}>
       <div className="footer-content">
         <div className="footer-logo-section">
-          <img src={logo_sword} alt="Sword Nathker Logo" className="footer-logo" />
+          <img src={imageLinks.logo_sword} alt="Sword Nathker Logo" className="footer-logo" />
         </div>
         <div className="footer-links">
           <Link to="hero" smooth={true} offset={0} duration={700} className="footer-link">

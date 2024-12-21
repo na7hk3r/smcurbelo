@@ -1,6 +1,6 @@
 import './Hero.css';
-import home_img from '../../assets/home_img.webp';
 import { motion } from 'framer-motion';
+import { imageLinks } from '../../assets/imageLinks';
 
 const Hero = ({ language }) => {
   const content = {
@@ -74,7 +74,7 @@ const Hero = ({ language }) => {
         <motion.img
           {...initialAnimation}
           transition={{ delay: 0.5, type: 'spring', stiffness: 100 }}
-          src={home_img}
+          src={imageLinks.home_img}
           alt="Home Image"
         />
         <motion.p

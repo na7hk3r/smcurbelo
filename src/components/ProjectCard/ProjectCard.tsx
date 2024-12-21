@@ -1,9 +1,8 @@
 import Tilt from 'react-parallax-tilt';
 import './ProjectCard.css';
 import ProjectsData from './Projects.json';
-import code_icon from '../../assets/code.png';
-import web_icon from '../../assets/web.png';
 import { useLanguage } from '../../context/LanguageContext';
+import { imageLinks } from '../../assets/imageLinks';
 
 const ProjectCard = () => {
   const { language } = useLanguage();
@@ -11,7 +10,13 @@ const ProjectCard = () => {
   return (
     <>
       {ProjectsData.map((project) => (
-        <Tilt className="tilt" key={project.id}>
+        <Tilt
+        tiltMaxAngleX={20}
+        tiltMaxAngleY={20}
+        perspective={1000}
+        transitionSpeed={4000}
+        scale={1}
+        className="tilt" key={project.id}>
           <div className="card-project">
             <div className="img-container">
               <img src={project.img} alt="" />
@@ -30,14 +35,14 @@ const ProjectCard = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={code_icon} alt="Source Code" />
+                  <img src={imageLinks.code_icon} alt="Source Code" />
                 </a>
                 <a
                   href={project.href_source_2}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={web_icon} alt="Live Preview" />
+                  <img src={imageLinks.web_icon} alt="Live Preview" />
                 </a>
               </div>
             </div>

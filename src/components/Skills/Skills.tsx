@@ -2,11 +2,11 @@ import React, { Suspense, lazy } from 'react';
 import {
   LanguageProvider,
   useLanguage,
-} from '../../context/LanguageContext.jsx';
+} from '../../context/LanguageContext.js';
 import './Skills.css';
 
-const CourseCard = lazy(() => import('../CourseCard/CourseCard.jsx'));
-const Tools = lazy(() => import('../Tools/Tools.jsx'));
+const CourseCard = lazy(() => import('../CourseCard/CourseCard.js'));
+const Tools = lazy(() => import('../Tools/Tools.js'));
 
 const Skills = () => {
   const { language } = useLanguage();

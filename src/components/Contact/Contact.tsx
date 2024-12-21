@@ -1,10 +1,6 @@
 import React from 'react';
 import './Contact.css';
-import arrow from '../../assets/white_arrow.png';
-import github_icon from '../../assets/github.png';
-import mail_icon from '../../assets/mail.png';
-import linkedin_icon from '../../assets/linkedin.png';
-import whatsapp_icon from '../../assets/whatsapp.png';
+import { imageLinks } from '../../assets/imageLinks';
 
 const Contact = ({ language }) => {
   const content = {
@@ -75,16 +71,16 @@ const Contact = ({ language }) => {
         </div>
         <div className="contact-container">
           <a href="mailto:sergiomcurbelo5@gmail.com" target="_blank">
-            <img src={mail_icon} alt="EMail" />
+            <img src={imageLinks.mail_icon} alt="EMail" />
           </a>
           <a href="tel:+59897266076" target="_blank">
-            <img src={whatsapp_icon} alt="Whatsapp" />
+            <img src={imageLinks.whatsapp_icon} alt="Whatsapp" />
           </a>
           <a href="https://linkedin.com/in/smcurbelo/" target="_blank">
-            <img src={linkedin_icon} alt="LinkedIn" />
+            <img src={imageLinks.linkedin_icon} alt="LinkedIn" />
           </a>
           <a href="https://github.com/na7hk3r/" target="_blank">
-            <img src={github_icon} alt="Github" />
+            <img src={imageLinks.github_icon} alt="Github" />
           </a>
         </div>
         <div className="map-container">
@@ -134,7 +130,7 @@ const Contact = ({ language }) => {
             required
           ></textarea>
           <button type="submit" className="btn">
-            {content[language].sendButton} <img src={arrow} alt="Send button" />
+            {content[language].sendButton} <img src={imageLinks.arrow} alt="Send button" />
           </button>
         </form>
         <span>{result}</span>
