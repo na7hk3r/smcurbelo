@@ -75,7 +75,7 @@ const About = ({ language }) => {
         <br />
         <p>{content[language].text3}</p>
 
-        <a href="/CV_Sergio_Curbelo.pdf" download>
+        <a href="/curbelo_2025.pdf" download>
           {content[language].cv}
         </a>
       </motion.div>

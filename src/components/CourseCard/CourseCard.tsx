@@ -82,14 +82,14 @@ const CourseCard = React.memo(({ language }) => {
             <p>{content[language].utuDescription}</p>
           </div>
         </div>
-        <div className="course-card">
+        <div className="course-card clickable" onClick={() => openModal('/certificates/ctd.pdf')}>
           <div className="course-img">
             <img src={imageLinks.ctd_logo} alt="Certified Tech Developer" />
           </div>
           <div className="course-description">
             <h2>Certified Tech Developer</h2>
             <span>
-              DigitalHouse, Argentina. 2023 - {content[language].date}
+              DigitalHouse, Argentina. 2023 - 2025
             </span>
             <p>{content[language].ctdDescription}</p>
           </div>
