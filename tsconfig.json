@@ -4,9 +4,18 @@
     "module": "esnext",
     "strict": true,
     "jsx": "react-jsx",
+    "jsxImportSource": "react",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "checkJs": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@context/*": ["context/*"],
+      "@assets/*": ["assets/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
