@@ -72,9 +72,79 @@
   opacity: 1;
 }
 
+/* Media query para tablets grandes y medianas */
+@media screen and (max-width: 960px) {
+  .tools h1 {
+    font-size: 1.6rem;
+    padding-bottom: 2.5rem;
+  }
+  
+  .tools h2 {
+    font-size: 1.3rem;
+  }
+  
+  .language-section {
+    gap: 1em;
+    padding-bottom: 1.5rem;
+  }
+  
+  .language-section img {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .tooltip .tooltiptext {
+    width: 100px;
+    margin-left: -50px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Media query para tablets pequeñas (alrededor de 575px) */
+@media screen and (max-width: 580px) {
+  .tools {
+    padding: 0.8em;
+  }
+  
+  .tools h1 {
+    font-size: 1.4rem;
+    padding-bottom: 1.3rem;
+  }
+  
+  .tools h2 {
+    font-size: 1.2rem;
+  }
+  
+  .tools h3 {
+    font-size: 1rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .language-section {
+    margin: 3px;
+    gap: 0.7em;
+    padding-top: 0.6em;
+    padding-bottom: 1.2rem;
+  }
+  
+  .language-section img {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .tooltip .tooltiptext {
+    width: 90px;
+    margin-left: -45px;
+    font-size: 0.8rem;
+    padding: 4px 0;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .tools h1 {
     font-size: 1.3rem;
+    padding-bottom: 1rem;
   }
   .tools h2 {
     font-size: 1rem;

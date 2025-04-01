@@ -1,10 +1,22 @@
-// import React from "react";
 import './About.css';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { imageLinks } from '../../assets/imageLinks';
 
-const About = ({ language }) => {
-  const content = {
+interface AboutProps {
+  language: 'en' | 'es';
+}
+
+interface ContentType {
+  title: string;
+  text1: string;
+  text2: string;
+  text3: string;
+  cv: string;
+}
+
+const About: React.FC<AboutProps> = ({ language }) => {
+  const content: Record<'en' | 'es', ContentType> = {
     en: {
       title: 'About Me',
       text1: "I'm deeply passionate about technology, learning and arts.",
@@ -41,14 +53,8 @@ const About = ({ language }) => {
     viewport: { once: true },
   };
 
-  const floatAnimation = {
-    animation: 'floatAnimation 3s ease infinite alternate',
-    zIndex: -20,
-    // filter: 'drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.1))',
-  };
-
   return (
-    <div className="container about-container">
+    <div className="container about-container" id="about">
       <motion.div
         className="about-left"
         {...initialAnimation}
@@ -59,7 +65,7 @@ const About = ({ language }) => {
           className="about-img"
           loading="lazy"
           alt="AboutMe Image"
-          style={floatAnimation}
+          style={{ animation: 'floatAnimation 3s ease infinite alternate' }}
         />
       </motion.div>
 
@@ -75,7 +81,7 @@ const About = ({ language }) => {
         <br />
         <p>{content[language].text3}</p>
 
-        <a href="/curbelo_2025.pdf" download>
+        <a href="/curbelo_2025.pdf" download aria-label="Download CV">
           {content[language].cv}
         </a>
       </motion.div>

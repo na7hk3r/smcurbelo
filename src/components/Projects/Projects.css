@@ -3,13 +3,44 @@
   flex-wrap: wrap;
   width: 100%;
   align-items: center;
-  justify-content: space-around;
-  align-content: stretch;
-  gap: 1.5em;
+  justify-content: center;
+  gap: 2em;
+  padding: 2rem 0;
+  padding-top: 8rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1200px) {
+  .projects-container {
+    padding: 1.5rem;
+    padding-top: 8rem;
+    gap: 1.8em;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .projects-container {
+    padding: 1rem;
+    padding-top: 7rem;
+    gap: 1.5em;
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .projects-container {
+    padding: 0.8rem;
+    padding-top: 6rem;
+    gap: 1.2em;
+  }
 }
 
 @media screen and (max-width: 480px) {
   .projects-container {
-    margin-top: 3rem;
+    margin-top: 2rem;
+    padding: 0.5rem;
+    padding-top: 5rem;
+    gap: 2rem;
   }
 }

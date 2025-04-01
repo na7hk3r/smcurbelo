@@ -15,6 +15,14 @@
   flex-direction: column;
   height: 25rem;
   width: 28rem;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card-project:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 .img-container {
@@ -37,7 +45,7 @@
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  height: 60%;
+  height: 50%;
   justify-content: space-between;
   line-height: 1.5;
   padding: 1em;
@@ -84,13 +92,50 @@
 
 .buttons img {
   width: 25px;
+  transition: transform 0.2s ease;
+}
+
+.buttons a:hover img {
+  transform: scale(1.2);
+}
+
+@media screen and (max-width: 1200px) {
+  .card-project {
+    width: 24rem;
+    height: 24rem;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .card-project {
+    width: 22rem;
+    height: 25rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card-project {
+    width: 90%;
+    max-width: 26rem;
+    height: auto;
+    min-height: 22rem;
+  }
+  
+  .img-container {
+    height: 200px;
+  }
 }
 
 @media screen and (max-width: 480px) {
   .card-project {
-    height: 25rem;
-    width: 20rem;
-    transform: none !important;
+    height: auto;
+    width: 90%;
+    max-width: 20rem;
+    min-height: 22rem;
+  }
+
+  .img-container {
+    height: 160px;
   }
 
   .card-info h2 {

@@ -3,6 +3,9 @@
   font-family: 'Montserrat', sans-serif;
   backdrop-filter: blur(15px);
   background: rgba(41, 41, 41, 0.2);
+  margin-top: auto;
+  margin-bottom: 0 !important;
+  width: 100%;
 }
 
 .footer-content {

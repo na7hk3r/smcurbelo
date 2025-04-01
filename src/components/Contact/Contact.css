@@ -1,5 +1,6 @@
 .contact {
   gap: 10%;
+  padding-top: 8rem;
 }
 .form-text {
   flex-direction: column;
@@ -33,7 +34,6 @@
 }
 .contact-col {
   flex-basis: 48%;
-  /* color: var(--cream); */
   height: 60vh;
   margin-top: 0;
 }
@@ -95,15 +95,9 @@ iframe {
 }
 
 /* --------- Media Query ---------- */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 1200px) {
   .contact {
-    margin: 0 auto;
-    max-width: 100%;
-    padding: 0;
-    height: auto;
-  }
-  .contact-col {
-    margin-top: 50%;
+    padding-top: 8rem;
   }
 }
 
@@ -112,6 +106,8 @@ iframe {
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding-top: 7rem;
+    margin: 30px auto;
   }
   .form-text {
     width: 100%;
@@ -122,5 +118,125 @@ iframe {
   }
   iframe {
     width: 100%;
+    max-height: 250px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contact {
+    padding-top: 6rem;
+  }
+  
+  .contact-col h1 {
+    font-size: 1.7em;
+  }
+  
+  .btn {
+    padding: 12px 22px;
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .contact {
+    padding-top: 6.5rem;
+    margin: 25px auto;
+  }
+  
+  .contact-col {
+    padding: 18px;
+  }
+  
+  .contact-col h1 {
+    font-size: 1.5em;
+    margin-bottom: 0.7em;
+  }
+  
+  .contact-container {
+    padding: 20px 0;
+    gap: 1.2em;
+  }
+  
+  .contact-container img {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .contact form input,
+  .contact form textarea {
+    padding: 13px;
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .contact {
+    padding-top: 6rem;
+    margin: 20px auto;
+    max-width: 95%;
+  }
+  
+  .contact-col {
+    padding: 15px;
+    height: auto;
+  }
+  
+  .contact-col h1 {
+    font-size: 1.4em;
+    margin-bottom: 0.6em;
+  }
+  
+  .contact-container {
+    padding: 15px 0;
+    gap: 1em;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .contact-container img {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .form-text {
+    height: auto;
+  }
+  
+  .contact form input,
+  .contact form textarea {
+    padding: 12px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .contact form textarea {
+    min-height: 100px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  
+  iframe {
+    max-height: 220px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .contact {
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 0;
+    padding-top: 5rem;
+    height: auto;
+  }
+  .contact-col {
+    margin-top: 10%;
+  }
+  
+  .map-container {
+    margin-bottom: 2rem;
   }
 }

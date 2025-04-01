@@ -1,13 +1,30 @@
-import React, { createContext, useState, useContext, useMemo } from 'react';
+import React, { createContext, useState, useContext, useMemo, ReactNode } from 'react';
 
-const LanguageContext = createContext();
+type LanguageType = 'en' | 'es';
 
-export const useLanguage = () => useContext(LanguageContext);
+interface LanguageContextType {
+  language: LanguageType;
+  toggleLanguage: () => void;
+}
 
-export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState('en');
+interface LanguageProviderProps {
+  children: ReactNode;
+}
 
-  const toggleLanguage = () => {
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+export const useLanguage = (): LanguageContextType => {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+};
+
+export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
+  const [language, setLanguage] = useState<LanguageType>('en');
+
+  const toggleLanguage = (): void => {
     setLanguage((prevLanguage) => (prevLanguage === 'en' ? 'es' : 'en'));
   };
 

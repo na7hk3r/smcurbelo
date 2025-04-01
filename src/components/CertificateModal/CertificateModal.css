@@ -1,59 +1,134 @@
 .overlay {
-    background-color: rgba(0, 0, 0, 0.75);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal {
+  background: var(--black-blur);
+  color: var(--primary);
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  animation: scaleIn 0.3s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.modal-content {
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  background: var(--cream);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+  font-weight: bold;
+  z-index: 10;
+}
+
+.close-button:hover {
+  background: var(--primary);
+  transform: scale(1.1);
+}
+
+.pdf-viewer {
+  width: 85vw;
+  height: 85vh;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  background-color: white;
+}
+
+/* Tablet */
+@media screen and (max-width: 1024px) {
   .modal {
-    background: var(--black-blur);
-    color: var(--primary);
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 90%;
-    max-height: 90%;
-    overflow: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .modal-content {
-    position: relative;
-  }
-  
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--cream);
+    padding: 25px;
+    max-width: 95%;
   }
   
   .pdf-viewer {
-    width: 85vw;
-    height: 85vh;
-    border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    width: 90vw;
+    height: 80vh;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .modal {
+    padding: 20px;
+    border-radius: 12px;
   }
   
-  @media screen and (max-width: 768px) {
-    .pdf-viewer {
-      width: 100%;
-      height: 70vh;
-    }
+  .pdf-viewer {
+    width: 100%;
+    height: 70vh;
   }
+  
+  .close-button {
+    top: -15px;
+    right: -15px;
+    width: 32px;
+    height: 32px;
+  }
+}
 
-  @media screen and (max-width: 480px) {
-    .pdf-viewer {
-      width: 100%;
-      height: 60vh;
-    }
+/* Small Mobile */
+@media screen and (max-width: 480px) {
+  .modal {
+    padding: 15px;
+    max-width: 98%;
   }
+  
+  .pdf-viewer {
+    width: 100%;
+    height: 65vh;
+  }
+}

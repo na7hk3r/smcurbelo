@@ -1,9 +1,34 @@
-import React from 'react';
+import React, { useState, FormEvent } from 'react';
 import './Contact.css';
 import { imageLinks } from '../../assets/imageLinks';
 
-const Contact = ({ language }) => {
-  const content = {
+interface ContactProps {
+  language: 'en' | 'es';
+}
+
+interface ContentType {
+  contactTitle: string;
+  contactSubtitle: string;
+  contactDescription: string;
+  adventureTitle: string;
+  adventureDescription: string;
+  contactFormTitle: string;
+  nameLabel: string;
+  namePlaceholder: string;
+  phoneLabel: string;
+  emailPlaceholder: string;
+  messageLabel: string;
+  messagePlaceholder: string;
+  sendButton: string;
+}
+
+interface FormData {
+  success: boolean;
+  message: string;
+}
+
+const Contact: React.FC<ContactProps> = ({ language }) => {
+  const content: Record<'en' | 'es', ContentType> = {
     en: {
       contactTitle: 'Keep in touch!',
       contactSubtitle: 'Send me a message',
@@ -36,12 +61,12 @@ const Contact = ({ language }) => {
     },
   };
 
-  const [result, setResult] = React.useState('');
+  const [result, setResult] = useState<string>('');
 
-  const onSubmit = async (event) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     setResult('Sending...');
-    const formData = new FormData(event.target);
+    const formData = new FormData(event.currentTarget);
 
     formData.append('access_key', '153e59a3-6cfb-4990-80bd-77e232103f20');
 
@@ -50,11 +75,11 @@ const Contact = ({ language }) => {
       body: formData,
     });
 
-    const data = await response.json();
+    const data: FormData = await response.json();
 
     if (data.success) {
       setResult('Successfully delivered!');
-      event.target.reset();
+      event.currentTarget.reset();
     } else {
       console.log('Error', data);
       setResult(data.message);
@@ -62,7 +87,7 @@ const Contact = ({ language }) => {
   };
 
   return (
-    <div className="container contact">
+    <div className="container contact" id="contact">
       <div className="form-text">
         <div className="contact-title">
           <h2>{content[language].contactTitle}</h2>
@@ -70,16 +95,16 @@ const Contact = ({ language }) => {
           <p>{content[language].contactDescription}</p>
         </div>
         <div className="contact-container">
-          <a href="mailto:sergiomcurbelo5@gmail.com" target="_blank">
+          <a href="mailto:sergiomcurbelo5@gmail.com" target="_blank" rel="noopener noreferrer">
             <img src={imageLinks.mail_icon} alt="EMail" />
           </a>
-          <a href="tel:+59897266076" target="_blank">
+          <a href="tel:+59897266076" target="_blank" rel="noopener noreferrer">
             <img src={imageLinks.whatsapp_icon} alt="Whatsapp" />
           </a>
-          <a href="https://linkedin.com/in/smcurbelo/" target="_blank">
+          <a href="https://linkedin.com/in/smcurbelo/" target="_blank" rel="noopener noreferrer">
             <img src={imageLinks.linkedin_icon} alt="LinkedIn" />
           </a>
-          <a href="https://github.com/na7hk3r/" target="_blank">
+          <a href="https://github.com/na7hk3r/" target="_blank" rel="noopener noreferrer">
             <img src={imageLinks.github_icon} alt="Github" />
           </a>
         </div>
@@ -92,9 +117,10 @@ const Contact = ({ language }) => {
             width={400}
             height={300}
             style={{ border: 0 }}
-            allowFullScreen=""
+            allowFullScreen={true}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
+            title="Google Maps"
           />
         </div>
       </div>
@@ -117,7 +143,7 @@ const Contact = ({ language }) => {
           />
           <label>Email</label>
           <input
-            type="mail"
+            type="email"
             name="mail"
             placeholder={content[language].emailPlaceholder}
             required
@@ -125,7 +151,7 @@ const Contact = ({ language }) => {
           <label>{content[language].messageLabel}</label>
           <textarea
             name="message"
-            rows="10"
+            rows={10}
             placeholder={content[language].messagePlaceholder}
             required
           ></textarea>

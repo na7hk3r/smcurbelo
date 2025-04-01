@@ -11,11 +11,15 @@
     "allowJs": true,
     "checkJs": true,
     "baseUrl": "./src",
+    "moduleResolution": "node",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "noEmit": true,
     "paths": {
       "@components/*": ["components/*"],
       "@context/*": ["context/*"],
       "@assets/*": ["assets/*"]
-    }
+    },
+    "typeRoots": ["./node_modules/@types", "./src/types"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

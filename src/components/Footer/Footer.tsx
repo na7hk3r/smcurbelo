@@ -1,16 +1,30 @@
 import './Footer.css';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import React from 'react';
+import { FaGithub, FaLinkedin, FaHeart } from 'react-icons/fa';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { Link } from 'react-scroll';
 import { imageLinks } from '../../assets/imageLinks';
 
-const Footer = () => {
+interface FooterProps {
+  language: 'en' | 'es';
+}
+
+interface ContentType {
+  home: string;
+  about: string;
+  skills: string;
+  projects: string;
+  contact: string;
+  followMe: string;
+  copyright: string;
+}
+
+const Footer: React.FC<FooterProps> = ({ language }) => {
   const { theme } = useTheme();
-  const { language } = useLanguage();
   const year = new Date().getFullYear();
 
-  const content = {
+  const content: Record<'en' | 'es', ContentType> = {
     en: {
       home: "Home",
       about: "About",
@@ -18,7 +32,7 @@ const Footer = () => {
       projects: "Projects",
       contact: "Contact",
       followMe: "Follow me",
-      copyright: `Made with <span className="love-icon"><FaHeart /></span> a keyboard by S. M. Curbelo © ${year}`
+      copyright: `Made with <span class="love-icon">❤️</span> a keyboard by S. M. Curbelo © ${year}`
     },
     es: {
       home: "Inicio",
@@ -27,7 +41,7 @@ const Footer = () => {
       projects: "Proyectos",
       contact: "Contacto",
       followMe: "Sígueme",
-      copyright: `Hecho con <span className="love-icon"><FaHeart /></span> un teclado por S. M. Curbelo © ${year}`
+      copyright: `Hecho con <span class="love-icon">❤️</span> un teclado por S. M. Curbelo © ${year}`
     }
   };
 

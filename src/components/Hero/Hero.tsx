@@ -1,24 +1,39 @@
 import './Hero.css';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { imageLinks } from '../../assets/imageLinks';
+import { Link } from 'react-scroll';
 
-const Hero = ({ language }) => {
-  const content = {
+interface HeroProps {
+  language: 'en' | 'es';
+}
+
+interface ContentType {
+  title: string;
+  subtitle1: string;
+  subtitle2: string;
+  text2: string;
+  joke: string;
+  scrollDown: string;
+}
+
+const Hero: React.FC<HeroProps> = ({ language }) => {
+  const content: Record<'en' | 'es', ContentType> = {
     en: {
       title: 'Howdy! 👋',
-      subtitle1: "I'm Mathias.",
+      subtitle1: "I'm Sergio.",
       subtitle2: 'I make things for the web.',
-      text1: 'Uruguay based web developer.',
       text2: 'Let me show you my work!',
       joke: '*yea, dog is oversized.',
+      scrollDown: 'Scroll down'
     },
     es: {
       title: 'Hola! 👋',
-      subtitle1: 'Soy Mathias.',
+      subtitle1: 'Soy Sergio.',
       subtitle2: "Hago 'cosas' para la web.",
-      text1: 'Me encuentro viviendo en Uruguay,',
       text2: '¡Déjame mostrarte mi trabajo!',
       joke: '*si, el perro está gigante.',
+      scrollDown: 'Desplazate'
     },
   };
 
@@ -55,7 +70,7 @@ const Hero = ({ language }) => {
   };
 
   return (
-    <div className="container hero">
+    <div className="container hero" id="hero">
       <motion.div
         {...initialAnimation}
         transition={{ delay: 0.5, type: 'spring', stiffness: 100 }}
@@ -66,7 +81,6 @@ const Hero = ({ language }) => {
           <span>{content[language].subtitle1}</span>
         </h1>
         <h1>{content[language].subtitle2}</h1>
-        <p>{content[language].text1}</p>
         <p>{content[language].text2}</p>
       </motion.div>
 
@@ -76,6 +90,7 @@ const Hero = ({ language }) => {
           transition={{ delay: 0.5, type: 'spring', stiffness: 100 }}
           src={imageLinks.home_img}
           alt="Home Image"
+          loading="eager" 
         />
         <motion.p
           {...leftAnimation}
@@ -93,72 +108,25 @@ const Hero = ({ language }) => {
           stiffness: 100,
           ease: 'easeInOut',
         }}
-        className="mouse-wrap"
+        className="scroll-indicator"
       >
-        <div className="mouse">
-          <div className="frame">
-            <svg
-              version="1.1"
-              id="mouse"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              x="0px"
-              y="0px"
-              viewBox="0 0 54.9 91"
-              style={{ enableBackground: 'new 0 0 54.9 91' }}
-              xmlSpace="preserve"
-            >
-              <path
-                id="XMLID_173_"
-                className="st0"
-                strokeLinecap="round"
-                strokeMiterlimit={10}
-                d="M27.4,3.6L27.4,3.6C14.2,3.6,3.5,14.3,3.5,27.5v36c0,13.2,10.7,23.9,23.9,23.9h0
-	c13.2,0,23.9-10.7,23.9-23.9v-36C51.4,14.3,40.7,3.6,27.4,3.6z"
-              />
+        <Link to="about" smooth={true} duration={800} className="scroll-link">
+          <div className="scroll-text">{content[language].scrollDown}</div>
+          <motion.div 
+            className="scroll-arrow"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ 
+              duration: 1.5, 
+              repeat: Infinity,
+              ease: "easeInOut" 
+            }}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 5L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M19 12L12 19L5 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-          </div>
-          <div className="mouse-left">
-            <svg
-              version="1.1"
-              id="Layer_1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              x="0px"
-              y="0px"
-              viewBox="0 0 27.4 91"
-              style={{ enableBackground: 'new 0 0 27.4 91' }}
-              xmlSpace="preserve"
-            >
-              <path
-                strokeLinecap="round"
-                strokeMiterlimit={10}
-                className="Draw-Frame Animate-Draw"
-                d="M27.4,87.5L27.4,87.5c-13.2,0-23.9-10.7-23.9-23.9v-36c0-13.2,10.7-23.9,23.9-23.9h0"
-              />
-            </svg>
-          </div>
-          <div className="mouse-right">
-            <svg
-              version="1.1"
-              id="Layer_2"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              x="0px"
-              y="0px"
-              viewBox="0 0 27.4 91"
-              style={{ enableBackground: 'new 0 0 27.4 91' }}
-              xmlSpace="preserve"
-            >
-              <path
-                strokeLinecap="round"
-                strokeMiterlimit={10}
-                className="Draw-Frame Animate-Draw"
-                d="M0,3.6L0,3.6c13.2,0,23.9,10.7,23.9,23.9v36c0,13.2-10.7,23.9-23.9,23.9h0"
-              />
-            </svg>
-          </div>
-        </div>
+          </motion.div>
+        </Link>
       </motion.div>
     </div>
   );

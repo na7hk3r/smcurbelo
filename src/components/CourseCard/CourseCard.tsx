@@ -1,18 +1,51 @@
 import React, { useState, useMemo } from 'react';
 import './CourseCard.css';
-import CertificateModal from '../CertificateModal/CertificateModal.tsx';
+import CertificateModal from '../CertificateModal/CertificateModal';
 import { imageLinks } from '../../assets/imageLinks';
 
-const CourseCard = React.memo(({ language }) => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [pdfUrl, setPdfUrl] = useState('');
+interface CourseCardProps {
+  language: 'en' | 'es';
+}
 
-  const openModal = (url) => {
+interface ContentType {
+  coursesTitle: string;
+  coursesSubtitle: string;
+  date: string;
+  utuTitle: string;
+  utuDescription: string;
+  ctdDescription: string;
+  japTitle: string;
+  japDescription: string;
+  oneTitle: string;
+  oneDescription: string;
+  voxyTitle: string;
+  voxyDescription: string;
+  fccTitle: string;
+  fccDescription: string;
+  ibmTitle: string;
+  ibmDescription: string;
+}
+
+interface CourseItemProps {
+  img: string;
+  alt: string;
+  title: string;
+  date: string;
+  description: string;
+  pdfUrl?: string;
+  clickable: boolean;
+}
+
+const CourseCard: React.FC<CourseCardProps> = React.memo(({ language }) => {
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [pdfUrl, setPdfUrl] = useState<string>('');
+
+  const openModal = (url: string): void => {
     setPdfUrl(url);
     setModalIsOpen(true);
   };
 
-  const content = useMemo(() => ({
+  const content = useMemo<Record<'en' | 'es', ContentType>>(() => ({
     en: {
       coursesTitle: 'Where I learned?',
       coursesSubtitle: 'Courses & Certificates',
@@ -63,7 +96,26 @@ const CourseCard = React.memo(({ language }) => {
       ibmDescription:
         'Inscrito en el curso de Desarrollo Web Fullstack a través de Coursera, enfocado en dominar las últimas herramientas y tecnologías para construir aplicaciones web robustas y escalables, con una comprensión integral tanto del desarrollo front-end como back-end como parte de una licencia de Ceibal en VeranoJAP.',
     },
-  }), [language]);
+  }), []);
+
+  const CourseItem: React.FC<CourseItemProps> = ({ img, alt, title, date, description, pdfUrl, clickable }) => (
+    <div 
+      className={`course-card ${clickable ? 'clickable' : ''}`}
+      onClick={clickable && pdfUrl ? () => openModal(pdfUrl) : undefined}
+      role={clickable ? "button" : undefined}
+      tabIndex={clickable ? 0 : undefined}
+      aria-label={clickable ? `Ver certificado de ${title}` : undefined}
+    >
+      <div className="course-img">
+        <img src={img} alt={alt} loading="lazy" />
+      </div>
+      <div className="course-description">
+        <h2>{title}</h2>
+        <span>{date}</span>
+        <p>{description}</p>
+      </div>
+    </div>
+  );
 
   return (
     <>
@@ -72,79 +124,75 @@ const CourseCard = React.memo(({ language }) => {
         <h1>{content[language].coursesSubtitle}</h1>
       </div>
       <section className="courses-container">
-        <div className="course-card">
-          <div className="course-img">
-            <img src={imageLinks.utu_logo} alt="UTU" />
-          </div>
-          <div className="course-description">
-            <h2>{content[language].utuTitle}</h2>
-            <span>UTU, Uruguay. 2023 - {content[language].date}</span>
-            <p>{content[language].utuDescription}</p>
-          </div>
-        </div>
-        <div className="course-card clickable" onClick={() => openModal('/certificates/ctd.pdf')}>
-          <div className="course-img">
-            <img src={imageLinks.ctd_logo} alt="Certified Tech Developer" />
-          </div>
-          <div className="course-description">
-            <h2>Certified Tech Developer</h2>
-            <span>
-              DigitalHouse, Argentina. 2023 - 2025
-            </span>
-            <p>{content[language].ctdDescription}</p>
-          </div>
-        </div>
-        <div className="course-card clickable" onClick={() => openModal('/certificates/jap.pdf')}>
-          <div className="course-img">
-            <img src={imageLinks.jap_logo} alt="Jovenes A Programar" />
-          </div>
-          <div className="course-description">
-            <h2>Fullstack Web Development</h2>
-            <span>Jóvenes a Programar, Uruguay. 2022 - 2023</span>
-            <p>{content[language].japDescription}</p>
-          </div>
-        </div>
-        <div className="course-card clickable" onClick={() => openModal('/certificates/one.pdf')}>
-          <div className="course-img">
-            <img src={imageLinks.one_logo} alt="Oracle ONE" />
-          </div>
-          <div className="course-description">
-            <h2>{content[language].oneTitle}</h2>
-            <span>Oracle Next Education | Alura, LATAM. 2022 - 2023</span>
-            <p>{content[language].oneDescription}</p>
-          </div>
-        </div>
-        <div className="course-card">
-          <div className="course-img">
-            <img src={imageLinks.voxy_logo} alt="Voxy" />
-          </div>
-          <div className="course-description">
-            <h2>{content[language].voxyTitle}</h2>
-            <span>VOXY. 2022 - 2023</span>
-            <p>{content[language].voxyDescription}</p>
-          </div>
-        </div>
-        <div className="course-card clickable" onClick={() => openModal('/certificates/fcc.pdf')}>
-          <div className="course-img">
-            <img src={imageLinks.fcc_logo} alt="Free Code Camp" />
-          </div>
-          <div className="course-description">
-            <h2>{content[language].fccTitle}</h2>
-            <span>FreeCodeCamp. 2022 - 2023</span>
-            <p>{content[language].fccDescription}</p>
-          </div>
-        </div>
-        <div className="course-card clickable" onClick={() => openModal('/certificates/ibm.pdf')}>
-          <div className="course-img">
-            <img src={imageLinks.ibm_logo} alt="IBM Skills Network" />
-          </div>
-          <div className="course-description">
-            <h2>{content[language].ibmTitle}</h2>
-            <span>IBM Skills Network. 2023</span>
-            <p>{content[language].ibmDescription}</p>
-          </div>
-        </div>
+        <CourseItem 
+          img={imageLinks.utu_logo}
+          alt="UTU"
+          title={content[language].utuTitle}
+          date={`UTU, Uruguay. 2023 - ${content[language].date}`}
+          description={content[language].utuDescription}
+          clickable={false}
+        />
+        
+        <CourseItem 
+          img={imageLinks.ctd_logo}
+          alt="Certified Tech Developer"
+          title="Certified Tech Developer"
+          date="DigitalHouse, Argentina. 2023 - 2025"
+          description={content[language].ctdDescription}
+          pdfUrl="/certificates/ctd.pdf"
+          clickable={true}
+        />
+        
+        <CourseItem 
+          img={imageLinks.jap_logo}
+          alt="Jovenes A Programar"
+          title="Fullstack Web Development"
+          date="Jóvenes a Programar, Uruguay. 2022 - 2023"
+          description={content[language].japDescription}
+          pdfUrl="/certificates/jap.pdf"
+          clickable={true}
+        />
+        
+        <CourseItem 
+          img={imageLinks.one_logo}
+          alt="Oracle ONE"
+          title={content[language].oneTitle}
+          date="Oracle Next Education | Alura, LATAM. 2022 - 2023"
+          description={content[language].oneDescription}
+          pdfUrl="/certificates/one.pdf"
+          clickable={true}
+        />
+        
+        <CourseItem 
+          img={imageLinks.voxy_logo}
+          alt="Voxy"
+          title={content[language].voxyTitle}
+          date="VOXY. 2022 - 2023"
+          description={content[language].voxyDescription}
+          clickable={false}
+        />
+        
+        <CourseItem 
+          img={imageLinks.fcc_logo}
+          alt="Free Code Camp"
+          title={content[language].fccTitle}
+          date="FreeCodeCamp. 2022 - 2023"
+          description={content[language].fccDescription}
+          pdfUrl="/certificates/fcc.pdf"
+          clickable={true}
+        />
+        
+        <CourseItem 
+          img={imageLinks.ibm_logo}
+          alt="IBM Skills Network"
+          title={content[language].ibmTitle}
+          date="IBM Skills Network. 2023"
+          description={content[language].ibmDescription}
+          pdfUrl="/certificates/ibm.pdf"
+          clickable={true}
+        />
       </section>
+      
       <CertificateModal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}

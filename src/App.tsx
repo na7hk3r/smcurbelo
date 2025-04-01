@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { useTheme } from './context/ThemeContext';
 import { useLanguage } from './context/LanguageContext';
 import Navbar from './components/Navbar/Navbar';
@@ -9,9 +9,10 @@ import Projects from './components/Projects/Projects';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 
-const App = () => {
+const App = (): ReactElement => {
   const { theme } = useTheme();
   const { language } = useLanguage();
+  
   return (
     <div className={`App ${theme}`}>
       <Navbar language={language} />

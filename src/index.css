@@ -15,6 +15,10 @@
   padding: 0;
 }
 
+html, body {
+  height: 100%;
+}
+
 html::-webkit-scrollbar {
   width: 8px;
 }
@@ -36,6 +40,9 @@ html::-webkit-scrollbar-thumb {
     var(--beige-dark) 100%
   );
   color: var(--black);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .App.dark {
@@ -43,8 +50,15 @@ html::-webkit-scrollbar-thumb {
   color: var(--cream);
 }
 
+.App > *:not(nav, footer) {
+  margin-bottom: 5rem;
+}
+
+.App > footer {
+  margin-bottom: 0;
+}
+
 body {
-  /* background: linear-gradient(315deg, var(--primary) 0%, var(--black) 74%); */
   background-position: cover;
   font-family: 'Montserrat', sans-serif;
   margin: 0;
@@ -53,7 +67,6 @@ body {
 
 .container {
   align-items: center;
-  /* color: var(--cream); */
   display: flex;
   justify-content: center;
   width: 100%;
@@ -72,6 +85,22 @@ a {
 @media screen and (max-width: 960px) {
   .container {
     height: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .App > *:not(nav) {
+    margin-bottom: 3rem;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .container {
+    padding: 5% 3%;
+  }
+  
+  .App > *:not(nav, footer) {
+    margin-bottom: 2.5rem;
   }
 }
 
