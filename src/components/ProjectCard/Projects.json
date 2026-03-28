@@ -5,7 +5,7 @@
       "en": "SpaceX Launches App",
       "es": "Aplicación de Lanzamientos SpaceX"
     },
-    "img": "https://firebasestorage.googleapis.com/v0/b/shotgunseven73.appspot.com/o/smcurbelo%2Fspacex_web.png?alt=media&token=1acf7bae-15a8-4df8-b241-b28ca95e4e17",
+    "img": "/images/spacex_web.png",
     "tags": {
       "span_1": "#Astro",
       "span_2": "#Tailwind",
@@ -19,46 +19,8 @@
     "href_source_2": "https://spacex-launches-app-two.vercel.app/"
   },
   {
-    "id": "02",
-    "img": "https://firebasestorage.googleapis.com/v0/b/shotgunseven73.appspot.com/o/smcurbelo%2Fnatural.png?alt=media&token=6bc9e859-b250-47f7-ae09-b5171c1e5a34",
-    "title": {
-      "en": "Naturalmente Vane - Landing",
-      "es": "Naturalmente Vane"
-    },
-    "tags": {
-      "span_1": "React",
-      "span_2": "CSS3",
-      "span_3": "🌼"
-    },
-    "description": {
-      "en": "WebPage for herbal products brand.",
-      "es": "Página web para marca de productos herbales."
-    },
-    "href_source": "https://github.com/na7hk3r/react_responsive",
-    "href_source_2": "https://naturalmente-vane.vercel.app/"
-  },
-  {
-    "id": "03",
-    "img": "https://firebasestorage.googleapis.com/v0/b/shotgunseven73.appspot.com/o/smcurbelo%2Fweather.png?alt=media&token=d1f7b967-ac04-4dcb-a302-c686c9d18ef4",
-    "title": {
-      "en": "Weather App",
-      "es": "Aplicación del Clima"
-    },
-    "tags": {
-      "span_1": "#React",
-      "span_2": "#CSS3",
-      "span_3": "#OpenWeatherAPI"
-    },
-    "description": {
-      "en": "A simple web app that shows the current weather of any city in the world.",
-      "es": "Una aplicación web simple que muestra el clima actual de cualquier ciudad del mundo."
-    },
-    "href_source": "https://github.com/na7hk3r/weather-app",
-    "href_source_2": "https://weather-app-smc.vercel.app/"
-  },
-  {
     "id": "04",
-    "img": "https://firebasestorage.googleapis.com/v0/b/shotgunseven73.appspot.com/o/smcurbelo%2Fclinica.webp?alt=media&token=3e4d02dd-76f9-48f1-979d-68c00026df9e",
+    "img": "/images/clinica.svg",
     "title": {
       "en": "Dental Clinic Management App",
       "es": "Aplicación de Gestión de Clínica Dental"
@@ -77,7 +39,7 @@
   },
   {
     "id": "06",
-    "img": "https://firebasestorage.googleapis.com/v0/b/shotgunseven73.appspot.com/o/smcurbelo%2Femercado.webp?alt=media&token=2a4fc538-84e5-4e0d-ba77-0a932fd555c2",
+    "img": "/images/emercado.svg",
     "title": {
       "en": "eMercado - Ecommerce",
       "es": "eMercado - Comercio Electrónico"
@@ -95,46 +57,46 @@
     "href_source_2": "https://na7hk3r.github.io/workspace-inicial/"
   },
   {
-    "id": "07",
-    "img": "https://firebasestorage.googleapis.com/v0/b/shotgunseven73.appspot.com/o/smcurbelo%2Fencoder.webp?alt=media&token=520a1e7c-bf03-4c46-8cd4-c641821ae2a3",
+    "id": "02",
+    "img": "/images/natural.png",
     "title": {
-      "en": "Text Encryptor",
-      "es": "Encriptador de Texto"
+      "en": "Naturalmente Vane - Landing",
+      "es": "Naturalmente Vane"
     },
     "tags": {
-      "span_1": "#JavaScript",
-      "span_2": "#HTML",
-      "span_3": "#CSS"
+      "span_1": "React",
+      "span_2": "CSS3",
+      "span_3": "🌼"
     },
     "description": {
-      "en": "Really simple text encryptor made for Alura ONE Challenge.",
-      "es": "Encriptador de texto muy simple hecho para el Desafío Alura ONE."
+      "en": "WebPage for herbal products brand.",
+      "es": "Página web para marca de productos herbales."
     },
-    "href_source": "https://github.com/na7hk3r/encriptador_javascript",
-    "href_source_2": "https://na7hk3r.github.io/encriptador_javascript/"
+    "href_source": "https://github.com/na7hk3r/react_responsive",
+    "href_source_2": "https://naturalmente-vane.vercel.app/"
   },
   {
-    "id": "08",
-    "img": "https://firebasestorage.googleapis.com/v0/b/shotgunseven73.appspot.com/o/smcurbelo%2Foldportfol.webp?alt=media&token=e5234579-708f-45ee-9a2d-0a4839264fb4",
+    "id": "03",
+    "img": "/images/weather.png",
     "title": {
-      "en": "Previous Portfolio",
-      "es": "Portafolio Anterior"
+      "en": "Weather App",
+      "es": "Aplicación del Clima"
     },
     "tags": {
-      "span_1": "#JavaScript",
+      "span_1": "#React",
       "span_2": "#CSS3",
-      "span_3": "#HTML5"
+      "span_3": "#OpenWeatherAPI"
     },
     "description": {
-      "en": "My previous portfolio design, with really cool animations!",
-      "es": "Mi diseño de portafolio anterior, ¡con animaciones realmente geniales!"
+      "en": "A simple web app that shows the current weather of any city in the world.",
+      "es": "Una aplicación web simple que muestra el clima actual de cualquier ciudad del mundo."
     },
-    "href_source": "https://github.com/na7hk3r/portafolio",
-    "href_source_2": "https://smcurbelo.netlify.app/"
+    "href_source": "https://github.com/na7hk3r/weather-app",
+    "href_source_2": "https://weather-app-smc.vercel.app/"
   },
   {
     "id": "09",
-    "img": "https://firebasestorage.googleapis.com/v0/b/shotgunseven73.appspot.com/o/smcurbelo%2Fsportit.webp?alt=media&token=c9714447-cd52-46cd-8af0-eda7e8130b33",
+    "img": "/images/sportit.svg",
     "title": {
       "en": "SportIt - Frontend project",
       "es": "SportIt - Proyecto Frontend"

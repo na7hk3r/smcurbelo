@@ -1,84 +1,22 @@
 import './Footer.css';
 import React from 'react';
-import { FaGithub, FaLinkedin, FaHeart } from 'react-icons/fa';
-import { useTheme } from '../../context/ThemeContext';
-import { useLanguage } from '../../context/LanguageContext';
-import { Link } from 'react-scroll';
-import { imageLinks } from '../../assets/imageLinks';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
-interface FooterProps {
-  language: 'en' | 'es';
-}
-
-interface ContentType {
-  home: string;
-  about: string;
-  skills: string;
-  projects: string;
-  contact: string;
-  followMe: string;
-  copyright: string;
-}
-
-const Footer: React.FC<FooterProps> = ({ language }) => {
-  const { theme } = useTheme();
+const Footer: React.FC = () => {
   const year = new Date().getFullYear();
 
-  const content: Record<'en' | 'es', ContentType> = {
-    en: {
-      home: "Home",
-      about: "About",
-      skills: "Skills",
-      projects: "Projects",
-      contact: "Contact",
-      followMe: "Follow me",
-      copyright: `Made with <span class="love-icon">❤️</span> a keyboard by S. M. Curbelo © ${year}`
-    },
-    es: {
-      home: "Inicio",
-      about: "Sobre",
-      skills: "Habilidades",
-      projects: "Proyectos",
-      contact: "Contacto",
-      followMe: "Sígueme",
-      copyright: `Hecho con <span class="love-icon">❤️</span> un teclado por S. M. Curbelo © ${year}`
-    }
-  };
-
   return (
-    <footer className={`footer ${theme}`}>
-      <div className="footer-content">
-        <div className="footer-logo-section">
-          <img src={imageLinks.logo_sword} alt="Sword Nathker Logo" className="footer-logo" />
-        </div>
-        <div className="footer-links">
-          <Link to="hero" smooth={true} offset={0} duration={700} className="footer-link">
-            {content[language].home}
-          </Link>
-          <Link to="about-container" smooth={true} offset={0} duration={700} className="footer-link">
-            {content[language].about}
-          </Link>
-          <Link to="skills-container" smooth={true} offset={0} duration={700} className="footer-link">
-            {content[language].skills}
-          </Link>
-          <Link to="projects-container" smooth={true} offset={0} duration={700} className="footer-link">
-            {content[language].projects}
-          </Link>
-          <Link to="contact" smooth={true} offset={0} duration={700} className="footer-link">
-            {content[language].contact}
-          </Link>
-        </div>
-        <div className="footer-social">
-          <a href="https://github.com/na7hk3r/" target="_blank" rel="noopener noreferrer" className="footer-social-link">
+    <footer className="footer">
+      <div className="footer__inner container">
+        <div className="footer__socials">
+          <a href="https://github.com/na7hk3r/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <FaGithub />
           </a>
-          <a href="https://linkedin.com/in/smcurbelo" target="_blank" rel="noopener noreferrer" className="footer-social-link">
+          <a href="https://linkedin.com/in/smcurbelo" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <FaLinkedin />
           </a>
         </div>
-      </div>
-      <div className="footer-bottom">
-        <p className="footer-copyright" dangerouslySetInnerHTML={{ __html: content[language].copyright }} />
+        <p className="footer__copy">&copy; {year} S. M. Curbelo</p>
       </div>
     </footer>
   );

@@ -1,271 +1,147 @@
-.about-container {
-  padding: 5rem;
-  gap: 1.4em;
-  min-height: 100vh;
+/* ─── About ─── */
+.about {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.45fr 0.55fr;
+  align-items: center;
+  gap: var(--space-l);
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  padding-block: var(--space-2xl);
+  overflow: visible;
+}
+
+/* ── Image column ── */
+.about__image-col {
+  position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 0;
-  padding-top: 3rem;
 }
 
-.about-left {
-  width: 45vw;
-  align-items: center;
-  margin-right: 2rem;
-  padding: 2%;
+.about__image {
+  position: relative;
+  margin: 0;
+  z-index: 1;
+  transform: rotate(-2.5deg);
+  transition: transform 0.5s var(--ease-out-quart);
 }
 
-.about-left img {
+.about__image:hover {
+  transform: rotate(-1deg) scale(1.02);
+}
+
+.about__image img {
   width: 100%;
-  filter: drop-shadow(15px 12px 10px var(--black));
-  max-width: 500px;
+  max-width: 28rem;
+  border-radius: 0;
+  box-shadow: 0 8px 28px oklch(0.15 0 0 / 0.12);
+  object-fit: cover;
 }
 
-.about-right {
-  width: 40vw;
-  line-height: 1.4;
+.App.dark .about__image img {
+  box-shadow: 0 8px 28px oklch(0 0 0 / 0.35);
+}
+
+/* Decorative blurred glow behind image — large, bleeds behind text */
+.about__image-blur {
+  position: absolute;
+  top: -20%;
+  left: -30%;
+  width: 160%;
+  height: 140%;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse at 40% 50%,
+    oklch(0.55 0.12 175 / 0.13) 0%,
+    oklch(0.55 0.12 175 / 0.05) 45%,
+    transparent 72%
+  );
+  filter: blur(50px);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.App.dark .about__image-blur {
+  background: radial-gradient(
+    ellipse at 40% 50%,
+    oklch(0.55 0.12 175 / 0.09) 0%,
+    oklch(0.55 0.12 175 / 0.03) 45%,
+    transparent 72%
+  );
+}
+
+/* ── Content ── */
+.about__content {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2xs);
 }
 
-.about-right h1 {
-  font-size: 2.2em;
-  margin-bottom: 1.5rem;
+.about__name {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--text-1);
 }
 
-.about-right p {
-  font-size: 1.3em;
+.about__born {
+  font-weight: 300;
+  color: var(--text-3);
 }
 
-.about-right a {
-  align-items: center;
-  align-self: flex-end;
-  background: var(--black-blur);
-  border-radius: 15px;
-  border: 1px dotted white;
-  cursor: pointer;
+.about__prose {
   display: flex;
-  font-size: 14px;
-  font-weight: 600;
-  height: 3rem;
-  justify-content: center;
-  margin-top: 15px;
-  padding: 10px;
-  text-decoration: none;
-  width: 10rem;
-  transition: background 0.3s ease, transform 0.2s ease;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-block-start: var(--space-xs);
 }
 
-.about-right a:hover {
-  background: var(--primary);
-  color: white;
-  transform: translateY(-3px);
+.about__prose p {
+  font-size: var(--text-base);
+  color: var(--text-2);
+  line-height: 1.7;
 }
 
-.skills {
-  display: flex;
+.about__cv {
+  margin-block-start: var(--space-m);
 }
 
-@keyframes floatAnimation {
-  0%,
-  100% {
-    transform: translateY(0);
+/* ─── Responsive ─── */
+@media (max-width: 960px) {
+  .about {
+    grid-template-columns: 1fr;
+    gap: var(--space-l);
+    text-align: center;
   }
-  50% {
-    transform: translateY(-10px);
-  }
-}
 
-/* -------------- Media Query -------------- */
-
-@media screen and (max-width: 1200px) {
-  .about-container {
-    padding: 3rem;
-    padding-top: 8rem; /* Añadido padding superior para evitar que el header lo tape */
+  .about__image-col {
+    order: -1;
   }
-  
-  .about-left, 
-  .about-right {
-    width: 45%;
+
+  .about__image {
+    transform: rotate(-2deg);
+  }
+
+  .about__image img {
+    max-width: 22rem;
+  }
+
+  .about__content {
+    align-items: center;
   }
 }
 
-@media screen and (max-width: 960px) {
-  .about-container {
-    flex-direction: column-reverse;
-    padding: 2rem;
-    gap: 2rem;
-    padding-top: 8rem; /* Añadido padding superior para evitar que el header lo tape */
-    min-height: auto;
+@media (max-width: 580px) {
+  .about__image {
+    transform: rotate(-1.5deg);
   }
-  
-  .about-right,
-  .about-left {
-    width: 90%;
-    justify-content: center;
-    margin-right: 0;
-  }
-  
-  .about-right {
-    padding-top: 0; /* Eliminado padding extra que causaba problemas */
-  }
-  
-  .about-right p {
-    font-size: 1.3em;
-  }
-  
-  .about-left img {
-    max-width: 100%;
-  }
-}
 
-@media screen and (max-width: 768px) {
-  .about-container {
-    padding: 2rem 1rem;
-    padding-top: 6rem; /* Ajustado padding superior */
-  }
-  
-  .about-right h1 {
-    font-size: 1.8em;
-  }
-  
-  .about-right p {
-    font-size: 1.2em;
-  }
-}
-
-/* Nuevo media query específico para tablets pequeñas */
-@media screen and (max-width: 600px) {
-  .about-container {
-    padding: 1.5rem 1rem;
-    padding-top: 7rem;
-    gap: 1.5rem;
-  }
-  
-  .about-right h1 {
-    font-size: 1.5em;
-    margin-bottom: 1rem;
-  }
-  
-  .about-right h2 {
-    font-size: 1.2rem;
-  }
-  
-  .about-right p {
-    font-size: 1em;
-    line-height: 1.3;
-  }
-  
-  .about-left {
-    width: 100%;
-    padding: 0;
-  }
-  
-  .about-left img {
-    max-width: 350px;
-    margin: 0 auto;
-    display: block;
-  }
-}
-
-/* Media query específico para tablets medianas */
-@media screen and (max-width: 650px) {
-  .about-container {
-    padding: 1.5rem 1rem;
-    padding-top: 6.5rem;
-    gap: 1.8rem;
-  }
-  
-  .about-right h1 {
-    font-size: 1.6em;
-    margin-bottom: 1rem;
-  }
-  
-  .about-right h2 {
-    font-size: 1.3rem;
-  }
-  
-  .about-right p {
-    font-size: 1.1em;
-    line-height: 1.3;
-  }
-}
-
-/* Media query específico para tablets pequeñas (alrededor de 575px) */
-@media screen and (max-width: 580px) {
-  .about-container {
-    padding: 1.2rem 1rem;
-    padding-top: 6rem;
-    gap: 1.5rem;
-  }
-  
-  .about-right h1 {
-    font-size: 1.4em;
-    margin-bottom: 0.8rem;
-  }
-  
-  .about-right h2 {
-    font-size: 1.2rem;
-  }
-  
-  .about-right p {
-    font-size: 1em;
-    line-height: 1.3;
-  }
-  
-  .about-left {
-    width: 100%;
-    padding: 0;
-  }
-  
-  .about-left img {
-    max-width: 320px;
-    margin: 0 auto;
-    display: block;
-  }
-  
-  .about-right a {
-    font-size: 0.9em;
-    height: 2.8rem;
-    width: 9.5rem;
-    margin-top: 10px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .about-container {
-    padding: 6% 4%;
-    padding-top: 5rem;
-    margin-top: 0;
-    min-height: auto;
-    gap: 1rem;
-  }
-  
-  .about-right h2 {
-    font-size: 1rem;
-  }
-  
-  .about-right h1 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .about-right p {
-    font-size: 0.95em;
-    line-height: 1.4;
-  }
-  
-  .about-right a {
-    font-size: 12px;
-    font-weight: 600;
-    height: 2.5rem;
-    margin-top: 15px;
-    width: 9rem;
-  }
-  
-  .about-left {
-    margin-top: 1rem;
-    width: 95%;
+  .about__image img {
+    max-width: 16rem;
   }
 }

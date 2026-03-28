@@ -1,5 +1,4 @@
 import React, { Suspense, lazy } from 'react';
-import { useLanguage } from '../../context/LanguageContext';
 import './Skills.css';
 
 interface SkillsProps {
@@ -11,15 +10,11 @@ const Tools = lazy(() => import('../Tools/Tools'));
 
 const Skills: React.FC<SkillsProps> = ({ language }) => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className="container skills-container" id="skills">
-        <div className="left">
-          <Tools language={language} />
-        </div>
-        <div className="right">
-          <CourseCard language={language} />
-        </div>
-      </div>
+    <Suspense fallback={null}>
+      <section className="skills" id="skills">
+        <Tools language={language} />
+        <CourseCard language={language} />
+      </section>
     </Suspense>
   );
 };

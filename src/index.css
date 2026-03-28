@@ -1,15 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
 
+/* ─── Design Tokens ─── */
 :root {
-  --black: #12100e;
-  --black-blur: rgba(41, 41, 41, 0.2);
-  --primary: #2b4162;
-  --cream: #f9f6f0;
-  --beige-light: #e0e0e0;
-  --beige-dark: #707070;
+  --brand: oklch(0.35 0.04 260);
+  --brand-light: oklch(0.50 0.03 260);
+  --brand-subtle: oklch(0.96 0.006 260);
+
+  --surface-1: oklch(0.985 0.002 260);
+  --surface-2: oklch(0.96 0.004 260);
+  --surface-3: oklch(0.90 0.008 260);
+
+  --text-1: oklch(0.18 0.02 260);
+  --text-2: oklch(0.42 0.015 260);
+  --text-3: oklch(0.58 0.012 260);
+
+  --accent: oklch(0.55 0.17 175);
+  --accent-hover: oklch(0.48 0.16 175);
+  --accent-subtle: oklch(0.95 0.03 175);
+
+  /* Fluid type scale – major third (1.25) */
+  --text-xs: clamp(0.72rem, 0.67rem + 0.25vw, 0.82rem);
+  --text-sm: clamp(0.85rem, 0.80rem + 0.29vw, 1.00rem);
+  --text-base: clamp(1.00rem, 0.91rem + 0.43vw, 1.20rem);
+  --text-md: clamp(1.20rem, 1.07rem + 0.63vw, 1.50rem);
+  --text-lg: clamp(1.44rem, 1.26rem + 0.89vw, 1.88rem);
+  --text-xl: clamp(1.73rem, 1.48rem + 1.24vw, 2.38rem);
+  --text-2xl: clamp(2.07rem, 1.73rem + 1.70vw, 2.95rem);
+  --text-3xl: clamp(2.49rem, 2.03rem + 2.31vw, 3.60rem);
+
+  /* Fluid spacing */
+  --space-3xs: clamp(0.25rem, 0.22rem + 0.15vw, 0.31rem);
+  --space-2xs: clamp(0.50rem, 0.45rem + 0.22vw, 0.63rem);
+  --space-xs: clamp(0.75rem, 0.68rem + 0.33vw, 0.94rem);
+  --space-s: clamp(1.00rem, 0.91rem + 0.43vw, 1.25rem);
+  --space-m: clamp(1.50rem, 1.37rem + 0.65vw, 1.88rem);
+  --space-l: clamp(2.00rem, 1.83rem + 0.87vw, 2.50rem);
+  --space-xl: clamp(3.00rem, 2.74rem + 1.30vw, 3.75rem);
+  --space-2xl: clamp(4.00rem, 3.65rem + 1.74vw, 5.00rem);
+  --space-3xl: clamp(6.00rem, 5.48rem + 2.61vw, 7.50rem);
+
+  /* Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  /* Shadows (light) */
+  --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.06), 0 1px 2px oklch(0 0 0 / 0.04);
+  --shadow-md: 0 4px 12px oklch(0 0 0 / 0.07), 0 2px 4px oklch(0 0 0 / 0.04);
+  --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.08), 0 4px 8px oklch(0 0 0 / 0.04);
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Layout */
+  --content-width: 88rem;
+  --gutter: clamp(1.25rem, 0.5rem + 3vw, 3rem);
 }
 
-* {
+/* ─── Dark Theme ─── */
+.App.dark {
+  --surface-1: oklch(0.14 0.015 260);
+  --surface-2: oklch(0.18 0.02 260);
+  --surface-3: oklch(0.24 0.025 260);
+
+  --text-1: oklch(0.94 0.006 260);
+  --text-2: oklch(0.72 0.010 260);
+  --text-3: oklch(0.52 0.015 260);
+
+  --brand: oklch(0.72 0.03 260);
+  --brand-light: oklch(0.80 0.025 260);
+  --brand-subtle: oklch(0.22 0.03 260);
+  --accent: oklch(0.65 0.14 175);
+  --accent-hover: oklch(0.72 0.12 175);
+  --accent-subtle: oklch(0.22 0.05 175);
+
+  --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.2), 0 1px 2px oklch(0 0 0 / 0.15);
+  --shadow-md: 0 4px 12px oklch(0 0 0 / 0.25), 0 2px 4px oklch(0 0 0 / 0.15);
+  --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.3), 0 4px 8px oklch(0 0 0 / 0.15);
+}
+
+/* ─── Reset ─── */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -19,96 +95,142 @@ html, body {
   height: 100%;
 }
 
-html::-webkit-scrollbar {
-  width: 8px;
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--surface-2);
 }
-html::-webkit-scrollbar-track {
-  background-color: var(--black);
-}
-html::-webkit-scrollbar-thumb {
-  background-color: var(--primary);
-}
+
+html::-webkit-scrollbar { width: 6px; }
+html::-webkit-scrollbar-track { background: var(--surface-2); }
+html::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
 ::selection {
-  background-color: var(--primary);
-}
-
-.App {
-  background: linear-gradient(
-    315deg,
-    var(--beige-dark) 0%,
-    var(--beige-light) 50%,
-    var(--beige-dark) 100%
-  );
-  color: var(--black);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.App.dark {
-  background: linear-gradient(315deg, var(--primary) 0%, var(--black) 74%);
-  color: var(--cream);
-}
-
-.App > *:not(nav, footer) {
-  margin-bottom: 5rem;
-}
-
-.App > footer {
-  margin-bottom: 0;
+  background-color: var(--accent);
+  color: white;
 }
 
 body {
-  background-position: cover;
-  font-family: 'Montserrat', sans-serif;
-  margin: 0;
-  place-items: center;
+  font-family: 'Sora', sans-serif;
+  font-size: var(--text-base);
+  line-height: 1.65;
+  color: var(--text-1);
+  background: var(--surface-1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.container {
-  align-items: center;
+/* ─── App Shell ─── */
+.App {
+  background: var(--surface-1);
+  color: var(--text-1);
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  transition: background 0.4s var(--ease-out-quart), color 0.4s var(--ease-out-quart);
+}
+
+.App > *:not(nav, footer) {
+  margin-block-end: var(--space-3xl);
+}
+
+.App > footer {
+  margin-block-end: 0;
+}
+
+/* ─── Shared layout ─── */
+.container {
   width: 100%;
-  padding: 5%;
-  padding: 0 1rem;
-  max-width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
 }
 
 a {
   text-decoration: none;
   color: inherit;
-  line-height: 1;
   cursor: pointer;
 }
 
-@media screen and (max-width: 960px) {
-  .container {
-    height: auto;
-  }
+/* ─── Scroll Progress Bar ─── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform-origin: 0%;
+  z-index: 1001;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ─── Shared button styles ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  padding: var(--space-xs) var(--space-m);
+  font-family: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    background 0.25s var(--ease-out-quart),
+    color 0.25s var(--ease-out-quart),
+    transform 0.25s var(--ease-out-quart),
+    box-shadow 0.25s var(--ease-out-quart);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 2px 8px oklch(0.55 0.17 175 / 0.25);
+}
+
+.btn--primary:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 4px 16px oklch(0.55 0.17 175 / 0.3);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+}
+
+.btn--ghost:hover {
+  background: var(--accent-subtle);
+}
+
+/* ─── Section label ─── */
+.section-label {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-block-end: var(--space-2xs);
 }
 
 @media screen and (max-width: 768px) {
-  .App > *:not(nav) {
-    margin-bottom: 3rem;
-  }
-}
-
-@media screen and (max-width: 580px) {
-  .container {
-    padding: 5% 3%;
-  }
-  
   .App > *:not(nav, footer) {
-    margin-bottom: 2.5rem;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .container {
-    height: auto;
-    padding: 10%;
-    padding-top: 6rem;
-    margin-bottom: 5rem;
+    margin-block-end: var(--space-2xl);
   }
 }

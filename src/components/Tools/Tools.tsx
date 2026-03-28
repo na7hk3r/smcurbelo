@@ -1,85 +1,132 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import './Tools.css';
 import { imageLinks } from '../../assets/imageLinks';
+import { ease } from '../../constants/animation';
 
 interface ToolsProps {
   language: 'en' | 'es';
 }
 
-interface ContentType {
-  title: string;
-  subtitle: string;
-  andOthers: string;
-}
-
-interface SkillIconProps {
-  src: string;
-  alt: string;
-}
-
 const Tools: React.FC<ToolsProps> = ({ language }) => {
-  const content: Record<'en' | 'es', ContentType> = {
+  const content = {
     en: {
-      title: 'Skills',
-      subtitle: 'Languages and tools I use',
-      andOthers: '& Other',
+      label: 'Skills',
+      title: 'Languages & tools I use',
+      ecosystem: 'JavaScript Ecosystem',
+      primary: 'Primary Stack',
     },
     es: {
-      title: 'Habilidades',
-      subtitle: 'Lenguajes y herramientas que uso',
-      andOthers: '& Otros',
+      label: 'Habilidades',
+      title: 'Lenguajes y herramientas que uso',
+      ecosystem: 'Ecosistema JavaScript',
+      primary: 'Stack Principal',
     },
   };
 
-  // Componente reutilizable para los iconos
-  const SkillIcon: React.FC<SkillIconProps> = ({ src, alt }) => (
-    <div className="tooltip">
-      <img src={src} alt={alt} loading="lazy" />
-      <span className="tooltiptext">{alt}</span>
-    </div>
-  );
+  const sections = [
+    {
+      name: content[language].primary,
+      highlight: true,
+      icons: [
+        { src: imageLinks.javascript_logo, alt: 'JavaScript' },
+        { src: imageLinks.typescript_logo, alt: 'TypeScript' },
+      ],
+    },
+    {
+      name: 'Frontend',
+      icons: [
+        { src: imageLinks.react_logo, alt: 'React' },
+        { src: imageLinks.nextjs_logo, alt: 'Next.js' },
+        { src: imageLinks.tailwind_logo, alt: 'Tailwind CSS' },
+        { src: imageLinks.css_logo, alt: 'CSS3' },
+        { src: imageLinks.vite_logo, alt: 'Vite' },
+        { src: imageLinks.astro_logo, alt: 'Astro' },
+      ],
+    },
+    {
+      name: 'Backend',
+      icons: [
+        { src: imageLinks.node_logo, alt: 'Node.js' },
+        { src: imageLinks.express_logo, alt: 'Express' },
+        { src: imageLinks.java_logo, alt: 'Java' },
+        { src: imageLinks.spring_logo, alt: 'Spring Boot' },
+        { src: imageLinks.postgresql_logo, alt: 'PostgreSQL' },
+        { src: imageLinks.mongo_logo, alt: 'MongoDB' },
+        { src: imageLinks.firebase_logo, alt: 'Firebase' },
+      ],
+    },
+    {
+      name: 'Desktop',
+      icons: [
+        { src: imageLinks.electron_logo, alt: 'Electron' },
+      ],
+    },
+    {
+      name: 'Testing',
+      icons: [
+        { src: imageLinks.jest_logo, alt: 'Jest' },
+        { src: imageLinks.vitest_logo, alt: 'Vitest' },
+        { src: imageLinks.playwright_logo, alt: 'Playwright' },
+      ],
+    },
+    {
+      name: 'DevOps & Cloud',
+      icons: [
+        { src: imageLinks.docker_logo, alt: 'Docker' },
+        { src: imageLinks.aws_logo, alt: 'AWS' },
+        { src: imageLinks.git_logo, alt: 'Git' },
+        { src: imageLinks.github_actions_logo, alt: 'GitHub Actions' },
+        { src: imageLinks.vercel_logo, alt: 'Vercel' },
+        { src: imageLinks.bash_logo, alt: 'Bash' },
+      ],
+    },
+    {
+      name: 'Design',
+      icons: [
+        { src: imageLinks.figma_logo, alt: 'Figma' },
+      ],
+    },
+  ];
 
   return (
-    <>
-      <div className="tools">
-        <h2>{content[language].title}</h2>
-        <h1>{content[language].subtitle}</h1>
-        <h3>Frontend</h3>
-        <div className="language-section">
-          <SkillIcon src={imageLinks.javascript_logo} alt="JavaScript" />
-          <SkillIcon src={imageLinks.react_logo} alt="React" />
-          <SkillIcon src={imageLinks.css_logo} alt="CSS" />
-          <SkillIcon src={imageLinks.tailwind_logo} alt="Tailwind" />
-          <SkillIcon src={imageLinks.bootstrap_logo} alt="Bootstrap" />
-          <SkillIcon src={imageLinks.sass_logo} alt="SASS" />
-          <SkillIcon src={imageLinks.vite_logo} alt="Vite" />
-          <SkillIcon src={imageLinks.astro_logo} alt="Astro" />
+    <div className="tools">
+      <span className="section-label">{content[language].label}</span>
+      <h2 className="tools__title">{content[language].title}</h2>
+      <p className="tools__ecosystem">{content[language].ecosystem}</p>
+
+      {sections.map((section) => (
+        <div
+          key={section.name}
+          className={`tools__group${section.highlight ? ' tools__group--primary' : ''}`}
+        >
+          <h3 className="tools__group-name">
+            {section.name}
+            {section.highlight && <span className="tools__badge">core</span>}
+          </h3>
+          <div className="tools__icons">
+            {section.icons.map((icon, i) => (
+              <motion.div
+                key={icon.alt}
+                className="tools__icon-wrapper"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.06, ease }}
+              >
+                <img
+                  src={icon.src}
+                  alt={icon.alt}
+                  title={icon.alt}
+                  loading="lazy"
+                />
+                <span className="tools__tooltip">{icon.alt}</span>
+              </motion.div>
+            ))}
+          </div>
         </div>
-        <h3>Backend</h3>
-        <div className="language-section">
-          <SkillIcon src={imageLinks.java_logo} alt="Java" />
-          <SkillIcon src={imageLinks.spring_logo} alt="Springboot" />
-          <SkillIcon src={imageLinks.node_logo} alt="Node" />
-          <SkillIcon src={imageLinks.express_logo} alt="Express" />
-          <SkillIcon src={imageLinks.mongo_logo} alt="MongoDB" />
-          <SkillIcon src={imageLinks.sql_logo} alt="MySQL" />
-          <SkillIcon src={imageLinks.firebase_logo} alt="Firebase" />
-        </div>
-        <h3>DevOps</h3>
-        <h5>{content[language].andOthers}</h5>
-        <div className="language-section">
-          <SkillIcon src={imageLinks.python_logo} alt="Python" />
-          <SkillIcon src={imageLinks.jest_logo} alt="JEST" />
-          <SkillIcon src={imageLinks.selenium_logo} alt="Selenium" />
-          <SkillIcon src={imageLinks.docker_logo} alt="Docker" />
-          <SkillIcon src={imageLinks.aws_logo} alt="AWS" />
-          <SkillIcon src={imageLinks.git_logo} alt="Git" />
-          <SkillIcon src={imageLinks.bash_logo} alt="Bash" />
-          <SkillIcon src={imageLinks.virtualbox_logo} alt="VirtualBox" />
-          <SkillIcon src={imageLinks.figma_logo} alt="Figma" />
-        </div>
-      </div>
-    </>
+      ))}
+    </div>
   );
 };
 

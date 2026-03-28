@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import { useTheme } from './context/ThemeContext';
 import { useLanguage } from './context/LanguageContext';
 import Navbar from './components/Navbar/Navbar';
@@ -12,16 +13,22 @@ import Footer from './components/Footer/Footer';
 const App = (): ReactElement => {
   const { theme } = useTheme();
   const { language } = useLanguage();
-  
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
+
   return (
     <div className={`App ${theme}`}>
+      <motion.div
+        className="scroll-progress"
+        style={{ scaleX }}
+      />
       <Navbar language={language} />
       <Hero language={language} />
       <About language={language} />
       <Skills language={language} />
       <Projects language={language} />
       <Contact language={language} />
-      <Footer language={language} />
+      <Footer />
     </div>
   );
 };

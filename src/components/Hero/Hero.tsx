@@ -2,133 +2,77 @@ import './Hero.css';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { imageLinks } from '../../assets/imageLinks';
-import { Link } from 'react-scroll';
+import { ease } from '../../constants/animation';
 
 interface HeroProps {
   language: 'en' | 'es';
 }
 
-interface ContentType {
-  title: string;
-  subtitle1: string;
-  subtitle2: string;
-  text2: string;
-  joke: string;
-  scrollDown: string;
-}
-
 const Hero: React.FC<HeroProps> = ({ language }) => {
-  const content: Record<'en' | 'es', ContentType> = {
+  const content = {
     en: {
-      title: 'Howdy! 👋',
-      subtitle1: "I'm Sergio.",
-      subtitle2: 'I make things for the web.',
-      text2: 'Let me show you my work!',
-      joke: '*yea, dog is oversized.',
-      scrollDown: 'Scroll down'
+      greeting: 'Howdy!',
+      name: "I'm Sergio.",
+      role: 'I make things for the web.',
+      cta: 'See my work',
     },
     es: {
-      title: 'Hola! 👋',
-      subtitle1: 'Soy Sergio.',
-      subtitle2: "Hago 'cosas' para la web.",
-      text2: '¡Déjame mostrarte mi trabajo!',
-      joke: '*si, el perro está gigante.',
-      scrollDown: 'Desplazate'
+      greeting: '¡Hola!',
+      name: 'Soy Sergio.',
+      role: "Hago 'cosas' para la web.",
+      cta: 'Ver mi trabajo',
     },
-  };
-
-  const initialAnimation = {
-    variants: {
-      initial: {
-        opacity: 0,
-        y: 50,
-      },
-      animate: {
-        opacity: 1,
-        y: 0,
-      },
-    },
-    initial: 'initial',
-    whileInView: 'animate',
-    viewport: { once: true },
-  };
-
-  const leftAnimation = {
-    variants: {
-      initial: {
-        opacity: 0,
-        x: 0,
-      },
-      animate: {
-        opacity: 1,
-        x: 50,
-      },
-    },
-    initial: 'initial',
-    whileInView: 'animate',
-    viewport: { once: true },
   };
 
   return (
-    <div className="container hero" id="hero">
-      <motion.div
-        {...initialAnimation}
-        transition={{ delay: 0.5, type: 'spring', stiffness: 100 }}
-        className="left-container"
-      >
-        <h2>{content[language].title}</h2>
-        <h1>
-          <span>{content[language].subtitle1}</span>
-        </h1>
-        <h1>{content[language].subtitle2}</h1>
-        <p>{content[language].text2}</p>
-      </motion.div>
-
-      <div className="right-container">
-        <motion.img
-          {...initialAnimation}
-          transition={{ delay: 0.5, type: 'spring', stiffness: 100 }}
-          src={imageLinks.home_img}
-          alt="Home Image"
-          loading="eager" 
-        />
-        <motion.p
-          {...leftAnimation}
-          transition={{ delay: 3, type: 'spring', stiffness: 100 }}
-        >
-          {content[language].joke}
-        </motion.p>
+    <section className="hero" id="hero">
+      <div className="hero__bg-image" aria-hidden="true">
+        <img src={imageLinks.home_img} alt="" />
       </div>
 
-      <motion.div
-        {...initialAnimation}
-        transition={{
-          delay: 0.7,
-          type: 'spring',
-          stiffness: 100,
-          ease: 'easeInOut',
-        }}
-        className="scroll-indicator"
-      >
-        <Link to="about" smooth={true} duration={800} className="scroll-link">
-          <div className="scroll-text">{content[language].scrollDown}</div>
-          <motion.div 
-            className="scroll-arrow"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ 
-              duration: 1.5, 
-              repeat: Infinity,
-              ease: "easeInOut" 
-            }}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 5L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M19 12L12 19L5 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <div className="hero__content">
+        <motion.p
+          className="hero__greeting"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease }}
+        >
+          {content[language].greeting}
+        </motion.p>
+        <motion.h1
+          className="hero__name"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease }}
+        >
+          {content[language].name}
+        </motion.h1>
+        <motion.p
+          className="hero__role"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25, ease }}
+        >
+          {content[language].role}
+        </motion.p>
+        <motion.div
+          className="hero__actions"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.45, ease }}
+        >
+          <a href="#projects" className="btn btn--primary hero__btn">
+            {content[language].cta}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-          </motion.div>
-        </Link>
-      </motion.div>
-    </div>
+          </a>
+          <a href="#contact" className="btn btn--ghost hero__btn">
+            {language === 'en' ? 'Contact' : 'Contacto'}
+          </a>
+        </motion.div>
+      </div>
+    </section>
   );
 };
 

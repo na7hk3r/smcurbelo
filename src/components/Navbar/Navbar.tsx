@@ -3,177 +3,70 @@ import './Navbar.css';
 import ToggleButton from '../ToggleButton/ToggleButton';
 import LanguageToggleButton from '../LanguageToggleButton/LanguageToggleButton';
 import { Link } from 'react-scroll';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import { imageLinks } from '../../assets/imageLinks';
 
 interface NavbarProps {
   language: 'en' | 'es';
 }
 
-interface ContentType {
-  home: string;
-  about: string;
-  skills: string;
-  projects: string;
-  contact: string;
-}
-
-interface DragTransition {
-  bounceStiffness: number;
-  bounceDamping: number;
-}
-
 const Navbar: React.FC<NavbarProps> = ({ language }) => {
-  const content: Record<'en' | 'es', ContentType> = {
-    en: {
-      home: 'Home',
-      about: 'About',
-      skills: 'Skills',
-      projects: 'Projects',
-      contact: 'Contact',
-    },
-    es: {
-      home: 'Inicio',
-      about: 'Sobre',
-      skills: 'Habilidades',
-      projects: 'Proyectos',
-      contact: 'Contacto',
-    },
+  const content = {
+    en: { home: 'Home', about: 'About', skills: 'Skills', projects: 'Projects', contact: 'Contact' },
+    es: { home: 'Inicio', about: 'Sobre', skills: 'Habilidades', projects: 'Proyectos', contact: 'Contacto' },
   };
 
-  const [mobileMenu, setMobileMenu] = useState<boolean>(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
+  const closeMobileMenu = () => setMobileMenu(false);
 
-  const toggleMenu = (): void => {
-    setMobileMenu(!mobileMenu);
-  };
-
-  const closeMobileMenu = (): void => {
-    setMobileMenu(false);
-  };
-
-  const { scrollY } = useScroll();
-  const background = useTransform(
-    scrollY,
-    [0, 100],
-    ['rgba(41, 41, 41, 0)', 'rgba(41, 41, 41, 0.2)']
-  );
-  const height = useTransform(scrollY, [0, 100], [120, 80]);
-
-  const dragTransition: DragTransition = {
-    bounceStiffness: 600,
-    bounceDamping: 20,
-  };
-
-  const hoverEffect = {
-    scale: 1.2, 
-    transition: { duration: 0.3 },
-    color: 'var(--cream)'
-  };
+  const links = [
+    { to: 'hero', label: content[language].home },
+    { to: 'about', label: content[language].about },
+    { to: 'skills', label: content[language].skills },
+    { to: 'projects', label: content[language].projects },
+    { to: 'contact', label: content[language].contact },
+  ];
 
   return (
-    <>
-      <motion.nav
-        className="navbar"
-        style={{
-          background,
-          height,
-        }}
+    <nav className="navbar">
+      <Link to="hero" smooth={true} offset={0} duration={700}>
+        <img src={imageLinks.logo} alt="Logo" className="logo" />
+      </Link>
+
+      <button
+        className="menu-icon"
+        onClick={() => setMobileMenu(!mobileMenu)}
+        aria-label="Toggle menu"
+        aria-expanded={mobileMenu}
       >
-        <Link to="hero" smooth={true} offset={0} duration={900} spy={true}>
-          <motion.img
-            src={imageLinks.logo}
-            alt="logo"
-            className="logo"
-            drag
-            dragDirectionLock
-            dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
-            dragTransition={dragTransition}
-            dragElastic={0.5}
-            whileTap={{ cursor: 'grabbing' }}
-          />
-        </Link>
+        <svg viewBox="0 0 100 80" width="26" height="26" fill="currentColor">
+          <rect width="100" height="10" rx="5" />
+          <rect y="30" width="100" height="10" rx="5" />
+          <rect y="60" width="100" height="10" rx="5" />
+        </svg>
+      </button>
 
-        <div className="menu-icon" onClick={toggleMenu}>
-          <svg viewBox="0 0 100 80" width="30" height="30" fill="var(--cream)">
-            <rect width="100" height="10" rx="5"></rect>
-            <rect y="30" width="100" height="10" rx="5"></rect>
-            <rect y="60" width="100" height="10" rx="5"></rect>
-          </svg>
-        </div>
-
-        <ul className={mobileMenu ? 'mobile-menu-active' : 'mobile-menu-hidden'}>
-          <motion.li whileHover={hoverEffect}>
+      <ul className={mobileMenu ? 'nav-list nav-list--open' : 'nav-list'}>
+        {links.map((link) => (
+          <li key={link.to}>
             <Link
-              to="hero"
+              to={link.to}
               smooth={true}
-              offset={0}
+              offset={link.to === 'projects' ? -50 : 0}
               duration={700}
               onClick={closeMobileMenu}
               spy={true}
               activeClass="active-link"
             >
-              {content[language].home}
+              {link.label}
             </Link>
-          </motion.li>
-          <motion.li whileHover={hoverEffect}>
-            <Link
-              to="about"
-              smooth={true}
-              offset={0}
-              duration={700}
-              onClick={closeMobileMenu}
-              spy={true}
-              activeClass="active-link"
-            >
-              {content[language].about}
-            </Link>
-          </motion.li>
-          <motion.li whileHover={hoverEffect}>
-            <Link
-              to="skills"
-              smooth={true}
-              offset={0}
-              duration={700}
-              onClick={closeMobileMenu}
-              spy={true}
-              activeClass="active-link"
-            >
-              {content[language].skills}
-            </Link>
-          </motion.li>
-          <motion.li whileHover={hoverEffect}>
-            <Link
-              to="projects"
-              smooth={true}
-              offset={-50}
-              duration={700}
-              onClick={closeMobileMenu}
-              spy={true}
-              activeClass="active-link"
-            >
-              {content[language].projects}
-            </Link>
-          </motion.li>
-          <motion.li whileHover={hoverEffect}>
-            <Link
-              to="contact"
-              smooth={true}
-              offset={0}
-              duration={700}
-              onClick={closeMobileMenu}
-              spy={true}
-              activeClass="active-link"
-            >
-              {content[language].contact}
-            </Link>
-          </motion.li>
-          <div className="toggle-buttons">
-            <ToggleButton />
-            <LanguageToggleButton />
-          </div>
-        </ul>
-      </motion.nav>
-    </>
+          </li>
+        ))}
+        <li className="toggle-buttons">
+          <ToggleButton />
+          <LanguageToggleButton />
+        </li>
+      </ul>
+    </nav>
   );
 };
 

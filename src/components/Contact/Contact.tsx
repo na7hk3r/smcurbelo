@@ -1,167 +1,113 @@
 import React, { useState, FormEvent } from 'react';
+import { motion } from 'framer-motion';
 import './Contact.css';
-import { imageLinks } from '../../assets/imageLinks';
 
 interface ContactProps {
   language: 'en' | 'es';
 }
 
-interface ContentType {
-  contactTitle: string;
-  contactSubtitle: string;
-  contactDescription: string;
-  adventureTitle: string;
-  adventureDescription: string;
-  contactFormTitle: string;
-  nameLabel: string;
-  namePlaceholder: string;
-  phoneLabel: string;
-  emailPlaceholder: string;
-  messageLabel: string;
-  messagePlaceholder: string;
-  sendButton: string;
-}
-
-interface FormData {
-  success: boolean;
-  message: string;
-}
+const content = {
+  en: {
+    label: 'Contact',
+    title: 'Get in touch',
+    namePlaceholder: 'Name',
+    emailPlaceholder: 'Email',
+    messagePlaceholder: 'Your message…',
+    send: 'Send',
+    sending: 'Sending…',
+    success: 'Message sent!',
+    socials: 'Or find me on',
+  },
+  es: {
+    label: 'Contacto',
+    title: 'Hablemos',
+    namePlaceholder: 'Nombre',
+    emailPlaceholder: 'Email',
+    messagePlaceholder: 'Tu mensaje…',
+    send: 'Enviar',
+    sending: 'Enviando…',
+    success: '¡Mensaje enviado!',
+    socials: 'También estoy en',
+  },
+};
 
 const Contact: React.FC<ContactProps> = ({ language }) => {
-  const content: Record<'en' | 'es', ContentType> = {
-    en: {
-      contactTitle: 'Keep in touch!',
-      contactSubtitle: 'Send me a message',
-      contactDescription: 'Or contact me in these places! 😎',
-      adventureTitle: 'In mood for adventure? 🧐',
-      adventureDescription: 'Try to find me in here!',
-      contactFormTitle: 'Contact form:',
-      nameLabel: "What's your name?:",
-      namePlaceholder: 'John Doe',
-      phoneLabel: 'Phone number',
-      emailPlaceholder: 'hello@mail.com',
-      messageLabel: 'Send me something nice!',
-      messagePlaceholder: 'Your incredible message here!',
-      sendButton: 'Send!',
-    },
-    es: {
-      contactTitle: '¡Mantente en contacto!',
-      contactSubtitle: 'Envíame un mensaje',
-      contactDescription: '¡O contáctame en estos lugares! 😎',
-      adventureTitle: '¿List@ para la aventura? 🧐',
-      adventureDescription: '¡Intenta encontrarme aquí!',
-      contactFormTitle: 'Formulario de contacto:',
-      nameLabel: '¿Cuál es tu nombre?:',
-      namePlaceholder: 'Juan Pérez',
-      phoneLabel: 'Número de teléfono',
-      emailPlaceholder: 'hola@correo.com',
-      messageLabel: '¡Envíame algo agradable!',
-      messagePlaceholder: '¡Tu increíble mensaje aquí!',
-      sendButton: '¡Enviar!',
-    },
-  };
+  const t = content[language];
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
 
-  const [result, setResult] = useState<string>('');
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('sending');
 
-  const onSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
-    event.preventDefault();
-    setResult('Sending...');
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(e.currentTarget);
+    formData.append('access_key', import.meta.env.VITE_WEB3FORMS_KEY);
 
-    formData.append('access_key', '153e59a3-6cfb-4990-80bd-77e232103f20');
-
-    const response = await fetch('https://api.web3forms.com/submit', {
+    const res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       body: formData,
     });
-
-    const data: FormData = await response.json();
+    const data = await res.json();
 
     if (data.success) {
-      setResult('Successfully delivered!');
-      event.currentTarget.reset();
+      setStatus('sent');
+      e.currentTarget.reset();
+      setTimeout(() => setStatus('idle'), 3000);
     } else {
-      console.log('Error', data);
-      setResult(data.message);
+      setStatus('idle');
     }
   };
 
   return (
-    <div className="container contact" id="contact">
-      <div className="form-text">
-        <div className="contact-title">
-          <h2>{content[language].contactTitle}</h2>
-          <h1>{content[language].contactSubtitle}</h1>
-          <p>{content[language].contactDescription}</p>
+    <section className="contact container" id="contact">
+      <motion.div
+        className="contact__intro"
+        initial={{ opacity: 0, x: -24 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <span className="section-label">{t.label}</span>
+        <h2 className="contact__title">{t.title}</h2>
+
+        <p className="contact__socials-label">{t.socials}</p>
+        <div className="contact__socials">
+          <a href="mailto:sergiomcurbelo5@gmail.com" target="_blank" rel="noopener noreferrer" className="contact__social-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M2 7l10 7 10-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            Email
+          </a>
+          <a href="https://linkedin.com/in/smcurbelo/" target="_blank" rel="noopener noreferrer" className="contact__social-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/na7hk3r/" target="_blank" rel="noopener noreferrer" className="contact__social-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            GitHub
+          </a>
         </div>
-        <div className="contact-container">
-          <a href="mailto:sergiomcurbelo5@gmail.com" target="_blank" rel="noopener noreferrer">
-            <img src={imageLinks.mail_icon} alt="EMail" />
-          </a>
-          <a href="tel:+59897266076" target="_blank" rel="noopener noreferrer">
-            <img src={imageLinks.whatsapp_icon} alt="Whatsapp" />
-          </a>
-          <a href="https://linkedin.com/in/smcurbelo/" target="_blank" rel="noopener noreferrer">
-            <img src={imageLinks.linkedin_icon} alt="LinkedIn" />
-          </a>
-          <a href="https://github.com/na7hk3r/" target="_blank" rel="noopener noreferrer">
-            <img src={imageLinks.github_icon} alt="Github" />
-          </a>
-        </div>
-        <div className="map-container">
-          <h2>{content[language].adventureTitle}</h2>
-          <p>{content[language].adventureDescription}</p>
-          <br />
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26233.240921267778!2d-56.236921022960885!3d-34.726484287387656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a1cd4c5158acf3%3A0xe0a43fef314c51a4!2s15900%20Las%20Piedras%2C%20Departamento%20de%20Canelones!5e0!3m2!1ses-419!2suy!4v1713811307929!5m2!1ses-419!2suy"
-            width={400}
-            height={300}
-            style={{ border: 0 }}
-            allowFullScreen={true}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Google Maps"
-          />
-        </div>
-      </div>
-      <div className="contact-col">
-        <h1>{content[language].contactFormTitle}</h1>
-        <form onSubmit={onSubmit}>
-          <label>{content[language].nameLabel}</label>
-          <input
-            type="text"
-            name="name"
-            placeholder={content[language].namePlaceholder}
-            required
-          />
-          <label>{content[language].phoneLabel}</label>
-          <input
-            type="tel"
-            name="phone"
-            placeholder="+598 1234 5678"
-            required
-          />
-          <label>Email</label>
-          <input
-            type="email"
-            name="mail"
-            placeholder={content[language].emailPlaceholder}
-            required
-          />
-          <label>{content[language].messageLabel}</label>
-          <textarea
-            name="message"
-            rows={10}
-            placeholder={content[language].messagePlaceholder}
-            required
-          ></textarea>
-          <button type="submit" className="btn">
-            {content[language].sendButton} <img src={imageLinks.arrow} alt="Send button" />
-          </button>
-        </form>
-        <span>{result}</span>
-      </div>
-    </div>
+      </motion.div>
+
+      <motion.form
+        className="contact__form"
+        onSubmit={onSubmit}
+        initial={{ opacity: 0, x: 24 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <input type="text" name="name" placeholder={t.namePlaceholder} required />
+        <input type="email" name="mail" placeholder={t.emailPlaceholder} required />
+        <textarea name="message" rows={6} placeholder={t.messagePlaceholder} required />
+        <button type="submit" disabled={status === 'sending'} className={`btn btn--primary contact__submit${status === 'sent' ? ' contact__submit--sent' : ''}`}>
+          {status === 'sending' ? t.sending : status === 'sent' ? t.success : t.send}
+          {status === 'idle' && (
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M2 8l5.5 5.5L14 2" stroke="currentColor" strokeWidth="0" />
+              <path d="M1.5 8h9M7 4.5L10.5 8 7 11.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          )}
+        </button>
+      </motion.form>
+    </section>
   );
 };
 

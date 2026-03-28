@@ -9,11 +9,11 @@ const ProjectCard = lazy(() => import('../ProjectCard/ProjectCard'));
 
 const Projects: React.FC<ProjectsProps> = ({ language }) => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className="container projects-container" id="projects">
+    <section className="projects container" id="projects">
+      <Suspense fallback={<div />}>
         <ProjectCard language={language} />
-      </div>
-    </Suspense>
+      </Suspense>
+    </section>
   );
 };
 

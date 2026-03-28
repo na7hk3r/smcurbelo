@@ -1,150 +1,112 @@
-.card-project {
-  align-items: center;
-  backdrop-filter: blur(30px);
-  background-image: linear-gradient(
-    315deg,
-    var(--primary) 0%,
-    var(--black-blur) 94%
-  );
-  border-radius: 25px 0;
-  border: none;
-  box-shadow:
-    rgba(0, 0, 0, 0.25) 0px 14px 28px,
-    rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  display: flex;
-  flex-direction: column;
-  height: 25rem;
-  width: 28rem;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+/* ── Project heading ── */
+
+.projects__heading {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--text-1);
+  margin-block-end: var(--space-l);
 }
 
-.card-project:hover {
-  transform: translateY(-5px);
-  box-shadow:
-    rgba(0, 0, 0, 0.3) 0px 19px 38px,
-    rgba(0, 0, 0, 0.22) 0px 15px 12px;
-}
+/* ── Project card ── */
 
-.img-container {
-  align-items: flex-start;
+.project {
   display: flex;
   flex-direction: column;
-  height: 50%;
+  height: 100%;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--surface-3);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.4s var(--ease-out-expo),
+    box-shadow 0.4s var(--ease-out-expo),
+    border-color 0.4s var(--ease-out-expo);
 }
 
-.img-container img {
-  border-radius: 25px 0 0 0;
+.project:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: oklch(0.55 0.12 175 / 0.2);
+}
+
+.project__thumb {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  position: relative;
+}
+
+.project__thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s var(--ease-out-expo);
 }
 
-.card-info {
-  align-items: flex-start;
+.project:hover .project__thumb img {
+  transform: scale(1.04);
+}
+
+.project__body {
   display: flex;
   flex-direction: column;
-  height: 50%;
-  justify-content: space-between;
-  line-height: 1.5;
-  padding: 1em;
-  width: 100%;
+  gap: var(--space-2xs);
+  padding: var(--space-s) var(--space-s) var(--space-m);
+  flex: 1;
 }
 
-.card-info h2 {
-  font-size: 1.2em;
-  margin-bottom: 0.5em;
+.project__title {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-1);
 }
 
-.tags {
-  width: 100%;
-  margin-bottom: 0.5em;
+.project__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
-.tags span {
-  border-radius: 5px;
-  border: solid 1px var(--primary);
-  cursor: pointer;
-  font-size: 10px;
-  margin: 0.2rem;
-  padding: 4px;
+.project__tags span {
+  font-size: var(--text-xs);
+  color: var(--accent);
+  padding: 0.15rem 0.55rem;
+  background: var(--accent-subtle);
+  border: 1px solid oklch(0.55 0.12 175 / 0.2);
+  border-radius: 999px;
+  font-weight: 500;
 }
 
-.card-info p {
-  font-size: 0.9em;
-  flex-grow: 1;
-  overflow: hidden;
+.project__desc {
+  font-size: var(--text-sm);
+  color: var(--text-2);
+  line-height: 1.55;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   line-clamp: 3;
   -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.buttons {
-  align-items: center;
+.project__links {
   display: flex;
-  gap: 1em;
-  justify-content: flex-end;
-  padding: 5px;
-  width: 100%;
+  gap: var(--space-xs);
+  margin-block-start: auto;
+  padding-block-start: var(--space-xs);
 }
 
-.buttons img {
-  width: 25px;
-  transition: transform 0.2s ease;
+.project__link {
+  font-size: var(--text-xs);
+  padding: var(--space-3xs) var(--space-s);
 }
 
-.buttons a:hover img {
-  transform: scale(1.2);
-}
-
-@media screen and (max-width: 1200px) {
-  .card-project {
-    width: 24rem;
-    height: 24rem;
-  }
-}
-
-@media screen and (max-width: 960px) {
-  .card-project {
-    width: 22rem;
-    height: 25rem;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .card-project {
-    width: 90%;
-    max-width: 26rem;
-    height: auto;
-    min-height: 22rem;
-  }
-  
-  .img-container {
-    height: 200px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .card-project {
-    height: auto;
-    width: 90%;
-    max-width: 20rem;
-    min-height: 22rem;
+@media (max-width: 580px) {
+  .project__links {
+    flex-direction: column;
   }
 
-  .img-container {
-    height: 160px;
-  }
-
-  .card-info h2 {
-    font-size: 1em;
-  }
-
-  .card-info p {
-    font-size: 0.8em;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
+  .project__link {
+    text-align: center;
+    justify-content: center;
   }
 }
