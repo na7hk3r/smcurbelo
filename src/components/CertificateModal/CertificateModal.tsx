@@ -1,6 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
 import Modal from 'react-modal';
-import './CertificateModal.css';
 
 Modal.setAppElement('#root');
 

@@ -1,4 +1,3 @@
-import './Hero.css';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { imageLinks } from '../../assets/imageLinks';

@@ -1,5 +1,4 @@
 import React, { Suspense, lazy } from 'react';
-import './Projects.css';
 
 interface ProjectsProps {
   language: 'en' | 'es';

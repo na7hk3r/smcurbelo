@@ -1,5 +1,4 @@
 import React, { Suspense, lazy } from 'react';
-import './Skills.css';
 
 interface SkillsProps {
   language: 'en' | 'es';

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLanguage } from '../../context/LanguageContext';
-import './LanguageToggleButton.css';
 
 const LanguageToggleButton = () => {
   const { language, toggleLanguage } = useLanguage();

@@ -1,6 +1,5 @@
 import React, { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import './Contact.css';
 
 interface ContactProps {
   language: 'en' | 'es';

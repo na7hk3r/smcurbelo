@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './Navbar.css';
 import ToggleButton from '../ToggleButton/ToggleButton';
 import LanguageToggleButton from '../LanguageToggleButton/LanguageToggleButton';
 import { Link } from 'react-scroll';

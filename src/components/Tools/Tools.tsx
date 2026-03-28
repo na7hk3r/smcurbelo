@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import './Tools.css';
 import { imageLinks } from '../../assets/imageLinks';
 import { ease } from '../../constants/animation';
 

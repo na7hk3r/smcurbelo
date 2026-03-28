@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import './CourseCard.css';
 import { imageLinks } from '../../assets/imageLinks';
 
 interface CourseCardProps {
