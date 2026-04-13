@@ -1,6 +1,5 @@
 interface ImageLinks {
   logo: string;
-  menu_icon: string;
   home_img: string;
   about_img: string;
   javascript_logo: string;
@@ -37,19 +36,10 @@ interface ImageLinks {
   voxy_logo: string;
   fcc_logo: string;
   ibm_logo: string;
-  code_icon: string;
-  web_icon: string;
-  arrow: string;
-  github_icon: string;
-  mail_icon: string;
-  linkedin_icon: string;
-  whatsapp_icon: string;
-  logo_sword: string;
 }
 
 export const imageLinks: ImageLinks = {
   logo: '/images/logo.png',
-  menu_icon: '/images/menu.png',
   home_img: '/images/home_img.jpg',
   about_img: '/images/about.png',
   javascript_logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
@@ -86,12 +76,4 @@ export const imageLinks: ImageLinks = {
   voxy_logo: '/images/voxy-logo.png',
   fcc_logo: '/images/fcc-logo.png',
   ibm_logo: '/images/ibm-logo.png',
-  code_icon: '/images/code.png',
-  web_icon: '/images/web.png',
-  arrow: '/images/arrow.png',
-  github_icon: '/images/github.png',
-  mail_icon: '/images/mail.png',
-  linkedin_icon: '/images/linkedin.png',
-  whatsapp_icon: '/images/whatsapp.png',
-  logo_sword: '/images/logo_sword.png',
 };

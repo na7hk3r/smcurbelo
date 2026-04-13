@@ -239,6 +239,7 @@ input:checked + .slider::before {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  min-height: 100vh;
   min-height: 100svh;
   padding-block-start: clamp(6rem, 10vh, 10rem);
   padding-inline: var(--gutter);
@@ -347,9 +348,10 @@ input:checked + .slider::before {
   }
 
   .hero__bg-image {
-    width: 16rem;
-    right: -8%;
+    width: 14rem;
+    right: -10%;
     bottom: 8%;
+    opacity: 0.5;
   }
 
   .hero__actions {
@@ -453,9 +455,12 @@ input:checked + .slider::before {
   color: var(--text-1);
 }
 
-.about__born {
-  font-weight: 300;
-  color: var(--text-3);
+.about__services {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  margin-block-start: var(--space-2xs);
 }
 
 .about__prose {
@@ -806,6 +811,7 @@ input:checked + .slider::before {
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
   grid-auto-rows: 1fr;
   gap: var(--space-l);
+  justify-content: center;
 }
 
 /* ─────────────────────────────────────────────────────
@@ -1028,6 +1034,10 @@ button.contact__submit.contact__submit--sent {
   .contact__socials {
     flex-direction: row;
     flex-wrap: wrap;
+  }
+
+  .contact__submit {
+    align-self: stretch;
   }
 }
 

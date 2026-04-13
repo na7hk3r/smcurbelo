@@ -1,116 +1,97 @@
 [
   {
-    "id": "01",
+    "id": "10",
     "title": {
-      "en": "SpaceX Launches App",
-      "es": "Aplicación de Lanzamientos SpaceX"
+      "en": "Ushuaia CRM",
+      "es": "Ushuaia CRM"
     },
-    "img": "/images/spacex_web.png",
+    "img": "/images/ushuaia_crm.png",
     "tags": {
-      "span_1": "#Astro",
-      "span_2": "#Tailwind",
-      "span_3": "#SpaceX API"
+      "span_1": "Electron",
+      "span_2": "React",
+      "span_3": "GitHub Actions"
     },
     "description": {
-      "en": "Simple web app that shows the latest launches from SpaceX 🚀",
-      "es": "Aplicación web simple que muestra los últimos lanzamientos de SpaceX 🚀"
+      "en": "Desktop CRM application built for a local business. Dashboard with KPIs, client management, production tracking, inventory control, CSV exports, and automatic updates via GitHub Actions CI/CD.",
+      "es": "Aplicación CRM de escritorio desarrollada para un emprendimiento local. Dashboard con KPIs, gestión de clientes, seguimiento de producción, control de inventario, exportación CSV y actualizaciones automáticas mediante CI/CD con GitHub Actions."
     },
-    "href_source": "https://github.com/na7hk3r/spacex-launches-app",
-    "href_source_2": "https://spacex-launches-app-two.vercel.app/"
+    "href_source": "https://github.com/na7hk3r/ushuaia-crm",
+    "href_source_2": "https://na7hk3r.github.io/ushuaia-crm/"
   },
   {
-    "id": "04",
-    "img": "/images/clinica.svg",
+    "id": "11",
     "title": {
-      "en": "Dental Clinic Management App",
-      "es": "Aplicación de Gestión de Clínica Dental"
+      "en": "UY Construcciones",
+      "es": "UY Construcciones"
     },
+    "img": "/images/uy_construcciones.png",
     "tags": {
-      "span_1": "#Java",
-      "span_2": "#Spring Boot",
-      "span_3": "#Maven"
+      "span_1": "JavaScript",
+      "span_2": "CSS3",
+      "span_3": "HTML5"
     },
     "description": {
-      "en": "A Spring Boot-based backend project. Includes a H2 database and follows MVC and DAO patterns for structured code organization.",
-      "es": "Un proyecto backend basado en Spring Boot. Incluye una base de datos H2 y sigue los patrones MVC y DAO para una organización estructurada del código."
+      "en": "Corporate website for a construction company. Custom domain, responsive design, scroll animations, and integrated contact form with business email.",
+      "es": "Sitio web corporativo para empresa constructora. Dominio propio, diseño responsive, animaciones al scroll e integración de formulario de contacto con correo empresarial."
     },
-    "href_source": "https://github.com/na7hk3r/clinicaOdontologica",
-    "href_source_2": "https://github.com/na7hk3r/clinicaOdontologica"
-  },
-  {
-    "id": "06",
-    "img": "/images/emercado.svg",
-    "title": {
-      "en": "eMercado - Ecommerce",
-      "es": "eMercado - Comercio Electrónico"
-    },
-    "tags": {
-      "span_1": "#JavaScript",
-      "span_2": "#NodeJS",
-      "span_3": "#CSS3"
-    },
-    "description": {
-      "en": "Ecommerce developed as final project for Jovenes a Programar 2022",
-      "es": "Comercio electrónico desarrollado como proyecto final para Jóvenes a Programar 2022"
-    },
-    "href_source": "https://github.com/na7hk3r/ecommercejap",
-    "href_source_2": "https://na7hk3r.github.io/workspace-inicial/"
+    "href_source": "https://github.com/na7hk3r/uy_construcciones",
+    "href_source_2": "https://uyconstrucciones.com.uy/"
   },
   {
     "id": "02",
     "img": "/images/natural.png",
     "title": {
-      "en": "Naturalmente Vane - Landing",
+      "en": "Naturalmente Vane",
       "es": "Naturalmente Vane"
     },
     "tags": {
       "span_1": "React",
       "span_2": "CSS3",
-      "span_3": "🌼"
+      "span_3": "WhatsApp API"
     },
     "description": {
-      "en": "WebPage for herbal products brand.",
-      "es": "Página web para marca de productos herbales."
+      "en": "E-commerce website for a herbal products brand. Product catalog, shopping cart, and direct WhatsApp checkout for seamless customer-to-seller communication.",
+      "es": "Sitio e-commerce para marca de productos herbales. Catálogo de productos, carrito de compras y checkout directo por WhatsApp para comunicación fluida entre cliente y vendedora."
     },
     "href_source": "https://github.com/na7hk3r/react_responsive",
     "href_source_2": "https://naturalmente-vane.vercel.app/"
   },
   {
-    "id": "03",
-    "img": "/images/weather.png",
+    "id": "04",
+    "img": "/images/clinica.svg",
     "title": {
-      "en": "Weather App",
-      "es": "Aplicación del Clima"
+      "en": "Dental Clinic API",
+      "es": "API Clínica Dental"
     },
     "tags": {
-      "span_1": "#React",
-      "span_2": "#CSS3",
-      "span_3": "#OpenWeatherAPI"
+      "span_1": "Java",
+      "span_2": "Spring Boot",
+      "span_3": "H2 Database"
     },
     "description": {
-      "en": "A simple web app that shows the current weather of any city in the world.",
-      "es": "Una aplicación web simple que muestra el clima actual de cualquier ciudad del mundo."
+      "en": "Backend REST API for dental clinic management. Built with Spring Boot following MVC and DAO patterns, with H2 database and structured CRUD operations.",
+      "es": "API REST backend para gestión de clínica dental. Desarrollada con Spring Boot siguiendo patrones MVC y DAO, con base de datos H2 y operaciones CRUD estructuradas."
     },
-    "href_source": "https://github.com/na7hk3r/weather-app",
-    "href_source_2": "https://weather-app-smc.vercel.app/"
+    "href_source": "https://github.com/na7hk3r/clinicaOdontologica",
+    "href_source_2": "https://github.com/na7hk3r/clinicaOdontologica"
   },
   {
-    "id": "09",
-    "img": "/images/sportit.svg",
+    "id": "01",
     "title": {
-      "en": "SportIt - Frontend project",
-      "es": "SportIt - Proyecto Frontend"
+      "en": "SpaceX Launches",
+      "es": "SpaceX Launches"
     },
+    "img": "/images/spacex_web.png",
     "tags": {
-      "span_1": "#CSS",
-      "span_2": "#HTML",
-      "span_3": "#🎾"
+      "span_1": "Astro",
+      "span_2": "Tailwind",
+      "span_3": "SpaceX API"
     },
     "description": {
-      "en": "Final project for the Frontend I subject in Certified Tech Developer 2nd semester. Note: 10",
-      "es": "Proyecto final para la asignatura Frontend I en el 2do semestre de Certified Tech Developer. Nota: 10"
+      "en": "Web application consuming the SpaceX REST API to display launch data with server-side rendering via Astro and styled with Tailwind CSS.",
+      "es": "Aplicación web que consume la API REST de SpaceX para mostrar datos de lanzamientos con renderizado del lado del servidor mediante Astro y estilizada con Tailwind CSS."
     },
-    "href_source": "https://github.com/na7hk3r/proyecto_fe1",
-    "href_source_2": "https://pr-integrador-fe1.netlify.app/"
+    "href_source": "https://github.com/na7hk3r/spacex-launches-app",
+    "href_source_2": "https://spacex-launches-app-two.vercel.app/"
   }
 ]

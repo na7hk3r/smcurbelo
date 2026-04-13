@@ -12,29 +12,28 @@ const About: React.FC<AboutProps> = ({ language }) => {
     en: {
       label: 'About Me',
       name: 'Sergio Mathias Curbelo',
-      born: "'94",
-      text1: "I'm deeply passionate about technology, learning and arts.",
+      text1:
+        'Fullstack developer focused on delivering practical, well-built web solutions — from landing pages and e-commerce sites to desktop applications and backend APIs.',
       text2:
-        'I excel in creative and collaborative environments, always prioritizing teamwork, communication, and problem-solving.',
+        'I work directly with businesses and entrepreneurs, turning ideas into functional products with clean code, clear communication, and on-time delivery.',
       text3:
-        'I strongly believe that adaptability and a willingness to evolve are invaluable qualities that I can contribute to any organization or project I engage with.',
+        'Web development · Desktop applications · REST APIs · E-commerce · UI implementation',
       cv: 'Download CV',
     },
     es: {
       label: 'Sobre Mí',
       name: 'Sergio Mathias Curbelo',
-      born: "'94",
       text1:
-        'Me apasiona profundamente la tecnología, el aprendizaje y las artes.',
+        'Desarrollador fullstack enfocado en entregar soluciones web prácticas y bien construidas — desde landing pages y sitios e-commerce hasta aplicaciones de escritorio y APIs backend.',
       text2:
-        'Destaco en entornos creativos y colaborativos, siempre priorizando el trabajo en equipo, la comunicación y la resolución de problemas.',
+        'Trabajo directamente con empresas y emprendedores, transformando ideas en productos funcionales con código limpio, comunicación clara y entregas puntuales.',
       text3:
-        'Creo firmemente que la adaptabilidad y la disposición a evolucionar son cualidades invaluables que puedo aportar a cualquier organización o proyecto en el que participe.',
+        'Desarrollo web · Aplicaciones de escritorio · APIs REST · E-commerce · Implementación UI',
       cv: 'Descargar CV',
     },
   };
 
-  const paragraphs = [content[language].text1, content[language].text2, content[language].text3];
+  const paragraphs = [content[language].text1, content[language].text2];
 
   return (
     <section className="about" id="about">
@@ -64,7 +63,7 @@ const About: React.FC<AboutProps> = ({ language }) => {
       >
         <span className="section-label">{content[language].label}</span>
         <h2 className="about__name">
-          {content[language].name} <span className="about__born">{content[language].born}</span>
+          {content[language].name}
         </h2>
         <div className="about__prose">
           {paragraphs.map((text, i) => (
@@ -78,6 +77,15 @@ const About: React.FC<AboutProps> = ({ language }) => {
               {text}
             </motion.p>
           ))}
+          <motion.p
+            className="about__services"
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4, ease }}
+          >
+            {content[language].text3}
+          </motion.p>
         </div>
         <a
           href="/curbelo_2025.pdf"

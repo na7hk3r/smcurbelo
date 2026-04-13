@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://smcurbelo.com/sitemap.xml
