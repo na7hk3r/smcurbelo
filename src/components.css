@@ -23,13 +23,15 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--space-xs) var(--gutter);
-  backdrop-filter: blur(14px) saturate(1.4);
-  -webkit-backdrop-filter: blur(14px) saturate(1.4);
-  background: color-mix(in oklch, var(--surface-1) 72%, transparent);
-  border-block-end: 1px solid color-mix(in oklch, var(--surface-3) 40%, transparent);
+  backdrop-filter: blur(18px) saturate(1.6);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  background: color-mix(in oklch, var(--surface-1) 92%, transparent);
+  border-block-end: 1px solid color-mix(in oklch, var(--surface-3) 70%, transparent);
+  box-shadow: 0 1px 12px oklch(0 0 0 / 0.07);
   transition:
     background 0.4s var(--ease-out-quart),
-    border-color 0.4s var(--ease-out-quart);
+    border-color 0.4s var(--ease-out-quart),
+    box-shadow 0.4s var(--ease-out-quart);
 }
 
 .logo {
