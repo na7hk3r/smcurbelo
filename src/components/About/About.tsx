@@ -37,22 +37,11 @@ const About: React.FC<AboutProps> = ({ language }) => {
 
   return (
     <section className="about" id="about">
-      <div className="about__image-col">
-        <motion.figure
-          className="about__image"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease }}
-        >
           <img
             src={imageLinks.about_img}
             loading="lazy"
             alt="Sergio Curbelo"
           />
-          <div className="about__image-blur" aria-hidden="true" />
-        </motion.figure>
-      </div>
 
       <motion.div
         className="about__content"

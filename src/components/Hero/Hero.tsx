@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-scroll';
 import { imageLinks } from '../../assets/imageLinks';
 import { ease } from '../../constants/animation';
 
@@ -60,15 +61,15 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.45, ease }}
         >
-          <a href="#projects" className="btn btn--primary hero__btn">
+          <Link to="projects" smooth={true} offset={-50} duration={700} className="btn btn--primary hero__btn" style={{ cursor: 'pointer' }}>
             {content[language].cta}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-          </a>
-          <a href="#contact" className="btn btn--ghost hero__btn">
+          </Link>
+          <Link to="contact" smooth={true} offset={0} duration={700} className="btn btn--ghost hero__btn" style={{ cursor: 'pointer' }}>
             {language === 'en' ? 'Contact' : 'Contacto'}
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

@@ -26,22 +26,20 @@ const Navbar: React.FC<NavbarProps> = ({ language }) => {
   ];
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${mobileMenu ? 'navbar--open' : ''}`}>
       <Link to="hero" smooth={true} offset={0} duration={700}>
         <img src={imageLinks.logo} alt="Logo" className="logo" />
       </Link>
 
       <button
-        className="menu-icon"
+        className={`menu-icon ${mobileMenu ? 'menu-icon--open' : ''}`}
         onClick={() => setMobileMenu(!mobileMenu)}
         aria-label="Toggle menu"
         aria-expanded={mobileMenu}
       >
-        <svg viewBox="0 0 100 80" width="26" height="26" fill="currentColor">
-          <rect width="100" height="10" rx="5" />
-          <rect y="30" width="100" height="10" rx="5" />
-          <rect y="60" width="100" height="10" rx="5" />
-        </svg>
+        <span className="menu-icon__bar" />
+        <span className="menu-icon__bar" />
+        <span className="menu-icon__bar" />
       </button>
 
       <ul className={mobileMenu ? 'nav-list nav-list--open' : 'nav-list'}>
@@ -50,7 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({ language }) => {
             <Link
               to={link.to}
               smooth={true}
-              offset={link.to === 'projects' ? -50 : 0}
+              offset={-70}
               duration={700}
               onClick={closeMobileMenu}
               spy={true}
