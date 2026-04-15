@@ -1,5 +1,6 @@
 interface ImageLinks {
-  logo: string;
+  logo_white: string;
+  logo_black: string;
   home_img: string;
   about_img: string;
   javascript_logo: string;
@@ -39,7 +40,8 @@ interface ImageLinks {
 }
 
 export const imageLinks: ImageLinks = {
-  logo: '/images/logo.png',
+  logo_white: '/images/logo_white.png',
+  logo_black: '/images/logo_black.png',
   home_img: '/images/home_img.jpg',
   about_img: '/images/about.png',
   javascript_logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',

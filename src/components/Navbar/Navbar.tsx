@@ -3,12 +3,14 @@ import ToggleButton from '../ToggleButton/ToggleButton';
 import LanguageToggleButton from '../LanguageToggleButton/LanguageToggleButton';
 import { Link } from 'react-scroll';
 import { imageLinks } from '../../assets/imageLinks';
+import { useTheme } from '../../context/ThemeContext';
 
 interface NavbarProps {
   language: 'en' | 'es';
 }
 
 const Navbar: React.FC<NavbarProps> = ({ language }) => {
+  const { theme } = useTheme();
   const content = {
     en: { home: 'Home', about: 'About', skills: 'Skills', projects: 'Projects', contact: 'Contact' },
     es: { home: 'Inicio', about: 'Sobre', skills: 'Habilidades', projects: 'Proyectos', contact: 'Contacto' },
@@ -28,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({ language }) => {
   return (
     <nav className={`navbar ${mobileMenu ? 'navbar--open' : ''}`}>
       <Link to="hero" smooth={true} offset={0} duration={700}>
-        <img src={imageLinks.logo} alt="Logo" className="logo" />
+        <img src={theme === 'dark' ? imageLinks.logo_black : imageLinks.logo_white} alt="Logo" className="logo" />
       </Link>
 
       <button
