@@ -94,7 +94,7 @@ const Contact: React.FC<ContactProps> = ({ language }) => {
         transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
       >
         <input type="text" name="name" placeholder={t.namePlaceholder} required />
-        <input type="email" name="mail" placeholder={t.emailPlaceholder} required />
+        <input type="email" name="email" placeholder={t.emailPlaceholder} required />
         <textarea name="message" rows={6} placeholder={t.messagePlaceholder} required />
         <button type="submit" disabled={status === 'sending'} className={`btn btn--primary contact__submit${status === 'sent' ? ' contact__submit--sent' : ''}`}>
           {status === 'sending' ? t.sending : status === 'sent' ? t.success : t.send}

@@ -11,16 +11,16 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ language }) => {
   const content = {
     en: {
-      greeting: 'Fullstack Web Developer',
+      greeting: 'Fullstack Developer · Available',
       name: "I'm Sergio.",
-      role: 'I build real solutions for businesses and brands.',
+      role: 'I build complete web and desktop products — from design to deployment. For teams or independently.',
       cta: 'See my work',
     },
     es: {
-      greeting: 'Fullstack Web Developer',
+      greeting: 'Desarrollador Fullstack · Disponible',
       name: 'Soy Sergio.',
-      role: 'Desarrollo soluciones reales para empresas y marcas.',
-      cta: 'Ver mi trabajo',
+      role: 'Construyo productos web y de escritorio completos — desde el diseño hasta el deploy. Para equipos o de forma independiente.',
+      cta: 'Ver mis proyectos',
     },
   };
 

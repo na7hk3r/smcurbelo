@@ -13,22 +13,22 @@ const About: React.FC<AboutProps> = ({ language }) => {
       label: 'About Me',
       name: 'Sergio Mathias Curbelo',
       text1:
-        'Fullstack developer focused on delivering practical, well-built web solutions — from landing pages and e-commerce sites to desktop applications and backend APIs.',
+        'Fullstack developer with experience in professional environments and personal products — from landing pages and e-commerce to complex desktop applications with modular architecture, authentication, local AI and automated deployment.',
       text2:
-        'I work directly with businesses and entrepreneurs, turning ideas into functional products with clean code, clear communication, and on-time delivery.',
+        'I work well both within a team and independently with clients. I care about understanding the problem before writing code, delivering with clarity, and building things that actually get used.',
       text3:
-        'Web development · Desktop applications · REST APIs · E-commerce · UI implementation',
+        'Web development · Desktop apps · REST APIs · E-commerce · CI/CD',
       cv: 'Download CV',
     },
     es: {
       label: 'Sobre Mí',
       name: 'Sergio Mathias Curbelo',
       text1:
-        'Desarrollador fullstack enfocado en entregar soluciones web prácticas y bien construidas — desde landing pages y sitios e-commerce hasta aplicaciones de escritorio y APIs backend.',
+        'Desarrollador fullstack con experiencia en entornos profesionales y productos personales — desde landing pages y e-commerce hasta aplicaciones de escritorio complejas con arquitectura modular, autenticación, IA local y deploy automatizado.',
       text2:
-        'Trabajo directamente con empresas y emprendedores, transformando ideas en productos funcionales con código limpio, comunicación clara y entregas puntuales.',
+        'Trabajo bien tanto dentro de un equipo como de forma independiente con clientes. Me interesa entender el problema antes de escribir código, entregar con claridad y construir cosas que realmente se usen.',
       text3:
-        'Desarrollo web · Aplicaciones de escritorio · APIs REST · E-commerce · Implementación UI',
+        'Desarrollo web · Aplicaciones de escritorio · APIs REST · E-commerce · CI/CD',
       cv: 'Descargar CV',
     },
   };
