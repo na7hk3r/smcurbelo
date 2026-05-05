@@ -1,5 +1,41 @@
 [
   {
+    "id": "00",
+    "title": {
+      "en": "Nora OS",
+      "es": "Nora OS"
+    },
+    "img": "/images/nora_os.png",
+    "badge": "Proyecto destacado",
+    "tags": {
+      "span_1": "Electron",
+      "span_2": "React 19",
+      "span_3": "SQLite"
+    },
+    "description": {
+      "en": "Modular, local-first desktop app centralizing productivity, habits, finance, health and personal knowledge — with optional local AI via Ollama. First-class plugin system (8 built-in), multiuser auth with AES-256-GCM encryption, integrated auto-update and 15+ technical docs.",
+      "es": "Aplicación de escritorio modular y local-first que centraliza productividad, hábitos, finanzas, salud y conocimiento personal — con IA local opcional vía Ollama. Sistema de plugins de primera clase (8 incluidos), autenticación multiusuario con criptografía AES-256-GCM, auto-update integrado y más de 15 documentos técnicos."
+    },
+    "highlights": {
+      "en": [
+        "8 decoupled plugins with EventBus + PluginManager architecture",
+        "Local AI (Ollama): daily coach, weekly review, Smart Focus Nudge",
+        "Real cryptography: scrypt + AES-256-GCM + encrypted backup + multiuser",
+        "Auto-update with electron-updater, CI/CD and binary GitHub releases",
+        "Own landing page, full visual identity and 40KB+ CHANGELOG"
+      ],
+      "es": [
+        "8 plugins desacoplados con arquitectura EventBus + PluginManager",
+        "IA local con Ollama: coach diario, review semanal, Smart Focus Nudge",
+        "Criptografía real: scrypt + AES-256-GCM + backup cifrado + multiusuario",
+        "Auto-update con electron-updater, CI/CD y releases binarios en GitHub",
+        "Landing propia, identidad visual completa y CHANGELOG con +40 KB de historial"
+      ]
+    },
+    "href_source": "https://github.com/na7hk3r/nora-os",
+    "href_source_2": "https://na7hk3r.github.io/nora-os/"
+  },
+  {
     "id": "10",
     "title": {
       "en": "Ushuaia CRM",
@@ -19,25 +55,6 @@
     "href_source_2": "https://na7hk3r.github.io/ushuaia-crm/"
   },
   {
-    "id": "11",
-    "title": {
-      "en": "UY Construcciones",
-      "es": "UY Construcciones"
-    },
-    "img": "/images/uy_construcciones.png",
-    "tags": {
-      "span_1": "JavaScript",
-      "span_2": "CSS3",
-      "span_3": "HTML5"
-    },
-    "description": {
-      "en": "Corporate website for a construction company. Custom domain, responsive design, scroll animations, and integrated contact form with business email.",
-      "es": "Sitio web corporativo para empresa constructora. Dominio propio, diseño responsive, animaciones al scroll e integración de formulario de contacto con correo empresarial."
-    },
-    "href_source": "https://github.com/na7hk3r/uy_construcciones",
-    "href_source_2": "https://uyconstrucciones.com.uy/"
-  },
-  {
     "id": "02",
     "img": "/images/natural.png",
     "title": {
@@ -55,6 +72,25 @@
     },
     "href_source": "https://github.com/na7hk3r/react_responsive",
     "href_source_2": "https://naturalmente-vane.vercel.app/"
+  },
+  {
+    "id": "11",
+    "title": {
+      "en": "UY Construcciones",
+      "es": "UY Construcciones"
+    },
+    "img": "/images/uy_construcciones.png",
+    "tags": {
+      "span_1": "JavaScript",
+      "span_2": "CSS3",
+      "span_3": "HTML5"
+    },
+    "description": {
+      "en": "Corporate website for a construction company. Custom domain, responsive design, scroll animations, and integrated contact form with business email.",
+      "es": "Sitio web corporativo para empresa constructora. Dominio propio, diseño responsive, animaciones al scroll e integración de formulario de contacto con correo empresarial."
+    },
+    "href_source": "https://github.com/na7hk3r/uy_construcciones",
+    "href_source_2": "https://uyconstrucciones.com.uy/"
   },
   {
     "id": "04",

@@ -14,7 +14,7 @@ const labels = {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ language }) => {
   const l = labels[language];
-  const [expandedId, setExpandedId] = useState<number | null>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   return (
     <>
@@ -30,9 +30,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ language }) => {
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
             >
-              <article className="project">
+              <article className={`project${project.badge ? ' project--featured' : ''}`}>
                 <div className="project__thumb">
                   <img src={project.img} alt={project.title[language]} loading="lazy" />
+                  {project.badge && (
+                    <span className="project__badge">{project.badge}</span>
+                  )}
                 </div>
                 <div className="project__body">
                   <h3 className="project__title">{project.title[language]}</h3>
@@ -44,6 +47,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ language }) => {
                   <p className={`project__desc${isExpanded ? ' project__desc--expanded' : ''}`}>
                     {project.description[language]}
                   </p>
+                  {isExpanded && project.highlights && project.highlights[language]?.length > 0 && (
+                    <ul className="project__highlights">
+                      {project.highlights[language].map((h) => (
+                        <li key={h}>{h}</li>
+                      ))}
+                    </ul>
+                  )}
                   <button
                     type="button"
                     className="project__expand-btn"
