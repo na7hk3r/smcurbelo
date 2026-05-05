@@ -107,7 +107,7 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: var(--accent) var(--surface-2);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 html::-webkit-scrollbar { width: 6px; }
@@ -137,6 +137,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100%;
+  overflow-x: clip;
+}
+
+/* Prevent long words / URLs from breaking horizontal layout */
+p, h1, h2, h3, h4, h5, h6, li, span, a, strong {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 /* ─── App Shell ─── */
