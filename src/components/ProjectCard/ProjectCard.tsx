@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTheme } from '../../context/ThemeContext';
 import { motion } from 'framer-motion';
 import ProjectsData from './Projects.json';
 import type { Project } from '../../types/project';
@@ -15,6 +16,7 @@ const labels = {
 const ProjectCard: React.FC<ProjectCardProps> = ({ language }) => {
   const l = labels[language];
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const { theme } = useTheme();
 
   return (
     <>
@@ -22,6 +24,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ language }) => {
       <div className="projects__grid">
         {(ProjectsData as Project[]).map((project, i) => {
           const isExpanded = expandedId === project.id;
+          // Nora OS: usar img_alt en theme claro si existe
+          const isNoraOS = project.id === '00';
+          const imgSrc = isNoraOS && theme === 'light' && project.img_alt ? project.img_alt : project.img;
           return (
             <motion.div
               key={project.id}
@@ -32,7 +37,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ language }) => {
             >
               <article className={`project${project.badge ? ' project--featured' : ''}`}>
                 <div className="project__thumb">
-                  <img src={project.img} alt={project.title[language]} loading="lazy" />
+                  <img src={imgSrc} alt={project.title[language]} loading="lazy" />
                   {project.badge && (
                     <span className="project__badge">{project.badge}</span>
                   )}

@@ -6,6 +6,7 @@
       "es": "Nora OS"
     },
     "img": "/images/nora_os.png",
+    "img_alt": "/images/nora_os_alt.png",
     "badge": "Proyecto destacado",
     "tags": {
       "span_1": "Electron",
