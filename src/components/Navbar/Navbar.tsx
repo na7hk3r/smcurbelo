@@ -12,8 +12,8 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ language }) => {
   const { theme } = useTheme();
   const content = {
-    en: { home: 'Home', about: 'About', skills: 'Skills', projects: 'Projects', contact: 'Contact' },
-    es: { home: 'Inicio', about: 'Sobre', skills: 'Habilidades', projects: 'Proyectos', contact: 'Contacto' },
+    en: { home: 'Home', about: 'About', experience: 'Experience', skills: 'Skills', projects: 'Projects', contact: 'Contact' },
+    es: { home: 'Inicio', about: 'Sobre', experience: 'Experiencia', skills: 'Habilidades', projects: 'Proyectos', contact: 'Contacto' },
   };
 
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -22,6 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({ language }) => {
   const links = [
     { to: 'hero', label: content[language].home },
     { to: 'about', label: content[language].about },
+    { to: 'experience', label: content[language].experience },
     { to: 'skills', label: content[language].skills },
     { to: 'projects', label: content[language].projects },
     { to: 'contact', label: content[language].contact },
