@@ -7,7 +7,7 @@ export interface Project {
   description: { en: string; es: string };
   href_source: string;
   href_source_2: string;
-  badge?: string;
+  badge?: { en: string; es: string };
   highlights?: {
     en: string[];
     es: string[];

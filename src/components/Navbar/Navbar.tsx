@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ToggleButton from '../ToggleButton/ToggleButton';
 import LanguageToggleButton from '../LanguageToggleButton/LanguageToggleButton';
-import { Link } from 'react-scroll';
 import { imageLinks } from '../../assets/imageLinks';
 import { useTheme } from '../../context/ThemeContext';
 
@@ -17,7 +16,76 @@ const Navbar: React.FC<NavbarProps> = ({ language }) => {
   };
 
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
   const closeMobileMenu = () => setMobileMenu(false);
+
+  // Lock body scroll + close on Escape + trap focus while the mobile menu is open
+  useEffect(() => {
+    if (mobileMenu) {
+      const previouslyFocused = document.activeElement as HTMLElement | null;
+      document.body.style.overflow = 'hidden';
+
+      const menu = document.querySelector('.nav-list--open');
+      const focusable = menu
+        ? Array.from(menu.querySelectorAll<HTMLElement>('a[href], button:not([disabled])'))
+        : [];
+
+      if (focusable.length > 0 && !(previouslyFocused && menu && menu.contains(previouslyFocused))) {
+        focusable[0].focus();
+      }
+
+      const handleKeyDown = (event: KeyboardEvent) => {
+        if (event.key === 'Escape') {
+          setMobileMenu(false);
+          return;
+        }
+
+        if (event.key === 'Tab' && focusable.length > 0) {
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+      };
+
+      document.addEventListener('keydown', handleKeyDown);
+
+      return () => {
+        document.removeEventListener('keydown', handleKeyDown);
+        document.body.style.overflow = '';
+        previouslyFocused?.focus();
+      };
+    }
+  }, [mobileMenu]);
+
+  // Highlight the active section link while scrolling
+  useEffect(() => {
+    const sectionIds = ['hero', 'about', 'experience', 'skills', 'projects', 'contact'];
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
 
   const links = [
     { to: 'hero', label: content[language].home },
@@ -29,15 +97,15 @@ const Navbar: React.FC<NavbarProps> = ({ language }) => {
   ];
 
   return (
-    <nav className={`navbar ${mobileMenu ? 'navbar--open' : ''}`}>
-      <Link to="hero" smooth={true} offset={0} duration={700}>
-        <img src={theme === 'dark' ? imageLinks.logo_black : imageLinks.logo_white} alt="Logo" className="logo" />
-      </Link>
+    <nav className={`navbar ${mobileMenu ? 'navbar--open' : ''}`} aria-label={language === 'en' ? 'Main navigation' : 'Navegación principal'}>
+      <a href="#hero" aria-label={language === 'en' ? 'Sergio M. Curbelo — Home' : 'Sergio M. Curbelo — Inicio'}>
+        <img src={theme === 'dark' ? imageLinks.logo_black : imageLinks.logo_white} alt="" className="logo" />
+      </a>
 
       <button
         className={`menu-icon ${mobileMenu ? 'menu-icon--open' : ''}`}
         onClick={() => setMobileMenu(!mobileMenu)}
-        aria-label="Toggle menu"
+        aria-label={language === 'en' ? 'Toggle menu' : 'Abrir menú'}
         aria-expanded={mobileMenu}
       >
         <span className="menu-icon__bar" />
@@ -48,17 +116,14 @@ const Navbar: React.FC<NavbarProps> = ({ language }) => {
       <ul className={mobileMenu ? 'nav-list nav-list--open' : 'nav-list'}>
         {links.map((link) => (
           <li key={link.to}>
-            <Link
-              to={link.to}
-              smooth={true}
-              offset={-70}
-              duration={700}
+            <a
+              href={'#' + link.to}
               onClick={closeMobileMenu}
-              spy={true}
-              activeClass="active-link"
+              className={activeSection === link.to ? 'active-link' : undefined}
+              aria-current={activeSection === link.to ? 'true' : undefined}
             >
               {link.label}
-            </Link>
+            </a>
           </li>
         ))}
         <li className="toggle-buttons">

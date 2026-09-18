@@ -1,9 +1,11 @@
 import React, { useState, FormEvent } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 interface ContactProps {
   language: 'en' | 'es';
 }
+
+type FormStatus = 'idle' | 'sending' | 'sent' | 'error';
 
 const content = {
   en: {
@@ -12,9 +14,14 @@ const content = {
     namePlaceholder: 'Name',
     emailPlaceholder: 'Email',
     messagePlaceholder: 'Your message…',
+    nameLabel: 'Name',
+    emailLabel: 'Email',
+    messageLabel: 'Message',
     send: 'Send',
     sending: 'Sending…',
-    success: 'Message sent!',
+    sent: 'Message sent!',
+    success: "Message sent! I'll get back to you within 24 hours.",
+    error: 'Something went wrong. Try again, or write me directly at sergiomcurbelo5@gmail.com.',
     socials: 'Or find me on',
   },
   es: {
@@ -23,16 +30,21 @@ const content = {
     namePlaceholder: 'Nombre',
     emailPlaceholder: 'Email',
     messagePlaceholder: 'Tu mensaje…',
+    nameLabel: 'Nombre',
+    emailLabel: 'Email',
+    messageLabel: 'Mensaje',
     send: 'Enviar',
     sending: 'Enviando…',
-    success: '¡Mensaje enviado!',
+    sent: '¡Mensaje enviado!',
+    success: '¡Mensaje enviado! Te respondo dentro de las 24 horas.',
+    error: 'Algo salió mal. Intentá de nuevo o escribime directo a sergiomcurbelo5@gmail.com.',
     socials: 'También estoy en',
   },
 };
 
 const Contact: React.FC<ContactProps> = ({ language }) => {
   const t = content[language];
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
+  const [status, setStatus] = useState<FormStatus>('idle');
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,24 +53,29 @@ const Contact: React.FC<ContactProps> = ({ language }) => {
     const formData = new FormData(e.currentTarget);
     formData.append('access_key', import.meta.env.VITE_WEB3FORMS_KEY);
 
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData,
-    });
-    const data = await res.json();
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
 
-    if (data.success) {
-      setStatus('sent');
-      e.currentTarget.reset();
-      setTimeout(() => setStatus('idle'), 3000);
-    } else {
-      setStatus('idle');
+      if (data.success) {
+        setStatus('sent');
+        e.currentTarget.reset();
+      } else {
+        setStatus('error');
+      }
+      setTimeout(() => setStatus('idle'), 3500);
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3500);
     }
   };
 
   return (
     <section className="contact container" id="contact">
-      <motion.div
+      <m.div
         className="contact__intro"
         initial={{ opacity: 0, x: -24 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -83,9 +100,9 @@ const Contact: React.FC<ContactProps> = ({ language }) => {
             GitHub
           </a>
         </div>
-      </motion.div>
+      </m.div>
 
-      <motion.form
+      <m.form
         className="contact__form"
         onSubmit={onSubmit}
         initial={{ opacity: 0, x: 24 }}
@@ -93,11 +110,47 @@ const Contact: React.FC<ContactProps> = ({ language }) => {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
       >
-        <input type="text" name="name" placeholder={t.namePlaceholder} required />
-        <input type="email" name="email" placeholder={t.emailPlaceholder} required />
-        <textarea name="message" rows={6} placeholder={t.messagePlaceholder} required />
-        <button type="submit" disabled={status === 'sending'} className={`btn btn--primary contact__submit${status === 'sent' ? ' contact__submit--sent' : ''}`}>
-          {status === 'sending' ? t.sending : status === 'sent' ? t.success : t.send}
+        <label htmlFor="name">{t.nameLabel}</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder={t.namePlaceholder}
+          aria-invalid={status === 'error'}
+          aria-describedby={status === 'error' ? 'contact-form-error' : undefined}
+          required
+        />
+        <label htmlFor="email">{t.emailLabel}</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder={t.emailPlaceholder}
+          aria-invalid={status === 'error'}
+          aria-describedby={status === 'error' ? 'contact-form-error' : undefined}
+          required
+        />
+        <label htmlFor="message">{t.messageLabel}</label>
+        <textarea
+          id="message"
+          name="message"
+          rows={6}
+          placeholder={t.messagePlaceholder}
+          aria-invalid={status === 'error'}
+          aria-describedby={status === 'error' ? 'contact-form-error' : undefined}
+          required
+        />
+        <input type="text" name="_honey" tabIndex={-1} autoComplete="off" style={{ display: 'none' }} />
+        <div className="contact__form-error" id="contact-form-error" role="alert">
+          {status === 'error' && t.error}
+        </div>
+        <button
+          type="submit"
+          disabled={status === 'sending'}
+          aria-busy={status === 'sending'}
+          className={`btn btn--primary contact__submit${status === 'sent' ? ' contact__submit--sent' : ''}`}
+        >
+          {status === 'sending' ? t.sending : status === 'sent' ? t.sent : t.send}
           {status === 'idle' && (
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M2 8l5.5 5.5L14 2" stroke="currentColor" strokeWidth="0" />
@@ -105,7 +158,12 @@ const Contact: React.FC<ContactProps> = ({ language }) => {
             </svg>
           )}
         </button>
-      </motion.form>
+        {status === 'sent' && (
+          <div className="contact__success" role="status">
+            {t.success}
+          </div>
+        )}
+        </m.form>
     </section>
   );
 };

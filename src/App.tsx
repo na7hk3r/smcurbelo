@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { ReactElement } from 'react';
+import { LazyMotion, domAnimation, m, useScroll, useSpring } from 'framer-motion';
 import { useTheme } from './context/ThemeContext';
 import { useLanguage } from './context/LanguageContext';
 import Navbar from './components/Navbar/Navbar';
@@ -18,20 +18,22 @@ const App = (): ReactElement => {
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
 
   return (
-    <div className={`App ${theme}`}>
-      <motion.div
-        className="scroll-progress"
-        style={{ scaleX }}
-      />
-      <Navbar language={language} />
-      <Hero language={language} />
-      <About language={language} />
-      <Experience language={language} />
-      <Skills language={language} />
-      <Projects language={language} />
-      <Contact language={language} />
-      <Footer />
-    </div>
+    <LazyMotion features={domAnimation} strict>
+      <div className={`App ${theme}`}>
+        <m.div
+          className="scroll-progress"
+          style={{ scaleX }}
+        />
+        <Navbar language={language} />
+        <Hero language={language} />
+        <About language={language} />
+        <Experience language={language} />
+        <Skills language={language} />
+        <Projects language={language} />
+        <Contact language={language} />
+        <Footer />
+      </div>
+    </LazyMotion>
   );
 };
 

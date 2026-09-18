@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { imageLinks } from '../../assets/imageLinks';
 import { ease } from '../../constants/animation';
 
@@ -105,7 +105,7 @@ const Tools: React.FC<ToolsProps> = ({ language }) => {
           </h3>
           <div className="tools__icons">
             {section.icons.map((icon, i) => (
-              <motion.div
+              <m.div
                 key={icon.alt}
                 className="tools__icon-wrapper"
                 initial={{ opacity: 0, y: 12 }}
@@ -120,7 +120,7 @@ const Tools: React.FC<ToolsProps> = ({ language }) => {
                   loading="lazy"
                 />
                 <span className="tools__tooltip">{icon.alt}</span>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>

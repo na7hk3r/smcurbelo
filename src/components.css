@@ -71,13 +71,19 @@
   transition: transform 0.3s var(--ease-out-expo);
 }
 
-.nav-list a:hover,
-.active-link {
+.nav-list a:hover {
   color: var(--text-1);
 }
 
-.nav-list a:hover::after,
-.active-link::after {
+.nav-list a:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-list a.active-link {
+  color: var(--text-1);
+}
+
+.nav-list a.active-link::after {
   transform: scaleX(1);
 }
 
@@ -768,7 +774,7 @@ input:checked + .slider::before {
   padding: 0.15rem 0.5rem;
   border-radius: var(--radius-full);
   background: var(--accent);
-  color: white;
+  color: var(--text-on-accent);
 }
 
 .tools__icons {
@@ -1144,7 +1150,8 @@ input:checked + .slider::before {
   padding: 0.3rem 0.7rem;
   border-radius: var(--radius-full);
   background: linear-gradient(135deg, var(--accent), oklch(0.55 0.18 230));
-  color: white;
+  color: var(--text-on-accent);
+  font-family: var(--font-mono);
   box-shadow: 0 4px 14px oklch(0 0 0 / 0.28), 0 0 0 1px oklch(1 0 0 / 0.1) inset;
   backdrop-filter: blur(4px);
 }
@@ -1373,6 +1380,38 @@ input:checked + .slider::before {
 button.contact__submit.contact__submit--sent {
   background: oklch(0.6 0.15 145);
   box-shadow: 0 2px 8px oklch(0.6 0.15 145 / 0.25);
+}
+
+.contact__form label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.contact__form input[aria-invalid="true"],
+.contact__form textarea[aria-invalid="true"] {
+  border-color: var(--semantic-error);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--semantic-error) 12%, transparent);
+}
+
+.contact__form-error {
+  min-height: 20px;
+  font-size: var(--text-xs);
+  color: var(--semantic-error);
+  margin-block-start: 2px;
+}
+
+.contact__success {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-xs) var(--space-s);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  background: var(--semantic-success-subtle);
+  border: 1px solid color-mix(in srgb, var(--semantic-success) 30%, transparent);
+  color: var(--semantic-success);
 }
 
 @media (max-width: 768px) {

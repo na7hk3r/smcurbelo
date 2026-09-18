@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { imageLinks } from '../../assets/imageLinks';
 import { ease } from '../../constants/animation';
 
@@ -43,7 +43,7 @@ const About: React.FC<AboutProps> = ({ language }) => {
             alt="Sergio Curbelo"
           />
 
-      <motion.div
+      <m.div
         className="about__content"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ const About: React.FC<AboutProps> = ({ language }) => {
         </h2>
         <div className="about__prose">
           {paragraphs.map((text, i) => (
-            <motion.p
+            <m.p
               key={i}
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -64,9 +64,9 @@ const About: React.FC<AboutProps> = ({ language }) => {
               transition={{ duration: 0.5, delay: 0.2 + i * 0.1, ease }}
             >
               {text}
-            </motion.p>
+            </m.p>
           ))}
-          <motion.p
+          <m.p
             className="about__services"
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -74,10 +74,10 @@ const About: React.FC<AboutProps> = ({ language }) => {
             transition={{ duration: 0.5, delay: 0.4, ease }}
           >
             {content[language].text3}
-          </motion.p>
+          </m.p>
         </div>
         <a
-          href="/curbelo_2025.pdf"
+          href="/Curbelo_2026.pdf"
           download
           className="btn btn--primary about__cv"
           aria-label="Download CV"
@@ -87,7 +87,7 @@ const About: React.FC<AboutProps> = ({ language }) => {
             <path d="M8 3v8M5 8l3 3 3-3M3 13h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </a>
-      </motion.div>
+      </m.div>
     </section>
   );
 };

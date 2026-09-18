@@ -27,7 +27,6 @@ interface ImageLinks {
   jest_logo: string;
   vitest_logo: string;
   playwright_logo: string;
-  python_logo: string;
   github_actions_logo: string;
   vercel_logo: string;
   utu_logo: string;
@@ -40,10 +39,10 @@ interface ImageLinks {
 }
 
 export const imageLinks: ImageLinks = {
-  logo_white: '/images/logo_white.png',
-  logo_black: '/images/logo_black.png',
-  home_img: '/images/home_img.jpg',
-  about_img: '/images/about.png',
+  logo_white: '/images/logo_white.webp',
+  logo_black: '/images/logo_black.webp',
+  home_img: '/images/home_img.webp',
+  about_img: '/images/about.webp',
   javascript_logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
   typescript_logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg',
   react_logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg',
@@ -68,14 +67,13 @@ export const imageLinks: ImageLinks = {
   jest_logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jest/jest-plain.svg',
   vitest_logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitest/vitest-original.svg',
   playwright_logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/playwright/playwright-original.svg',
-  python_logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg',
   github_actions_logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg',
   vercel_logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg',
-  utu_logo: '/images/utu-logo.png',
-  ctd_logo: '/images/ctd-logo.png',
-  jap_logo: '/images/jap-logo.png',
-  one_logo: '/images/one-logo.png',
-  voxy_logo: '/images/voxy-logo.png',
-  fcc_logo: '/images/fcc-logo.png',
-  ibm_logo: '/images/ibm-logo.png',
+  utu_logo: '/images/utu-logo.webp',
+  ctd_logo: '/images/ctd-logo.webp',
+  jap_logo: '/images/jap-logo.webp',
+  one_logo: '/images/one-logo.webp',
+  voxy_logo: '/images/voxy-logo.webp',
+  fcc_logo: '/images/fcc-logo.webp',
+  ibm_logo: '/images/ibm-logo.webp',
 };

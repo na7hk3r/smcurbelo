@@ -1,22 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
-
 /* ─── Design Tokens ─── */
 :root {
-  --brand: oklch(0.35 0.04 260);
-  --brand-light: oklch(0.50 0.03 260);
-  --brand-subtle: oklch(0.96 0.006 260);
+  --brand: #475166;
+  --brand-light: #657088;
+  --brand-subtle: #f2f4f8;
 
-  --surface-1: oklch(0.985 0.002 260);
-  --surface-2: oklch(0.96 0.004 260);
-  --surface-3: oklch(0.90 0.008 260);
+  --surface-1: #f8fafc;
+  --surface-2: #f1f4f9;
+  --surface-3: #e4e8f1;
 
-  --text-1: oklch(0.18 0.02 260);
-  --text-2: oklch(0.36 0.015 260);
-  --text-3: oklch(0.48 0.012 260);
+  --text-1: #121721;
+  --text-2: #3f4756;
+  --text-3: #606b7d;
 
-  --accent: oklch(0.46 0.17 175);
-  --accent-hover: oklch(0.40 0.16 175);
-  --accent-subtle: oklch(0.95 0.03 175);
+  --accent: #147568;
+  --accent-hover: #0f5c52;
+  --accent-subtle: #e6f6f4;
 
   /* Fluid type scale – major third (1.25) */
   --text-xs: clamp(0.72rem, 0.67rem + 0.25vw, 0.82rem);
@@ -48,7 +46,17 @@
 
   /* Semantic */
   --overlay-bg: oklch(0 0 0 / 0.85);
-  --accent-border: oklch(0.55 0.12 175 / 0.2);
+  --accent-border: #a5ded6;
+  --accent-active: #0a433b;
+  --text-on-accent: #ffffff;
+  --semantic-success: #15803d;
+  --semantic-warning: #b45309;
+  --semantic-error: #b91c1c;
+  --semantic-success-subtle: #ecfdf5;
+  --semantic-warning-subtle: #fffbeb;
+  --semantic-error-subtle: #fef2f2;
+  --shadow-focus: 0 0 0 3px rgba(20, 117, 104, 0.35);
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Shadows (light) */
   --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.06), 0 1px 2px oklch(0 0 0 / 0.04);
@@ -66,28 +74,38 @@
 }
 
 /* ─── Dark Theme ─── */
-.App.dark {
-  --surface-1: oklch(0.14 0.015 260);
-  --surface-2: oklch(0.18 0.02 260);
-  --surface-3: oklch(0.24 0.025 260);
+.App.dark,
+html.dark {
+  --surface-1: #0e1218;
+  --surface-2: #151a22;
+  --surface-3: #1e2531;
 
-  --text-1: oklch(0.94 0.006 260);
-  --text-2: oklch(0.72 0.010 260);
-  --text-3: oklch(0.52 0.015 260);
+  --text-1: #f1f5f9;
+  --text-2: #cbd5e1;
+  --text-3: #8795a9;
 
-  --brand: oklch(0.72 0.03 260);
-  --brand-light: oklch(0.80 0.025 260);
-  --brand-subtle: oklch(0.22 0.03 260);
-  --accent: oklch(0.65 0.14 175);
-  --accent-hover: oklch(0.72 0.12 175);
-  --accent-subtle: oklch(0.22 0.05 175);
+  --brand: #657088;
+  --brand-light: #9da9be;
+  --brand-subtle: #171b24;
+  --accent: #2dd4bf;
+  --accent-hover: #5eead4;
+  --accent-subtle: rgba(45, 212, 191, 0.12);
 
   --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.2), 0 1px 2px oklch(0 0 0 / 0.15);
   --shadow-md: 0 4px 12px oklch(0 0 0 / 0.25), 0 2px 4px oklch(0 0 0 / 0.15);
   --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.3), 0 4px 8px oklch(0 0 0 / 0.15);
 
   --overlay-bg: oklch(0 0 0 / 0.7);
-  --accent-border: oklch(0.55 0.12 175 / 0.25);
+  --accent-border: rgba(45, 212, 191, 0.32);
+  --accent-active: #14b8a6;
+  --text-on-accent: #042f2c;
+  --semantic-success: #34d399;
+  --semantic-warning: #fbbf24;
+  --semantic-error: #f87171;
+  --semantic-success-subtle: rgba(52, 211, 153, 0.12);
+  --semantic-warning-subtle: rgba(251, 191, 36, 0.12);
+  --semantic-error-subtle: rgba(248, 113, 113, 0.12);
+  --shadow-focus: 0 0 0 3px rgba(45, 212, 191, 0.4);
 }
 
 /* ─── Reset ─── */
@@ -105,6 +123,7 @@ html {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
   scrollbar-width: thin;
   scrollbar-color: var(--accent) var(--surface-2);
   overflow-x: clip;
@@ -117,15 +136,15 @@ html::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
 /* Scrollbar dark-mode — html needs its own overrides
    because ::-webkit-scrollbar inherits from html, not .App */
 html.dark {
-  scrollbar-color: oklch(0.65 0.14 175) oklch(0.18 0.02 260);
+  scrollbar-color: #2dd4bf #151a22;
 }
 
-html.dark::-webkit-scrollbar-track { background: oklch(0.18 0.02 260); }
-html.dark::-webkit-scrollbar-thumb { background: oklch(0.65 0.14 175); }
+html.dark::-webkit-scrollbar-track { background: #151a22; }
+html.dark::-webkit-scrollbar-thumb { background: #2dd4bf; }
 
 ::selection {
   background-color: var(--accent);
-  color: white;
+  color: var(--text-on-accent);
 }
 
 body {
@@ -220,12 +239,18 @@ img {
 }
 
 .btn:active {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.985);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .btn--primary {
   background: var(--accent);
-  color: white;
+  color: var(--text-on-accent);
   box-shadow: 0 2px 8px oklch(0.55 0.17 175 / 0.25);
 }
 
@@ -253,7 +278,7 @@ img {
 .btn:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px oklch(0.55 0.17 175 / 0.15);
+  box-shadow: var(--shadow-focus);
 }
 
 /* ─── Section label ─── */
@@ -270,5 +295,17 @@ img {
 @media screen and (max-width: 768px) {
   .App > *:not(nav, footer) {
     margin-block-end: var(--space-2xl);
+  }
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

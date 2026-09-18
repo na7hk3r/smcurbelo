@@ -7,4 +7,14 @@ export default defineConfig({
   css: {
     postcss: './postcss.config.cjs',
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          motion: ['framer-motion'],
+        },
+      },
+    },
+  },
 });

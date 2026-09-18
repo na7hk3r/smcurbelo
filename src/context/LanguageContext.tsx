@@ -14,11 +14,14 @@ interface LanguageProviderProps {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 function getInitialLanguage(): LanguageType {
+  const urlLang = new URLSearchParams(window.location.search).get('lang');
+  if (urlLang === 'en' || urlLang === 'es') return urlLang;
   const stored = localStorage.getItem('language');
   if (stored === 'en' || stored === 'es') return stored;
   return 'en';
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useLanguage = (): LanguageContextType => {
   const context = useContext(LanguageContext);
   if (context === undefined) {
@@ -32,6 +35,15 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
 
   useEffect(() => {
     localStorage.setItem('language', language);
+  }, [language]);
+
+  // Sync the document language and title with the active language
+  useEffect(() => {
+    document.documentElement.lang = language;
+    document.title =
+      language === 'en'
+        ? 'Sergio M. Curbelo — Fullstack Web Developer'
+        : 'Sergio M. Curbelo — Desarrollador Fullstack';
   }, [language]);
 
   const toggleLanguage = (): void => {

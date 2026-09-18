@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
 
 const ToggleButton = () => {
@@ -10,6 +9,9 @@ const ToggleButton = () => {
         type="checkbox"
         checked={theme === 'dark'}
         onChange={toggleTheme}
+        role="switch"
+        aria-label="Toggle dark mode"
+        aria-checked={theme === 'dark'}
       />
       <span className="slider"></span>
     </label>

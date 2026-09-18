@@ -14,7 +14,7 @@ interface CourseItemData {
   pdfUrl?: string;
 }
 
-const CourseCard: React.FC<CourseCardProps> = React.memo(({ language }) => {
+const CourseCard: React.FC<CourseCardProps> = React.memo(function CourseCard({ language }) {
   const content = useMemo(() => ({
     en: {
       label: 'Education',

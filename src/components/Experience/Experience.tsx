@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ease } from '../../constants/animation';
 
 interface ExperienceProps {
@@ -15,7 +15,7 @@ const content = {
         company: 'my360',
         logo: '/images/my360-logo.webp',
         role: 'Subcontracted Fullstack Developer (Part-time)',
-        period: 'Jan 2024 – Apr 2025 · 1 yr 4 mos',
+        period: 'Jan 2025 – Apr 2026 · 1 yr 3 mos',
         description:
           'Collaborated as a subcontracted frontend developer on the V2 of a 360 Tour editor and player — a SaaS platform for real estate agents. Worked with Preact, React, TypeScript and JSX in a professional team environment, integrating krpano for immersive 360° scene rendering and interaction.',
         tags: ['Preact', 'React', 'TypeScript', 'krpano', '360° Tours', 'SaaS'],
@@ -30,7 +30,7 @@ const content = {
         company: 'my360',
         logo: '/images/my360-logo.webp',
         role: 'Desarrollador Fullstack subcontratado (Part-time)',
-        period: 'Ene 2024 – Abr 2025 · 1 año 4 meses',
+        period: 'Ene 2025 – Abr 2026 · 1 año 3 meses',
         description:
           'Colaboré como desarrollador frontend subcontratado en la V2 del editor y player de Tours 360 — una plataforma SaaS para agentes inmobiliarios. Trabajé con Preact, React, TypeScript y JSX en equipo, integrando krpano para la renderización e interacción de escenas 360° inmersivas.',
         tags: ['Preact', 'React', 'TypeScript', 'krpano', 'Tours 360', 'SaaS'],
@@ -44,7 +44,7 @@ const Experience: React.FC<ExperienceProps> = ({ language }) => {
 
   return (
     <section className="experience" id="experience">
-      <motion.header
+      <m.header
         className="experience__header"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -53,11 +53,11 @@ const Experience: React.FC<ExperienceProps> = ({ language }) => {
       >
         <span className="section-label">{t.label}</span>
         <h2 className="experience__title">{t.title}</h2>
-      </motion.header>
+      </m.header>
 
       <div className="experience__list">
         {t.items.map((item, i) => (
-          <motion.article
+          <m.article
             key={`${item.company}-${i}`}
             className="experience-card"
             initial={{ opacity: 0, y: 24 }}
@@ -81,7 +81,7 @@ const Experience: React.FC<ExperienceProps> = ({ language }) => {
                 ))}
               </div>
             </div>
-          </motion.article>
+          </m.article>
         ))}
       </div>
     </section>

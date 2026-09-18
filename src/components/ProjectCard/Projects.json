@@ -5,9 +5,12 @@
       "en": "Nora OS",
       "es": "Nora OS"
     },
-    "img": "/images/nora_os.png",
-    "img_alt": "/images/nora_os_alt.png",
-    "badge": "Proyecto destacado",
+    "img": "/images/nora_os.webp",
+    "img_alt": "/images/nora_os_alt.webp",
+    "badge": {
+      "en": "Featured project",
+      "es": "Proyecto destacado"
+    },
     "tags": {
       "span_1": "Electron",
       "span_2": "React 19",
@@ -42,7 +45,7 @@
       "en": "Ushuaia CRM",
       "es": "Ushuaia CRM"
     },
-    "img": "/images/ushuaia_crm.png",
+    "img": "/images/ushuaia_crm.webp",
     "tags": {
       "span_1": "Electron",
       "span_2": "React",
@@ -57,7 +60,7 @@
   },
   {
     "id": "02",
-    "img": "/images/natural.png",
+    "img": "/images/natural.webp",
     "title": {
       "en": "Naturalmente Vane",
       "es": "Naturalmente Vane"
@@ -80,7 +83,7 @@
       "en": "UY Construcciones",
       "es": "UY Construcciones"
     },
-    "img": "/images/uy_construcciones.png",
+    "img": "/images/uy_construcciones.webp",
     "tags": {
       "span_1": "JavaScript",
       "span_2": "CSS3",
@@ -118,7 +121,7 @@
       "en": "SpaceX Launches",
       "es": "SpaceX Launches"
     },
-    "img": "/images/spacex_web.png",
+    "img": "/images/spacex_web.webp",
     "tags": {
       "span_1": "Astro",
       "span_2": "Tailwind",

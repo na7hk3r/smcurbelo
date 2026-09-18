@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTheme } from '../../context/ThemeContext';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import ProjectsData from './Projects.json';
 import type { Project } from '../../types/project';
 
@@ -28,7 +28,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ language }) => {
           const isNoraOS = project.id === '00';
           const imgSrc = isNoraOS && theme === 'light' && project.img_alt ? project.img_alt : project.img;
           return (
-            <motion.div
+            <m.div
               key={project.id}
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -39,7 +39,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ language }) => {
                 <div className="project__thumb">
                   <img src={imgSrc} alt={project.title[language]} loading="lazy" />
                   {project.badge && (
-                    <span className="project__badge">{project.badge}</span>
+                    <span className="project__badge">{project.badge[language]}</span>
                   )}
                 </div>
                 <div className="project__body">
@@ -80,7 +80,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ language }) => {
                   </div>
                 </div>
               </article>
-            </motion.div>
+            </m.div>
           );
         })}
       </div>
