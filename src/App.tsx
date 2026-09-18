@@ -25,12 +25,14 @@ const App = (): ReactElement => {
           style={{ scaleX }}
         />
         <Navbar language={language} />
-        <Hero language={language} />
-        <About language={language} />
-        <Experience language={language} />
-        <Skills language={language} />
-        <Projects language={language} />
-        <Contact language={language} />
+        <main id="main">
+          <Hero language={language} />
+          <About language={language} />
+          <Experience language={language} />
+          <Skills language={language} />
+          <Projects language={language} />
+          <Contact language={language} />
+        </main>
         <Footer />
       </div>
     </LazyMotion>

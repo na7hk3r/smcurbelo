@@ -175,8 +175,13 @@ p, h1, h2, h3, h4, h5, h6, li, span, a, strong {
   transition: background 0.4s var(--ease-out-quart), color 0.4s var(--ease-out-quart);
 }
 
-.App > *:not(nav, footer) {
+.App > *:not(nav, footer),
+.App > main > * {
   margin-block-end: var(--space-3xl);
+}
+
+.App > main > :last-child {
+  margin-block-end: 0;
 }
 
 .App > footer {
@@ -293,8 +298,13 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .App > *:not(nav, footer) {
+  .App > *:not(nav, footer),
+  .App > main > * {
     margin-block-end: var(--space-2xl);
+  }
+
+  .App > main > :last-child {
+    margin-block-end: 0;
   }
 }
 

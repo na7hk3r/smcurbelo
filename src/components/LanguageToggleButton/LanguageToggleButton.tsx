@@ -7,7 +7,7 @@ const LanguageToggleButton = () => {
     <button
       className="language-toggle-button"
       onClick={toggleLanguage}
-      aria-label={language === 'en' ? 'Switch to Spanish' : 'Cambiar a inglés'}
+      aria-label={language === 'en' ? 'Switch to Spanish · ES' : 'Cambiar a inglés · EN'}
       aria-pressed={language === 'es'}
     >
       {language === 'en' ? 'ES' : 'EN'}
