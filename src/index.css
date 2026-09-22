@@ -202,6 +202,26 @@ a {
   cursor: pointer;
 }
 
+/* ─── Skip Link ─── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--gutter);
+  z-index: 9999;
+  padding: var(--space-xs) var(--space-m);
+  background: var(--accent);
+  color: var(--text-on-accent);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+  transition: top 0.2s var(--ease-out-quart);
+}
+
+.skip-link:focus {
+  top: var(--space-xs);
+}
+
 /* ─── Scroll Progress Bar ─── */
 .scroll-progress {
   position: fixed;
@@ -317,5 +337,9 @@ img {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .scroll-progress {
+    display: none;
   }
 }
