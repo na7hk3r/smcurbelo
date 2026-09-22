@@ -9,8 +9,22 @@ interface ProjectCardProps {
 }
 
 const labels = {
-  en: { heading: 'Projects', source: 'Code', live: 'Live', more: 'Read more', less: 'Show less' },
-  es: { heading: 'Proyectos', source: 'Código', live: 'Demo', more: 'Leer más', less: 'Mostrar menos' },
+  en: {
+    heading: 'Projects',
+    source: 'Code',
+    live: 'Live',
+    more: 'Read more',
+    less: 'Show less',
+    relationship: { client: 'Client', own: 'Personal', 'open-source': 'Open Source' },
+  },
+  es: {
+    heading: 'Proyectos',
+    source: 'Código',
+    live: 'Demo',
+    more: 'Leer más',
+    less: 'Mostrar menos',
+    relationship: { client: 'Cliente', own: 'Personal', 'open-source': 'Open Source' },
+  },
 };
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ language }) => {
@@ -43,9 +57,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ language }) => {
                   )}
                 </div>
                 <div className="project__body">
+                  <span className="project__relationship">{l.relationship[project.relationship]}</span>
                   <h3 className="project__title">{project.title[language]}</h3>
                   <div className="project__tags">
-                    {[project.tags.span_1, project.tags.span_2, project.tags.span_3].map((t) => (
+                    {project.tags.map((t) => (
                       <span key={t}>{t}</span>
                     ))}
                   </div>
@@ -68,15 +83,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ language }) => {
                     {isExpanded ? l.less : l.more}
                   </button>
                   <div className="project__links">
-                    <a href={project.href_source} target="_blank" rel="noopener noreferrer" className="btn btn--ghost project__link">
-                      {l.source}
-                    </a>
-                    <a href={project.href_source_2} target="_blank" rel="noopener noreferrer" className="btn btn--primary project__link">
-                      {l.live}
-                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                        <path d="M5 3h8v8M13 3L3 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </a>
+                    {project.source && (
+                      <a href={project.source} target="_blank" rel="noopener noreferrer" className="btn btn--ghost project__link">
+                        {l.source}
+                      </a>
+                    )}
+                    {project.live && (
+                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="btn btn--primary project__link">
+                        {l.live}
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                          <path d="M5 3h8v8M13 3L3 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </a>
+                    )}
                   </div>
                 </div>
               </article>
