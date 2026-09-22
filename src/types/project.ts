@@ -3,10 +3,12 @@ export interface Project {
   img: string;
   img_alt?: string;
   title: { en: string; es: string };
-  tags: { span_1: string; span_2: string; span_3: string };
+  relationship: 'client' | 'own' | 'open-source';
+  category: string;
+  tags: string[];
   description: { en: string; es: string };
-  href_source: string;
-  href_source_2: string;
+  source?: string;
+  live?: string;
   badge?: { en: string; es: string };
   highlights?: {
     en: string[];
