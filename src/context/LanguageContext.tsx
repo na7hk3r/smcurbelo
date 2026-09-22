@@ -37,13 +37,37 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     localStorage.setItem('language', language);
   }, [language]);
 
-  // Sync the document language and title with the active language
+  // Sync document language, title, and search/social meta tags with the active language
   useEffect(() => {
     document.documentElement.lang = language;
-    document.title =
+
+    const localized =
       language === 'en'
-        ? 'Sergio M. Curbelo — Fullstack Web Developer'
-        : 'Sergio M. Curbelo — Desarrollador Fullstack';
+        ? {
+            title: 'Sergio M. Curbelo — Fullstack Web Developer',
+            description:
+              'Fullstack Web Developer — I build real solutions for businesses and brands. React, Node.js, TypeScript, Electron, Spring Boot & more.',
+            url: 'https://smcurbelo.com/',
+          }
+        : {
+            title: 'Sergio M. Curbelo — Desarrollador Fullstack',
+            description:
+              'Desarrollador Fullstack — Construyo soluciones reales para empresas y marcas. React, Node.js, TypeScript, Electron, Spring Boot y más.',
+            url: 'https://smcurbelo.com/?lang=es',
+          };
+
+    const setMeta = (selector: string, attr: string, value: string): void => {
+      const meta = document.querySelector(selector);
+      if (meta) meta.setAttribute(attr, value);
+    };
+
+    document.title = localized.title;
+    setMeta('meta[name="description"]', 'content', localized.description);
+    setMeta('meta[property="og:title"]', 'content', localized.title);
+    setMeta('meta[property="og:description"]', 'content', localized.description);
+    setMeta('meta[property="og:url"]', 'content', localized.url);
+    setMeta('meta[name="twitter:title"]', 'content', localized.title);
+    setMeta('meta[name="twitter:description"]', 'content', localized.description);
   }, [language]);
 
   const toggleLanguage = (): void => {
