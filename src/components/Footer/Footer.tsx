@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { github, linkedin } from '../../constants/contact';
 
 const Footer: React.FC = () => {
   const year = new Date().getFullYear();
@@ -8,10 +9,10 @@ const Footer: React.FC = () => {
     <footer className="footer">
       <div className="footer__inner container">
         <div className="footer__socials">
-          <a href="https://github.com/na7hk3r/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <a href={github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <FaGithub />
           </a>
-          <a href="https://linkedin.com/in/smcurbelo" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <a href={linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <FaLinkedin />
           </a>
         </div>

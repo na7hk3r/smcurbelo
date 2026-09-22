@@ -1,5 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 import { m } from 'framer-motion';
+import { email, github, linkedin } from '../../constants/contact';
 
 interface ContactProps {
   language: 'en' | 'es';
@@ -21,7 +22,7 @@ const content = {
     sending: 'Sending…',
     sent: 'Message sent!',
     success: "Message sent! I'll get back to you within 24 hours.",
-    error: 'Something went wrong. Try again, or write me directly at sergiomcurbelo5@gmail.com.',
+    error: `Something went wrong. Try again, or write me directly at ${email}.`,
     socials: 'Or find me on',
   },
   es: {
@@ -37,7 +38,7 @@ const content = {
     sending: 'Enviando…',
     sent: '¡Mensaje enviado!',
     success: '¡Mensaje enviado! Te respondo dentro de las 24 horas.',
-    error: 'Algo salió mal. Intentá de nuevo o escribime directo a sergiomcurbelo5@gmail.com.',
+    error: `Algo salió mal. Intentá de nuevo o escribime directo a ${email}.`,
     socials: 'También estoy en',
   },
 };
@@ -87,15 +88,15 @@ const Contact: React.FC<ContactProps> = ({ language }) => {
 
         <p className="contact__socials-label">{t.socials}</p>
         <div className="contact__socials">
-          <a href="mailto:sergiomcurbelo5@gmail.com" target="_blank" rel="noopener noreferrer" className="contact__social-link">
+          <a href={`mailto:${email}`} className="contact__social-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M2 7l10 7 10-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             Email
           </a>
-          <a href="https://linkedin.com/in/smcurbelo/" target="_blank" rel="noopener noreferrer" className="contact__social-link">
+          <a href={linkedin} target="_blank" rel="noopener noreferrer" className="contact__social-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             LinkedIn
           </a>
-          <a href="https://github.com/na7hk3r/" target="_blank" rel="noopener noreferrer" className="contact__social-link">
+          <a href={github} target="_blank" rel="noopener noreferrer" className="contact__social-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             GitHub
           </a>
