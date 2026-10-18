@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-boot-lang="en">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,11 +20,27 @@
 
     <!--
       Boot theme: runs before the first paint (and before the blocking font
-      stylesheet below resolves) so the stored theme already exists on <html>.
+      stylesheet below resolves) so the resolved theme already exists on <html>.
       Without it, html.dark is applied by React, so a dark-mode visitor watched
-      a light page for several seconds before it snapped to dark. The logic
-      mirrors getInitialTheme() in src/context/ThemeContext.tsx exactly — the
-      two must not disagree or the theme would flip on hydration.
+      a light page for several seconds before it snapped to dark.
+
+      This script is the single authority for both decisions. It publishes its
+      answers on <html> and the app consumes them instead of resolving the same
+      question a second time — ThemeContext and LanguageContext read these, and
+      resolve the value themselves only when the attributes are absent:
+
+        data-boot-theme  'dark' | 'light'   resolved theme
+        data-boot-lang   'en' | 'es'        resolved language
+
+      Both are written on every run, including when the answer is the default, so
+      their absence means exactly one thing: this script did not run. That is why
+      the <html> tag carries no data-boot-* attribute of its own — a hardcoded
+      default would be indistinguishable from a real answer, and would freeze
+      that default in place whenever this script is stripped.
+
+      Storage access is guarded here and in the app (src/storage.ts): reading or
+      writing it throws outright when a browser blocks it, and an unguarded throw
+      from either end takes the whole app down.
     -->
     <script>
       (function () {
@@ -43,6 +59,7 @@
           stored === 'dark' ||
           (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
         el.classList.toggle('dark', dark);
+        el.setAttribute('data-boot-theme', dark ? 'dark' : 'light');
         el.setAttribute('data-boot-lang', lang === 'es' ? 'es' : 'en');
 
         /*

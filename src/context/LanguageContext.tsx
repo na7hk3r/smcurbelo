@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useMemo, useEffect, ReactNode } from 'react';
+import { readStorage, writeStorage } from '../storage';
 
 type LanguageType = 'en' | 'es';
 
@@ -13,10 +14,20 @@ interface LanguageProviderProps {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+/**
+ * The language resolved by the boot script in index.html, published as
+ * data-boot-lang on <html>. Consuming it instead of resolving the language a
+ * second time is what keeps the boot loader's label and the mounted app from
+ * disagreeing. The fallback below is reached only when the boot script did not
+ * run at all.
+ */
 function getInitialLanguage(): LanguageType {
+  const boot = document.documentElement.getAttribute('data-boot-lang');
+  if (boot === 'en' || boot === 'es') return boot;
+
   const urlLang = new URLSearchParams(window.location.search).get('lang');
   if (urlLang === 'en' || urlLang === 'es') return urlLang;
-  const stored = localStorage.getItem('language');
+  const stored = readStorage('language');
   if (stored === 'en' || stored === 'es') return stored;
   return 'en';
 }
@@ -34,12 +45,15 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   const [language, setLanguage] = useState<LanguageType>(getInitialLanguage);
 
   useEffect(() => {
-    localStorage.setItem('language', language);
+    writeStorage('language', language);
   }, [language]);
 
   // Sync document language, title, and search/social meta tags with the active language
   useEffect(() => {
     document.documentElement.lang = language;
+    // Same reason as data-boot-theme in ThemeContext: never leave the value the
+    // boot script published misreporting the language the page is in.
+    document.documentElement.setAttribute('data-boot-lang', language);
 
     const localized =
       language === 'en'
