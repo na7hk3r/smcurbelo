@@ -11,7 +11,6 @@ interface AboutProps {
 const About: React.FC<AboutProps> = ({ language }) => {
   const content = {
     en: {
-      label: 'About Me',
       name: 'Sergio Mathias Curbelo',
       text1:
         'Fullstack developer with experience in professional environments and personal products — from landing pages and e-commerce to complex desktop applications with modular architecture, authentication, local AI and automated deployment.',
@@ -21,7 +20,6 @@ const About: React.FC<AboutProps> = ({ language }) => {
         'Web development · Desktop apps · REST APIs · E-commerce · CI/CD',
     },
     es: {
-      label: 'Sobre Mí',
       name: 'Sergio Mathias Curbelo',
       text1:
         'Desarrollador fullstack con experiencia en entornos profesionales y productos personales — desde landing pages y e-commerce hasta aplicaciones de escritorio complejas con arquitectura modular, autenticación, IA local y deploy automatizado.',
@@ -51,7 +49,6 @@ const About: React.FC<AboutProps> = ({ language }) => {
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.1, ease }}
       >
-        <span className="section-label">{content[language].label}</span>
         <h2 className="about__name">
           {content[language].name}
         </h2>

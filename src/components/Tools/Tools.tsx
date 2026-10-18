@@ -10,13 +10,11 @@ interface ToolsProps {
 const Tools: React.FC<ToolsProps> = ({ language }) => {
   const content = {
     en: {
-      label: 'Skills',
       title: 'Languages & tools I use',
       ecosystem: 'JavaScript Ecosystem',
       primary: 'Primary Stack',
     },
     es: {
-      label: 'Habilidades',
       title: 'Lenguajes y herramientas que uso',
       ecosystem: 'Ecosistema JavaScript',
       primary: 'Stack Principal',
@@ -90,7 +88,6 @@ const Tools: React.FC<ToolsProps> = ({ language }) => {
 
   return (
     <div className="tools">
-      <span className="section-label">{content[language].label}</span>
       <h2 className="tools__title">{content[language].title}</h2>
       <p className="tools__ecosystem">{content[language].ecosystem}</p>
 

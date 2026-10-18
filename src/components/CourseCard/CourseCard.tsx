@@ -19,12 +19,10 @@ interface CourseItemData {
 const CourseCard: React.FC<CourseCardProps> = React.memo(function CourseCard({ language }) {
   const content = useMemo(() => ({
     en: {
-      label: 'Education',
       title: 'Courses & Certificates',
       viewCert: 'View certificate',
     },
     es: {
-      label: 'Educación',
       title: 'Estudios y Certificaciones',
       viewCert: 'Ver certificado',
     },
@@ -117,7 +115,6 @@ const CourseCard: React.FC<CourseCardProps> = React.memo(function CourseCard({ l
 
   return (
     <div className="courses">
-      <span className="section-label">{content[language].label}</span>
       <h2 className="courses__title">{content[language].title}</h2>
 
       <div className="courses__list">

@@ -157,6 +157,18 @@ async function inspect(build, scenario) {
         }
       });
       out.imgs.stretched = stretched;
+      // Style-polish round 5 probes.
+      out.kickers = document.querySelectorAll('.section-label').length;
+      var badge = document.querySelector('.tools__badge');
+      out.badgeFont = badge ? parseFloat(getComputedStyle(badge).fontSize) : null;
+      var desc = document.querySelector('.experience-card__desc');
+      out.descMax = desc ? { px: parseFloat(getComputedStyle(desc).maxWidth), size: parseFloat(getComputedStyle(desc).fontSize) } : null;
+      var flat = [];
+      ['.project--featured', '.project--featured .project__thumb', 'span.project__badge'].forEach(function (sel) {
+        var el = document.querySelector(sel);
+        if (el && getComputedStyle(el).backgroundImage !== 'none') flat.push(sel);
+      });
+      out.flat = flat;
       out.small = small;
       return JSON.stringify(out);
     })()`);
@@ -165,14 +177,18 @@ async function inspect(build, scenario) {
       url: e.params.request.url, initiator: (e.params.initiator || {}).type || '?', priority: e.params.request.initialPriority || '?',
     }));
     const heroReqs = requests.filter((r) => r.url.indexOf('home_img') > -1);
-    // The font hosts are a known, documented exception (out of scope for this
-    // round: the round owns the tool logos). Anything else third-party fails.
+    // The font hosts are counted separately: the round that owns them must
+    // drive their count to zero, and the blanket third-party check no longer
+    // turns a blind eye to them.
     const OUT_OF_SCOPE_HOSTS = ['fonts.googleapis.com', 'fonts.gstatic.com'];
+    let fontHostReqs = 0;
     const thirdParty = {};
     for (const r of requests) {
       try {
         const u = new URL(r.url);
-        if (u.host !== `localhost:${PORT}` && u.host !== 'localhost' && u.protocol !== 'data:' && OUT_OF_SCOPE_HOSTS.indexOf(u.host) === -1) thirdParty[u.host] = (thirdParty[u.host] || 0) + 1;
+        if (u.host === `localhost:${PORT}` || u.host === 'localhost' || u.protocol === 'data:') continue;
+        if (OUT_OF_SCOPE_HOSTS.indexOf(u.host) !== -1) { fontHostReqs += 1; continue; }
+        thirdParty[u.host] = (thirdParty[u.host] || 0) + 1;
       } catch {}
     }
 
@@ -191,6 +207,11 @@ async function inspect(build, scenario) {
       'S3 no image is broken': dom.imgs.broken.length === 0,
       'S3 no image is stretched by a declared size': dom.imgs.stretched.length === 0,
       'S5 no third-party request is made': Object.keys(thirdParty).length === 0,
+      'no kicker sits above a heading': dom.kickers === 0,
+      'no undersized tools badge': dom.badgeFont >= 11,
+      'experience desc line length is capped': !!dom.descMax && dom.descMax.px > 0 && dom.descMax.px <= 80 * dom.descMax.size + 1,
+      'featured surfaces are flat': dom.flat.length === 0,
+      'no Google Fonts request is made': fontHostReqs === 0,
       'S6 named controls reach 24x24': dom.small.length === 0,
     };
     if (scenario.mobile) checks['S4 the hero image is not fetched where it is never shown'] = heroReqs.length === 0;
@@ -200,7 +221,7 @@ async function inspect(build, scenario) {
       id: scenario.id,
       pass: Object.values(checks).every(Boolean),
       checks,
-      observed: { work: dom.work, hero: dom.hero, cv: dom.cv, imgs: { total: dom.imgs.total, missing: dom.imgs.missing, mismatch: dom.imgs.mismatch, ratioChecked: dom.imgs.ratioChecked, unloaded: dom.imgs.unloaded, broken: dom.imgs.broken, stretched: dom.imgs.stretched }, small: dom.small, heroReqs, thirdParty },
+      observed: { work: dom.work, hero: dom.hero, cv: dom.cv, imgs: { total: dom.imgs.total, missing: dom.imgs.missing, mismatch: dom.imgs.mismatch, ratioChecked: dom.imgs.ratioChecked, unloaded: dom.imgs.unloaded, broken: dom.imgs.broken, stretched: dom.imgs.stretched }, small: dom.small, heroReqs, thirdParty, kickers: dom.kickers, badgeFont: dom.badgeFont, descMax: dom.descMax, flat: dom.flat, fontHostReqs },
     };
   });
 }

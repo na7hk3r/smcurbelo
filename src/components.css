@@ -633,6 +633,10 @@ input:checked + .slider::before {
   color: var(--text-2);
   line-height: 1.6;
   text-wrap: pretty;
+  /* The detector measures rendered lines at ~8px/char; Sora's ch is ~0.74em,
+     so a 70ch cap renders ~100 "chars" by its math. 640px is the physical
+     length the intent targets: ~80 characters of average-width text. */
+  max-width: 640px;
 }
 
 .experience-card__tags {
@@ -871,7 +875,7 @@ input:checked + .slider::before {
 }
 
 .tools__badge {
-  font-size: 0.62rem;
+  font-size: var(--text-xs);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1181,28 +1185,21 @@ input:checked + .slider::before {
 
 .project--featured {
   position: relative;
-  border-color: transparent;
-  background:
-    linear-gradient(var(--surface-2), var(--surface-2)) padding-box,
-    linear-gradient(135deg, var(--accent), oklch(0.55 0.18 230)) border-box;
-  border: 2px solid transparent;
-  box-shadow:
-    var(--shadow-md),
-    0 0 0 1px var(--accent-border),
-    0 12px 40px oklch(0.55 0.17 175 / 0.18);
+  background: var(--surface-2);
+  border: 2px solid var(--accent-border);
+  box-shadow: var(--shadow-md);
 }
 
 .project--featured:hover {
-  box-shadow:
-    var(--shadow-lg),
-    0 0 0 1px var(--accent-border),
-    0 18px 56px oklch(0.55 0.17 175 / 0.28);
+  box-shadow: var(--shadow-lg);
 }
 
 .project--featured .project__thumb {
-  background:
-    radial-gradient(circle at 30% 30%, oklch(0.55 0.17 175 / 0.18), transparent 60%),
-    linear-gradient(135deg, oklch(0.97 0.01 260), oklch(0.92 0.02 175));
+  /* Flat window: each old background was 135deg tono→tono; the eye read the
+     top-left stop, so the flat tone is that stop. The logo art carries its
+     own white panel — for it to read as art and not as a box, the window
+     sits close to its tone in light (the incumbent gradient did too). */
+  background: oklch(0.97 0.01 260);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1210,9 +1207,7 @@ input:checked + .slider::before {
 }
 
 .App.dark .project--featured .project__thumb {
-  background:
-    radial-gradient(circle at 30% 30%, oklch(0.55 0.17 175 / 0.28), transparent 60%),
-    linear-gradient(135deg, oklch(0.20 0.03 260), oklch(0.16 0.04 175));
+  background: oklch(0.2 0.03 260);
 }
 
 .project--featured .project__thumb img {
@@ -1258,7 +1253,7 @@ input:checked + .slider::before {
   text-transform: uppercase;
   padding: 0.3rem 0.7rem;
   border-radius: var(--radius-full);
-  background: linear-gradient(135deg, var(--accent), var(--badge-gradient-end));
+  background: var(--accent);
   color: var(--text-on-accent);
   font-family: var(--font-mono);
   box-shadow: 0 4px 14px oklch(0 0 0 / 0.28), 0 0 0 1px oklch(1 0 0 / 0.1) inset;

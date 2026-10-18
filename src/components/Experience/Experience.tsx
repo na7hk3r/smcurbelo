@@ -8,7 +8,6 @@ interface ExperienceProps {
 
 const content = {
   en: {
-    label: 'Experience',
     title: 'Professional experience',
     items: [
       {
@@ -23,7 +22,6 @@ const content = {
     ],
   },
   es: {
-    label: 'Experiencia',
     title: 'Experiencia profesional',
     items: [
       {
@@ -51,7 +49,6 @@ const Experience: React.FC<ExperienceProps> = ({ language }) => {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease }}
       >
-        <span className="section-label">{t.label}</span>
         <h2 className="experience__title">{t.title}</h2>
       </m.header>
 

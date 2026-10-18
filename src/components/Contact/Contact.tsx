@@ -10,7 +10,6 @@ type FormStatus = 'idle' | 'sending' | 'sent' | 'error';
 
 const content = {
   en: {
-    label: 'Contact',
     title: 'Get in touch',
     namePlaceholder: 'Name',
     emailPlaceholder: 'Email',
@@ -26,7 +25,6 @@ const content = {
     socials: 'Or find me on',
   },
   es: {
-    label: 'Contacto',
     title: 'Hablemos',
     namePlaceholder: 'Nombre',
     emailPlaceholder: 'Email',
@@ -83,7 +81,6 @@ const Contact: React.FC<ContactProps> = ({ language }) => {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
-        <span className="section-label">{t.label}</span>
         <h2 className="contact__title">{t.title}</h2>
 
         <p className="contact__socials-label">{t.socials}</p>
