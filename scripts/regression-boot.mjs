@@ -174,6 +174,25 @@ async function round1Checks(base, scheme) {
     const logo = await rect('img.logo'); const nav = await rect('nav.navbar');
     const sliderBefore = await rect('.switch .slider');
     await tabKey();
+    // The skip link lands with `transition: top 0.2s` and this sample used to
+    // happen 150ms after the Tab — mid-ramp, a few pixels under a threshold that
+    // sits only 14px below the landing spot. HEAD's ramp crossed the navbar edge
+    // a handful of milliseconds later than the base's, so the same assertion
+    // straddled its threshold differently on each tree (head y 80.2-90.0, base
+    // 90.0-94.4; the base also dipped below it at the +80ms sample in 5 of 6
+    // runs). Wait for the rectangle to settle: the assertion is unchanged, the
+    // sample simply stops measuring the animation.
+    const waitForSettle = async () => {
+      let previous = null, stable = 0;
+      for (let i = 0; i < 20; i++) {
+        const y = (await send('Runtime.evaluate', { expression: `(function(){ var e = document.querySelector('.skip-link'); return e ? Math.round(e.getBoundingClientRect().top) : null; })()`, returnByValue: true })).result.value;
+        if (y !== null && y === previous) { if (++stable >= 3) return y; } else { stable = 0; }
+        previous = y;
+        await sleep(40);
+      }
+      return previous;
+    };
+    const settledY = await waitForSettle();
     const firstTab = JSON.parse((await send('Runtime.evaluate', { expression: `JSON.stringify((function(){ var a = document.activeElement; var r = a.getBoundingClientRect(), c = getComputedStyle(a); return { cls: a.className, position: c.position, rect: { x: Math.round(r.left), y: Math.round(r.top), w: Math.round(r.width), h: Math.round(r.height) } }; })())`, returnByValue: true })).result.value);
     const overlaps = (a, b) => !!a && !!b && Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x) > 0 && Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y) > 0;
     await send('Runtime.evaluate', { expression: `document.documentElement.style.scrollBehavior='auto'; window.scrollTo(0,3000);` });
@@ -208,7 +227,7 @@ async function round1Checks(base, scheme) {
       'S5 overlay paints the theme logo before mount': empty.length > 0 && empty.every((m) => m.bg.includes(scheme === 'dark' ? 'logo_black.webp' : 'logo_white.webp') && m.theme === scheme),
       'S5 overlay gone after mount': JSON.parse((await send('Runtime.evaluate', { expression: `JSON.stringify((function(){ var r = document.getElementById('root'), l = document.getElementById('boot-loader'); return { root: r.children.length, loader: !!l }; })())`, returnByValue: true })).result.value).loader === false,
     };
-    return { scheme, checks, pass: Object.values(checks).every(Boolean), observed: { firstTab, logo, nav, scrolled, ring, sliderBefore, accent, marksWhileRootEmpty: empty.slice(0, 2), marksBeforeSkipLinkParsed: r1.marks.filter((m) => m.skipExists !== true).length, marksVisibleUnderOverlay: r1.marks.filter((m) => m.skipExists === true && m.skip !== 'none').length } };
+    return { scheme, checks, pass: Object.values(checks).every(Boolean), observed: { firstTab, settledY, logo, nav, scrolled, ring, sliderBefore, accent, marksWhileRootEmpty: empty.slice(0, 2), marksBeforeSkipLinkParsed: r1.marks.filter((m) => m.skipExists !== true).length, marksVisibleUnderOverlay: r1.marks.filter((m) => m.skipExists === true && m.skip !== 'none').length } };
   });
 }
 const rgbOf = (hex) => { const n = parseInt(hex.replace('#', ''), 16); return `rgb(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255})`; };
