@@ -28,62 +28,62 @@ const Tools: React.FC<ToolsProps> = ({ language }) => {
       name: content[language].primary,
       highlight: true,
       icons: [
-        { src: imageLinks.javascript_logo, alt: 'JavaScript' },
-        { src: imageLinks.typescript_logo, alt: 'TypeScript' },
+        { src: imageLinks.javascript_logo, alt: 'JavaScript', w: 128, h: 128 },
+        { src: imageLinks.typescript_logo, alt: 'TypeScript', w: 128, h: 128 },
       ],
     },
     {
       name: 'Frontend',
       icons: [
-        { src: imageLinks.react_logo, alt: 'React' },
-        { src: imageLinks.nextjs_logo, alt: 'Next.js' },
-        { src: imageLinks.tailwind_logo, alt: 'Tailwind CSS' },
-        { src: imageLinks.css_logo, alt: 'CSS3' },
-        { src: imageLinks.vite_logo, alt: 'Vite' },
-        { src: imageLinks.astro_logo, alt: 'Astro' },
+        { src: imageLinks.react_logo, alt: 'React', w: 128, h: 128 },
+        { src: imageLinks.nextjs_logo, alt: 'Next.js', w: 128, h: 128 },
+        { src: imageLinks.tailwind_logo, alt: 'Tailwind CSS', w: 128, h: 128 },
+        { src: imageLinks.css_logo, alt: 'CSS3', w: 128, h: 128 },
+        { src: imageLinks.vite_logo, alt: 'Vite', w: 128, h: 128 },
+        { src: imageLinks.astro_logo, alt: 'Astro', w: 128, h: 128 },
       ],
     },
     {
       name: 'Backend',
       icons: [
-        { src: imageLinks.node_logo, alt: 'Node.js' },
-        { src: imageLinks.express_logo, alt: 'Express' },
-        { src: imageLinks.java_logo, alt: 'Java' },
-        { src: imageLinks.spring_logo, alt: 'Spring Boot' },
-        { src: imageLinks.postgresql_logo, alt: 'PostgreSQL' },
-        { src: imageLinks.mongo_logo, alt: 'MongoDB' },
-        { src: imageLinks.firebase_logo, alt: 'Firebase' },
+        { src: imageLinks.node_logo, alt: 'Node.js', w: 128, h: 128 },
+        { src: imageLinks.express_logo, alt: 'Express', w: 128, h: 128 },
+        { src: imageLinks.java_logo, alt: 'Java', w: 128, h: 128 },
+        { src: imageLinks.spring_logo, alt: 'Spring Boot', w: 128, h: 128 },
+        { src: imageLinks.postgresql_logo, alt: 'PostgreSQL', w: 128, h: 128 },
+        { src: imageLinks.mongo_logo, alt: 'MongoDB', w: 128, h: 128 },
+        { src: imageLinks.firebase_logo, alt: 'Firebase', w: 128, h: 128 },
       ],
     },
     {
       name: 'Desktop',
       icons: [
-        { src: imageLinks.electron_logo, alt: 'Electron' },
+        { src: imageLinks.electron_logo, alt: 'Electron', w: 128, h: 128 },
       ],
     },
     {
       name: 'Testing',
       icons: [
-        { src: imageLinks.jest_logo, alt: 'Jest' },
-        { src: imageLinks.vitest_logo, alt: 'Vitest' },
-        { src: imageLinks.playwright_logo, alt: 'Playwright' },
+        { src: imageLinks.jest_logo, alt: 'Jest', w: 128, h: 128 },
+        { src: imageLinks.vitest_logo, alt: 'Vitest', w: 128, h: 128 },
+        { src: imageLinks.playwright_logo, alt: 'Playwright', w: 128, h: 128 },
       ],
     },
     {
       name: 'DevOps & Cloud',
       icons: [
-        { src: imageLinks.docker_logo, alt: 'Docker' },
-        { src: imageLinks.aws_logo, alt: 'AWS' },
-        { src: imageLinks.git_logo, alt: 'Git' },
-        { src: imageLinks.github_actions_logo, alt: 'GitHub Actions' },
-        { src: imageLinks.vercel_logo, alt: 'Vercel' },
-        { src: imageLinks.bash_logo, alt: 'Bash' },
+        { src: imageLinks.docker_logo, alt: 'Docker', w: 128, h: 128 },
+        { src: imageLinks.aws_logo, alt: 'AWS', w: 128, h: 128 },
+        { src: imageLinks.git_logo, alt: 'Git', w: 128, h: 128 },
+        { src: imageLinks.github_actions_logo, alt: 'GitHub Actions', w: 128, h: 128 },
+        { src: imageLinks.vercel_logo, alt: 'Vercel', w: 128, h: 128 },
+        { src: imageLinks.bash_logo, alt: 'Bash', w: 128, h: 128 },
       ],
     },
     {
       name: 'Design',
       icons: [
-        { src: imageLinks.figma_logo, alt: 'Figma' },
+        { src: imageLinks.figma_logo, alt: 'Figma', w: 128, h: 128 },
       ],
     },
   ];
@@ -117,6 +117,8 @@ const Tools: React.FC<ToolsProps> = ({ language }) => {
                   src={icon.src}
                   alt={icon.alt}
                   title={icon.alt}
+                  width={icon.w}
+                  height={icon.h}
                   loading="lazy"
                 />
                 <span className="tools__tooltip">{icon.alt}</span>
