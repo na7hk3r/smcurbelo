@@ -87,6 +87,12 @@
       #2dd4bf accents) because those variables do not exist yet at this point.
       It is removed by dismissBootLoader() in src/boot.ts once React has
       committed — never by a timer, so it can never add delay of its own.
+
+      Because that is its only removal path, the overlay also carries its own
+      last resort: a failure presentation the script at the end of the body
+      reveals when the bundle fails to start, and a <noscript> one for a visitor
+      whose JavaScript is switched off. Both exist so that the overlay can never
+      become a dead end over an empty page.
     -->
     <style>
       #boot-loader {
@@ -176,6 +182,75 @@
         opacity: 0;
         pointer-events: none;
       }
+      /* The overlay must never become a dead end. Its removal lives in
+         dismissBootLoader() (src/boot.ts, from App's mount effect), so anything
+         that stops React from committing — a bundle that never arrives, an
+         uncaught throw, JavaScript switched off — would otherwise leave a fixed
+         overlay swallowing every click on top of an empty page. Both cases
+         below are therefore driven from outside React. Font and colours
+         duplicate src/index.css for the same reason the block above does:
+         neither is guaranteed to be on the page at this point. */
+      #boot-loader .boot-loader__lang {
+        display: grid;
+        justify-items: center;
+        gap: 0.6rem;
+        text-align: center;
+      }
+      #boot-loader .boot-loader__msg {
+        margin: 0;
+        width: min(22rem, 78vw);
+        font-family: 'Sora', sans-serif;
+        color: #121721;
+      }
+      html.dark #boot-loader .boot-loader__msg {
+        color: #f1f5f9;
+      }
+      #boot-loader .boot-loader__retry {
+        color: #147568;
+        font-weight: 600;
+      }
+      html.dark #boot-loader .boot-loader__retry {
+        color: #2dd4bf;
+      }
+      #boot-loader .boot-loader__retry:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+      /* Which half of the failure shows is decided by whole block rather than
+         per element, so one language can never leak half of its copy. The
+         resolved language already sits on <html>, published by the script in
+         the head, so none of this needs a script of its own. */
+      #boot-loader .boot-loader__failure,
+      #boot-loader .boot-loader__failure-es {
+        display: none;
+      }
+      #boot-loader.boot-loader--failed .boot-loader__failure {
+        display: grid;
+      }
+      html[data-boot-lang='es'] #boot-loader .boot-loader__failure-en {
+        display: none;
+      }
+      html[data-boot-lang='es'] #boot-loader .boot-loader__failure-es {
+        display: grid;
+      }
+      /* Added by the script at the end of the body when the bundle fails. */
+      #boot-loader.boot-loader--failed .boot-loader__bar,
+      #boot-loader.boot-loader--failed .boot-loader__label {
+        display: none;
+      }
+      /* JavaScript switched off: the app will never boot, so say so instead of
+         animating a bar that cannot finish. The <noscript> copy needs no
+         language rule of its own — the boot script did not run, so there is no
+         language attribute, and both languages are rendered. Where this media
+         query is not supported the bar keeps animating, exactly as it did
+         before, and the messages below it still read. */
+      @media (scripting: none) {
+        #boot-loader .boot-loader__bar,
+        #boot-loader .boot-loader__label {
+          display: none;
+        }
+      }
       @media (prefers-reduced-motion: reduce) {
         #boot-loader {
           transition: none;
@@ -242,11 +317,93 @@
         <span class="boot-loader__bar" aria-hidden="true"></span>
         <span class="boot-loader__label" lang="en">Loading…</span>
         <span class="boot-loader__label boot-loader__label--es" lang="es">Cargando…</span>
+        <div class="boot-loader__failure" role="alert">
+          <div class="boot-loader__lang boot-loader__failure-en" lang="en">
+            <p class="boot-loader__msg">The page didn’t finish loading.</p>
+            <a class="boot-loader__retry" href="">Try again</a>
+          </div>
+          <div class="boot-loader__lang boot-loader__failure-es" lang="es">
+            <p class="boot-loader__msg">La página no terminó de cargar.</p>
+            <a class="boot-loader__retry" href="">Reintentar</a>
+          </div>
+        </div>
+
+        <noscript>
+          <div class="boot-loader__lang" lang="en">
+            <p class="boot-loader__msg">This site needs JavaScript to run.</p>
+          </div>
+          <div class="boot-loader__lang" lang="es">
+            <p class="boot-loader__msg">Este sitio necesita JavaScript para funcionar.</p>
+          </div>
+        </noscript>
       </div>
     </div>
 
     <a href="#main" class="skip-link">Skip to content</a>
     <div id="root"></div>
+
+    <!--
+      The independent dismissal path for the overlay above. dismissBootLoader()
+      lives in the bundle, so it cannot report its own absence: if the module
+      never runs, nothing removes the overlay and the page is unreachable behind
+      it. This runs before the deferred module, so it is already listening when
+      that module fails.
+
+      It reports two things, and only while #root is still empty:
+
+        - a script that fails to load — resource error events do not bubble, so
+          this needs capture. It is filtered to same-app code rather than to
+          every <script>: the entry and every chunk are module scripts, while
+          third-party ones are not, so a blocked analytics script (an ad
+          blocker is enough) can never be reported as a boot failure;
+        - an uncaught error or unhandled rejection from any script.
+
+      The empty-#root guard is what keeps this honest: a slow boot, a lazy
+      chunk, or any error after the app is on screen changes nothing. It is also
+      not sticky — if React does mount afterwards, dismissBootLoader() removes
+      the overlay as usual.
+
+      Under a script-src that blocks inline scripts this never runs, and none of
+      it is needed: the bundle then still loads and mounts on its own.
+    -->
+    <script>
+      (function () {
+        var loader = document.getElementById('boot-loader');
+
+        function fail() {
+          var root = document.getElementById('root');
+          if (!loader || (root && root.children.length > 0)) return;
+          loader.classList.add('boot-loader--failed');
+        }
+
+        function onError(event) {
+          var target = event.target;
+          // The app is all ESM, in dev and in the built output, so a failure of
+          // its own code is a module script that never arrived. Classic scripts
+          // on this page belong to analytics services; a blocked or 404ed one is
+          // not a reason to tell the visitor the page did not load.
+          var appScriptFailed =
+            !!target &&
+            target !== window &&
+            target.tagName === 'SCRIPT' &&
+            target.type === 'module';
+          if (appScriptFailed || event instanceof ErrorEvent) fail();
+        }
+
+        window.addEventListener('error', onError, true);
+        window.addEventListener('unhandledrejection', fail);
+
+        /* href="" alone would be a same-document navigation whenever the URL
+           already carries a fragment, i.e. a button that appears to do nothing,
+           so the click is wired here. The href stays as the fallback. */
+        loader.addEventListener('click', function (event) {
+          var link = event.target.closest && event.target.closest('.boot-loader__retry');
+          if (!link) return;
+          event.preventDefault();
+          location.reload();
+        });
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

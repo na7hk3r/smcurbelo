@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Boot-resolution regression probe (S1-S5 of the theme/language boot review).
+ * Boot-resolution regression probe (S1-S6 of the theme/language boot review).
  *
  * Runs the repo's production build through a real browser (Chrome DevTools
  * Protocol) and asserts, without trusting any application code:
@@ -16,6 +16,12 @@
  *       clear of the logo and navbar, still on screen after scrolling, hidden
  *       under the boot overlay; 2px accent focus ring on the theme switch with
  *       the switch's box unmoved; boot overlay paints the theme's logo variant.
+ *   S6  the overlay is never a dead end. Its removal lives in the bundle, so
+ *       each case removes the bundle: an entry module that 404s, an entry that
+ *       throws while evaluating, and scripting switched off. Each must leave a
+ *       reachable explanation, and the control case must report nothing. The
+ *       discriminator is tested too, with an empty entry so there is no race:
+ *       a failing classic script is not a boot failure, a failing module is.
  *
  * Needs: a production build (`npm run build`) and Chrome with
  * --remote-debugging-port=9222. Usage: node scripts/regression-boot.mjs [distDir]
@@ -157,7 +163,7 @@ async function round1Checks(base, scheme) {
       window.__r1 = { marks: [], skip: [] };
       var iv = setInterval(function () { var l = document.getElementById('boot-loader'), h = document.documentElement;
         if (l && window.__r1.marks.length < 80) { var m = l.querySelector('.boot-loader__mark'), r = document.getElementById('root'), s = document.querySelector('.skip-link');
-          window.__r1.marks.push({ root: r ? r.children.length : null, bg: m ? getComputedStyle(m).backgroundImage : null, skip: s ? getComputedStyle(s).display : null, theme: h && h.getAttribute('data-boot-theme') }); }
+          window.__r1.marks.push({ root: r ? r.children.length : null, bg: m ? getComputedStyle(m).backgroundImage : null, skipExists: !!s, skip: s ? getComputedStyle(s).display : null, theme: h && h.getAttribute('data-boot-theme') }); }
       }, 10); })();` });
     await send('Page.navigate', { url: base });
     let mounted = false;
@@ -187,16 +193,139 @@ async function round1Checks(base, scheme) {
       'S5 first Tab reaches skip link': firstTab.cls === 'skip-link' && firstTab.position === 'fixed',
       'S5 skip link clear of logo and navbar': !overlaps(firstTab.rect, logo) && !overlaps(firstTab.rect, nav),
       'S5 skip link visible after scrolling 3000px': scrolled.scrollY === 3000 && scrolled.onScreen,
-      'S5 skip link hidden under the boot overlay': r1.marks.length > 0 && r1.marks.every((m) => m.skip === 'none'),
+      // Only the samples where the link was already in the document: the
+      // recorder starts as soon as the overlay has been parsed, which is a few
+      // milliseconds before the link that follows it. An element that does not
+      // exist yet is not "visible"; it is simply not focusable, which is the
+      // property under test. What must never happen is a sample with a link in
+      // the DOM that is not hidden while the overlay covers the viewport.
+      'S5 skip link hidden under the boot overlay': (() => {
+        const withLink = r1.marks.filter((m) => m.skipExists === true);
+        return withLink.length > 0 && withLink.every((m) => m.skip === 'none');
+      })(),
       'S5 switch ring on keyboard focus': !!ring && ring.ring.width === '2px' && ring.ring.style === 'solid' && ring.ring.color === rgbOf(accent),
       'S5 switch box unmoved by focus': !!ring && JSON.stringify(ring.rect) === JSON.stringify(sliderBefore),
       'S5 overlay paints the theme logo before mount': empty.length > 0 && empty.every((m) => m.bg.includes(scheme === 'dark' ? 'logo_black.webp' : 'logo_white.webp') && m.theme === scheme),
       'S5 overlay gone after mount': JSON.parse((await send('Runtime.evaluate', { expression: `JSON.stringify((function(){ var r = document.getElementById('root'), l = document.getElementById('boot-loader'); return { root: r.children.length, loader: !!l }; })())`, returnByValue: true })).result.value).loader === false,
     };
-    return { scheme, checks, pass: Object.values(checks).every(Boolean), observed: { firstTab, logo, nav, scrolled, ring, sliderBefore, accent, marksWhileRootEmpty: empty.slice(0, 2) } };
+    return { scheme, checks, pass: Object.values(checks).every(Boolean), observed: { firstTab, logo, nav, scrolled, ring, sliderBefore, accent, marksWhileRootEmpty: empty.slice(0, 2), marksBeforeSkipLinkParsed: r1.marks.filter((m) => m.skipExists !== true).length, marksVisibleUnderOverlay: r1.marks.filter((m) => m.skipExists === true && m.skip !== 'none').length } };
   });
 }
 const rgbOf = (hex) => { const n = parseInt(hex.replace('#', ''), 16); return `rgb(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255})`; };
+
+// S6: the overlay can never become a dead end.
+//
+// Its only normal removal is dismissBootLoader(), which lives in the bundle, so
+// each case here takes the bundle away in a different way and asks what the
+// visitor is left with: a module that never arrives, a module that throws while
+// evaluating, scripting switched off entirely — and, first, the control case,
+// where nothing may be reported at all.
+const OVERLAY_WATCH = `(function(){ window.__o = { failedAt: null, errors: 0, rejections: 0 };
+  function obs(){ var el = document.getElementById('boot-loader'); if (!el) return false;
+    new MutationObserver(function(){ if (window.__o.failedAt === null && el.classList.contains('boot-loader--failed')) window.__o.failedAt = Math.round(performance.now()); }).observe(el, { attributes: true, attributeFilter: ['class'] }); return true; }
+  if (!obs()) { var iv = setInterval(function(){ if (obs()) clearInterval(iv); }, 1); setTimeout(function(){ clearInterval(iv); }, 15000); }
+  window.addEventListener('error', function(){ window.__o.errors++; }, true);
+  window.addEventListener('unhandledrejection', function(){ window.__o.rejections++; }); })();`;
+
+const OVERLAY_STATE = `JSON.stringify((function(){
+  var vis = function (n) { if (!n) return false; var s = getComputedStyle(n); if (s.display === 'none' || s.visibility === 'hidden') return false; var r = n.getBoundingClientRect(); return r.width > 0 && r.height > 0; };
+  var el = document.getElementById('boot-loader');
+  var failure = document.querySelector('.boot-loader__failure');
+  var retries = [].slice.call(document.querySelectorAll('.boot-loader__retry'));
+  return {
+    inDom: !!el,
+    failed: !!(el && el.classList.contains('boot-loader--failed')),
+    failureVisible: vis(failure),
+    barVisible: vis(document.querySelector('#boot-loader .boot-loader__bar')),
+    role: failure ? failure.getAttribute('role') : null,
+    messages: [].slice.call(document.querySelectorAll('#boot-loader .boot-loader__msg')).filter(vis).map(function (p) { return p.textContent.trim(); }),
+    retriesVisible: retries.filter(vis).length,
+    retriesFocusable: retries.filter(function (a) { return vis(a) && a.tabIndex >= 0; }).length,
+    rootKids: document.getElementById('root').children.length,
+    watch: window.__o
+  };
+})())`;
+
+async function overlayCase(base, id, { mode, query = '', scriptDisabled = false, hold = 3000 }) {
+  const entry = (readFileSync(join(DIST, 'index.html'), 'utf8').match(/\/assets\/index-[A-Za-z0-9_-]+\.js/) || [])[0];
+  return withTab(async (send, events) => {
+    await send('Page.enable'); await send('Runtime.enable');
+    await send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
+    await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: 'light' }] });
+    await send('Page.addScriptToEvaluateOnNewDocument', { source: OVERLAY_WATCH });
+    if (scriptDisabled) await send('Emulation.setScriptExecutionDisabled', { value: true });
+    let blocked = 0;
+    if (mode === 'fail404' || mode === 'throwModule' || mode === 'emptyModule') {
+      await send('Fetch.enable', { patterns: [{ urlPattern: '*', requestStage: 'Request' }] });
+      const pump = setInterval(async () => {
+        while (events.length) {
+          const e = events.shift();
+          if (e.method !== 'Fetch.requestPaused') continue;
+          const { requestId, request } = e.params;
+          if (entry && request.url.includes(entry)) {
+            blocked++;
+            if (mode === 'fail404') await send('Fetch.failRequest', { requestId, errorReason: 'Aborted' }).catch(() => {});
+            else await send('Fetch.fulfillRequest', { requestId, responseCode: 200, responseHeaders: [{ name: 'Content-Type', value: 'text/javascript' }], body: Buffer.from(mode === 'throwModule' ? "throw new Error('probe: forced boot failure');" : 'export {};').toString('base64') }).catch(() => {});
+          } else await send('Fetch.continueRequest', { requestId }).catch(() => {});
+        }
+      }, 5);
+      setTimeout(() => clearInterval(pump), 20000);
+    }
+    await send('Page.navigate', { url: base + '/' + (query ? `?lang=${query}` : '') });
+    await sleep(hold);
+    const st = JSON.parse((await send('Runtime.evaluate', { expression: OVERLAY_STATE, returnByValue: true })).result.value);
+    const w = st.watch || {};
+    const expectedMessage = query === 'es' ? 'La página no terminó de cargar.' : 'The page didn’t finish loading.';
+    const checks = {};
+
+    if (mode === 'normal' || mode === 'emptyModule' || mode === 'fail404' || mode === 'throwModule') {
+      checks['S6 failure class only when it is due'] = w.failedAt === null || (st.failed === true && st.rootKids === 0);
+    }
+    if (mode === 'normal') {
+      checks['S6 nothing reported in a normal boot'] = w.failedAt === null;
+      checks['S6 overlay leaves by itself'] = st.inDom === false && st.rootKids > 0;
+    }
+    if (mode === 'fail404' || mode === 'throwModule') {
+      checks['S6 overlay reports the failure'] = st.failed === true && st.failureVisible === true;
+      checks['S6 loading chrome retired'] = st.barVisible === false;
+      checks['S6 announced as an alert'] = st.role === 'alert';
+      checks['S6 one message, in the resolved language'] = st.messages.length === 1 && st.messages[0] === expectedMessage;
+      checks['S6 one reachable retry'] = st.retriesVisible === 1 && st.retriesFocusable === 1;
+    }
+    if (mode === 'emptyModule') {
+      // Deterministic discriminator test, with no race to lose: the entry is an
+      // empty module, so the app never mounts and #root stays empty throughout.
+      const fired = (kind) => `JSON.stringify((function () { var s = document.createElement('script'); ${kind === 'module' ? "s.type = 'module';" : ''} s.src = '/probe-not-requested-${kind}.js'; document.head.appendChild(s); s.dispatchEvent(new Event('error')); return 1; })())`;
+      await send('Runtime.evaluate', { expression: fired('classic'), returnByValue: true });
+      await sleep(250);
+      const afterClassic = (await send('Runtime.evaluate', { expression: `document.getElementById('boot-loader').classList.contains('boot-loader--failed')`, returnByValue: true })).result.value;
+      await send('Runtime.evaluate', { expression: fired('module'), returnByValue: true });
+      await sleep(250);
+      const afterModule = (await send('Runtime.evaluate', { expression: `document.getElementById('boot-loader').classList.contains('boot-loader--failed')`, returnByValue: true })).result.value;
+      checks['S6 the entry was really withheld'] = blocked > 0 && st.rootKids === 0;
+      checks['S6 a classic script that fails is not a boot failure'] = afterClassic === false;
+      checks['S6 a module script that fails is'] = afterModule === true;
+    }
+    if (mode === 'nojs') {
+      checks['S6 scripting really is off'] = (await send('Runtime.evaluate', { expression: `matchMedia('(scripting: none)').matches`, returnByValue: true })).result.value === true;
+      checks['S6 explains itself instead of animating forever'] = st.barVisible === false && st.messages.length === 2;
+      checks['S6 both languages, since there is no language attribute'] = st.messages.some((m) => m.startsWith('This site needs')) && st.messages.some((m) => m.startsWith('Este sitio necesita'));
+      checks['S6 no retry, because reloading cannot help'] = st.retriesVisible === 0;
+    }
+    return { id, mode, checks, pass: Object.values(checks).every(Boolean), observed: { failed: st.failed, failureVisible: st.failureVisible, barVisible: st.barVisible, messages: st.messages, retriesVisible: st.retriesVisible, retriesFocusable: st.retriesFocusable, rootKids: st.rootKids, blocked, watch: w } };
+  });
+}
+
+async function overlayFailureChecks(base) {
+  return [
+    await overlayCase(base, 'normal', { mode: 'normal', hold: 3500 }),
+    await overlayCase(base, 'entry-404-en', { mode: 'fail404' }),
+    await overlayCase(base, 'entry-404-es', { mode: 'fail404', query: 'es' }),
+    await overlayCase(base, 'entry-throws', { mode: 'throwModule', hold: 4500 }),
+    await overlayCase(base, 'scripting-off', { mode: 'nojs', scriptDisabled: true, hold: 2500 }),
+    await overlayCase(base, 'script-filter', { mode: 'emptyModule', hold: 2500 }),
+  ];
+}
 
 const PORT_A = 4351, PORT_B = 4352;
 const sA = serve(PORT_A, false), sB = serve(PORT_B, true);
@@ -214,6 +343,12 @@ for (const scheme of ['light', 'dark']) {
   if (!r.pass) failures++;
   console.log(`${r.pass ? 'ok  ' : 'FAIL'} [round1-${scheme}]${r.pass ? '' : ' :: ' + JSON.stringify({ checks: r.checks, observed: r.observed })}`);
 }
-console.log(`\n${failures === 0 ? 'PASS' : 'FAIL'} — ${CASES.length * 2 + 2} checks, ${failures} failing, against ${DIST}`);
+let overlayChecks = 0;
+for (const r of await overlayFailureChecks(`http://localhost:${PORT_A}`)) {
+  overlayChecks += Object.keys(r.checks).length;
+  if (!r.pass) failures++;
+  console.log(`${r.pass ? 'ok  ' : 'FAIL'} [overlay-${r.id}]${r.pass ? '' : ' :: ' + JSON.stringify({ checks: r.checks, observed: r.observed })}`);
+}
+console.log(`\n${failures === 0 ? 'PASS' : 'FAIL'} — ${CASES.length * 2 + 2 + overlayChecks} checks, ${failures} failing, against ${DIST}`);
 sA.close(); sB.close();
 process.exit(failures === 0 ? 0 : 1);

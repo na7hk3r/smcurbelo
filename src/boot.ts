@@ -8,6 +8,13 @@
  * It is deliberately not dismissed by a timer: a fixed delay would either cut
  * the loader short on a slow connection or hold the page back behind an
  * invented wait on a fast one.
+ *
+ * Because this is the overlay's only normal exit, index.html also carries an
+ * independent one for the case where this never runs — a boot script there
+ * reveals the same overlay's failure presentation when the bundle fails to
+ * start, and a <noscript> block covers a visitor whose JavaScript is off. Those
+ * are additive: whenever this function does run, the overlay goes away as it
+ * always did.
  */
 export function dismissBootLoader(): void {
   const loader = document.getElementById('boot-loader');
