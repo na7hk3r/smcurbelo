@@ -139,6 +139,24 @@ async function inspect(build, scenario) {
           if (b.width < 24 || b.height < 24) small.push(sel + ' ' + Math.round(b.width) + 'x' + Math.round(b.height));
         });
       });
+      // A declared width/height acts as a presentational hint. Where the CSS
+      // sizes only one axis, the attribute wins the other and the picture is
+      // stretched; where the CSS wants a fixed box it must say object-fit, or
+      // the box must match the real ratio. object-fit cover/contain/none means
+      // any mismatch is deliberate, so those are skipped.
+      var stretched = [];
+      imgs.forEach(function (i) {
+        if (!i.naturalWidth || !i.naturalHeight) return;
+        var fit = getComputedStyle(i).objectFit;
+        if (fit === 'contain' || fit === 'cover' || fit === 'scale-down' || fit === 'none') return;
+        var r = i.getBoundingClientRect();
+        if (!r.width || !r.height) return;
+        var rendered = r.width / r.height, natural = i.naturalWidth / i.naturalHeight;
+        if (Math.abs(rendered - natural) / natural > 0.02) {
+          stretched.push((i.getAttribute('src') || '').replace(/^.*\\//, '') + ' rendered ' + rendered.toFixed(3) + ' vs natural ' + natural.toFixed(3) + (i.className ? ' (.' + i.className + ')' : ''));
+        }
+      });
+      out.imgs.stretched = stretched;
       out.small = small;
       return JSON.stringify(out);
     })()`);
@@ -171,6 +189,7 @@ async function inspect(build, scenario) {
       'S3 every image declares width/height': dom.imgs.missing.length === 0,
       'S3 declared ratio matches the natural one': dom.imgs.mismatch.length === 0,
       'S3 no image is broken': dom.imgs.broken.length === 0,
+      'S3 no image is stretched by a declared size': dom.imgs.stretched.length === 0,
       'S5 no third-party request is made': Object.keys(thirdParty).length === 0,
       'S6 named controls reach 24x24': dom.small.length === 0,
     };
@@ -181,7 +200,7 @@ async function inspect(build, scenario) {
       id: scenario.id,
       pass: Object.values(checks).every(Boolean),
       checks,
-      observed: { work: dom.work, hero: dom.hero, cv: dom.cv, imgs: { total: dom.imgs.total, missing: dom.imgs.missing, mismatch: dom.imgs.mismatch, ratioChecked: dom.imgs.ratioChecked, unloaded: dom.imgs.unloaded, broken: dom.imgs.broken }, small: dom.small, heroReqs, thirdParty },
+      observed: { work: dom.work, hero: dom.hero, cv: dom.cv, imgs: { total: dom.imgs.total, missing: dom.imgs.missing, mismatch: dom.imgs.mismatch, ratioChecked: dom.imgs.ratioChecked, unloaded: dom.imgs.unloaded, broken: dom.imgs.broken, stretched: dom.imgs.stretched }, small: dom.small, heroReqs, thirdParty },
     };
   });
 }

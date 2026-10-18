@@ -256,6 +256,12 @@ a {
 
 img {
   max-width: 100%;
+  /* A width/height attribute is a presentational hint, not just a ratio: with
+     CSS sizing one axis, the attribute wins the other and stretches the picture
+     (it made the nav logo 192x108 instead of 192x52, and the About image as tall
+     as its natural 869px). height: auto keeps the attribute's ratio for space
+     reservation while leaving the height to the CSS. */
+  height: auto;
   display: block;
 }
 
