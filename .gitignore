@@ -52,3 +52,8 @@ dist-ssr
 
 # Gentle AI local cache and local AI runtime state
 .atl/
+
+# Installed agent tooling. The Impeccable skill ships a ~20MB platform-specific
+# binary, so it belongs with node_modules rather than in the repository; re-run
+# the installer to restore it. .atl/ is ignored on the same grounds.
+.opencode/
