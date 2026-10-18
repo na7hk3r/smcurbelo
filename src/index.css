@@ -16,6 +16,11 @@
   --accent-hover: #0f5c52;
   --accent-subtle: #e6f6f4;
 
+  /* Lightest stop of the .project__badge gradient. Text is laid over the whole
+     pill, so this stop decides the contrast: it is picked so --text-on-accent
+     clears WCAG AA (4.5:1) at that end. Light: white text, 4.87:1. */
+  --badge-gradient-end: oklch(0.52 0.18 230);
+
   /* Fluid type scale – major third (1.25) */
   --text-xs: clamp(0.72rem, 0.67rem + 0.25vw, 0.82rem);
   --text-sm: clamp(0.85rem, 0.80rem + 0.29vw, 1.00rem);
@@ -71,6 +76,10 @@
   /* Layout */
   --content-width: 88rem;
   --gutter: clamp(1.25rem, 0.5rem + 3vw, 3rem);
+
+  /* Distance that clears the sticky navbar. Shared by scroll-padding-top and
+     the skip link so an in-page jump and the skip link land on the same line. */
+  --scroll-offset: 6rem;
 }
 
 /* ─── Dark Theme ─── */
@@ -90,6 +99,11 @@ html.dark {
   --accent: #2dd4bf;
   --accent-hover: #5eead4;
   --accent-subtle: rgba(45, 212, 191, 0.12);
+
+  /* --text-on-accent flips to a dark teal in this theme, so the badge gradient
+     has to flip with it or the light end of the pill stops carrying the text:
+     the shipped dark value measured 3.34:1, this one 4.97:1. */
+  --badge-gradient-end: oklch(0.66 0.14 220);
 
   --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.2), 0 1px 2px oklch(0 0 0 / 0.15);
   --shadow-md: 0 4px 12px oklch(0 0 0 / 0.25), 0 2px 4px oklch(0 0 0 / 0.15);
@@ -123,7 +137,7 @@ html {
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
+  scroll-padding-top: var(--scroll-offset);
   scrollbar-width: thin;
   scrollbar-color: var(--accent) var(--surface-2);
   overflow-x: clip;
@@ -204,7 +218,10 @@ a {
 
 /* ─── Skip Link ─── */
 .skip-link {
-  position: absolute;
+  /* fixed, not absolute: an absolute skip link is positioned against the
+     document, so once the page was scrolled it slid into view thousands of
+     pixels above the viewport and was never actually visible on focus. */
+  position: fixed;
   top: -100%;
   left: var(--gutter);
   z-index: 9999;
@@ -219,7 +236,10 @@ a {
 }
 
 .skip-link:focus {
-  top: var(--space-xs);
+  /* Land below the navbar. At var(--space-xs) it rendered at the same x/y as
+     the wordmark and, with z-index 9999 over the navbar's 1000, hid the logo
+     completely behind the pill. */
+  top: var(--scroll-offset);
 }
 
 /* ─── Scroll Progress Bar ─── */

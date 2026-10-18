@@ -280,6 +280,14 @@ input:checked + .slider::before {
   transform: translateX(24px);
 }
 
+/* The native input is collapsed to 0x0, so the global :focus-visible ring in
+   index.css drew on an invisible box and keyboard focus on this switch was
+   unseeable. Put the ring on the slider that stands in for it. */
+.switch input:focus-visible + .slider {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 /* ─────────────────────────────────────────────────────
    4. HERO
    ───────────────────────────────────────────────────── */
@@ -1154,7 +1162,7 @@ input:checked + .slider::before {
   text-transform: uppercase;
   padding: 0.3rem 0.7rem;
   border-radius: var(--radius-full);
-  background: linear-gradient(135deg, var(--accent), oklch(0.55 0.18 230));
+  background: linear-gradient(135deg, var(--accent), var(--badge-gradient-end));
   color: var(--text-on-accent);
   font-family: var(--font-mono);
   box-shadow: 0 4px 14px oklch(0 0 0 / 0.28), 0 0 0 1px oklch(1 0 0 / 0.1) inset;

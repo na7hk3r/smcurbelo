@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-boot-lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,6 +17,158 @@
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#147568" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0e1218" />
     <meta name="color-scheme" content="light dark" />
+
+    <!--
+      Boot theme: runs before the first paint (and before the blocking font
+      stylesheet below resolves) so the stored theme already exists on <html>.
+      Without it, html.dark is applied by React, so a dark-mode visitor watched
+      a light page for several seconds before it snapped to dark. The logic
+      mirrors getInitialTheme() in src/context/ThemeContext.tsx exactly — the
+      two must not disagree or the theme would flip on hydration.
+    -->
+    <script>
+      (function () {
+        var el = document.documentElement;
+        var stored = null;
+        var lang = null;
+        try {
+          stored = localStorage.getItem('theme');
+          lang = localStorage.getItem('language');
+        } catch (e) {
+          /* storage can throw in private mode; fall back to the media query */
+        }
+        var fromUrl = new URLSearchParams(location.search).get('lang');
+        if (fromUrl === 'en' || fromUrl === 'es') lang = fromUrl;
+        var dark =
+          stored === 'dark' ||
+          (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        el.classList.toggle('dark', dark);
+        el.setAttribute('data-boot-lang', lang === 'es' ? 'es' : 'en');
+
+        /*
+         * The loader's logo is otherwise discovered only once the style block
+         * below is parsed, and then queues behind the bundle and the web fonts:
+         * measured on slow 3G it started at 721ms and finished at ~2.9s, so the
+         * loader spent most of its life as an unbranded bar on an empty field.
+         * Asking for the one variant this theme needs, at high priority, moves
+         * it to the front of the queue. The style block still requests it, so
+         * the logo renders even if this preload is ignored.
+         */
+        var preload = document.createElement('link');
+        preload.rel = 'preload';
+        preload.as = 'image';
+        preload.href = dark ? '/images/logo_black.webp' : '/images/logo_white.webp';
+        preload.setAttribute('fetchpriority', 'high');
+        document.head.appendChild(preload);
+      })();
+    </script>
+
+    <!--
+      Boot loader. Inline on purpose: it has to paint on the first frame, which
+      is before src/index.css is on the page. The colour values below duplicate
+      design tokens from src/index.css (#f8fafc / #0e1218 surfaces, #147568 /
+      #2dd4bf accents) because those variables do not exist yet at this point.
+      It is removed by dismissBootLoader() in src/boot.ts once React has
+      committed — never by a timer, so it can never add delay of its own.
+    -->
+    <style>
+      #boot-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: grid;
+        place-items: center;
+        background: #f8fafc;
+        transition: opacity 280ms cubic-bezier(0.25, 1, 0.5, 1);
+      }
+      html.dark #boot-loader {
+        background: #0e1218;
+      }
+      #boot-loader .boot-loader__inner {
+        display: grid;
+        justify-items: center;
+        gap: 1.25rem;
+      }
+      #boot-loader .boot-loader__mark {
+        width: min(14rem, 56vw);
+        aspect-ratio: 100 / 27;
+        background: url('/images/logo_white.webp') center / contain no-repeat;
+      }
+      html.dark #boot-loader .boot-loader__mark {
+        background-image: url('/images/logo_black.webp');
+      }
+      #boot-loader .boot-loader__bar {
+        width: min(14rem, 56vw);
+        height: 3px;
+        border-radius: 999px;
+        background: rgba(20, 117, 104, 0.16);
+        overflow: hidden;
+      }
+      html.dark #boot-loader .boot-loader__bar {
+        background: rgba(45, 212, 191, 0.18);
+      }
+      #boot-loader .boot-loader__bar::after {
+        content: '';
+        display: block;
+        height: 100%;
+        width: 38%;
+        border-radius: inherit;
+        background: #147568;
+        animation: boot-loader-slide 1.15s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+      }
+      html.dark #boot-loader .boot-loader__bar::after {
+        background: #2dd4bf;
+      }
+      @keyframes boot-loader-slide {
+        from {
+          transform: translateX(-100%);
+        }
+        to {
+          transform: translateX(265%);
+        }
+      }
+      /* Screen-reader-only label. index.css is not on the page yet, so its
+         .visually-hidden helper (there isn't one) cannot be reused here. */
+      #boot-loader .boot-loader__label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+        border: 0;
+      }
+      #boot-loader .boot-loader__label--es {
+        display: none;
+      }
+      html[data-boot-lang='es'] #boot-loader .boot-loader__label:not(.boot-loader__label--es) {
+        display: none;
+      }
+      html[data-boot-lang='es'] #boot-loader .boot-loader__label--es {
+        display: block;
+      }
+      /* While the loader covers the viewport there is no #main to skip to, so
+         keep the skip link out of the tab order instead of letting focus land
+         on a control nobody can see. This rule disappears with the loader. */
+      body:has(#boot-loader) .skip-link {
+        display: none;
+      }
+      #boot-loader.boot-loader--leaving {
+        opacity: 0;
+        pointer-events: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #boot-loader {
+          transition: none;
+        }
+        #boot-loader .boot-loader__bar::after {
+          animation: none;
+          width: 100%;
+        }
+      }
+    </style>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -67,6 +219,15 @@
     <link rel="preload" as="image" href="/images/home_img.webp" fetchpriority="high" />
   </head>
   <body>
+    <div id="boot-loader" class="boot-loader" role="status">
+      <div class="boot-loader__inner">
+        <span class="boot-loader__mark" aria-hidden="true"></span>
+        <span class="boot-loader__bar" aria-hidden="true"></span>
+        <span class="boot-loader__label" lang="en">Loading…</span>
+        <span class="boot-loader__label boot-loader__label--es" lang="es">Cargando…</span>
+      </div>
+    </div>
+
     <a href="#main" class="skip-link">Skip to content</a>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

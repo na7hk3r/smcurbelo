@@ -1,1 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400"><rect width="640" height="400" fill="#1a1a2e"/><text x="320" y="190" text-anchor="middle" font-family="system-ui,sans-serif" font-size="28" font-weight="700" fill="#e2b04a">Dental Clinic</text><text x="320" y="230" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" fill="#64748b">Replace with project screenshot</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+  <title>Layered architecture of the clinicaOdontologica Spring Boot API</title>
+
+  <rect width="640" height="400" fill="#0e1218"/>
+
+  <!-- Package and shape of the API -->
+  <text x="36" y="56" font-size="32" font-weight="700" fill="#2dd4bf">&gt;</text>
+  <text x="64" y="56" font-size="32" font-weight="700" fill="#f1f5f9">clinicaOdontologica</text>
+  <text x="64" y="84" font-size="18" fill="#8795a9">BackEndC3 &#183; REST API &#183; MVC + DAO</text>
+
+  <line x1="36" y1="104" x2="604" y2="104" stroke="#1e2531" stroke-width="1"/>
+
+  <!-- Flow connectors between the layers -->
+  <line x1="320" y1="175" x2="320" y2="181" stroke="#2dd4bf" stroke-width="1.5" stroke-opacity="0.4"/>
+  <line x1="320" y1="239" x2="320" y2="245" stroke="#2dd4bf" stroke-width="1.5" stroke-opacity="0.4"/>
+  <line x1="320" y1="303" x2="320" y2="309" stroke="#2dd4bf" stroke-width="1.5" stroke-opacity="0.4"/>
+
+  <!-- Layer 1 -->
+  <rect x="36" y="118" width="568" height="56" rx="10" fill="#151a22" stroke="#1e2531"/>
+  <text x="60" y="142" font-size="26" font-weight="600" fill="#f1f5f9">PacienteController</text>
+  <text x="60" y="164" font-size="18" fill="#8795a9">REST layer &#183; 3 controllers</text>
+  <text x="588" y="150" font-size="18" fill="#2dd4bf" text-anchor="end" letter-spacing="2">CONTROLLER</text>
+
+  <!-- Layer 2 -->
+  <rect x="36" y="182" width="568" height="56" rx="10" fill="#151a22" stroke="#1e2531"/>
+  <text x="60" y="206" font-size="26" font-weight="600" fill="#f1f5f9">PacienteService</text>
+  <text x="60" y="228" font-size="18" fill="#8795a9">business layer &#183; 4 services</text>
+  <text x="588" y="214" font-size="18" fill="#2dd4bf" text-anchor="end" letter-spacing="2">SERVICE</text>
+
+  <!-- Layer 3 -->
+  <rect x="36" y="246" width="568" height="56" rx="10" fill="#151a22" stroke="#1e2531"/>
+  <text x="60" y="270" font-size="26" font-weight="600" fill="#f1f5f9">PacienteRepository</text>
+  <text x="60" y="292" font-size="18" fill="#8795a9">data access &#183; 5 repositories</text>
+  <text x="588" y="278" font-size="18" fill="#2dd4bf" text-anchor="end" letter-spacing="2">DAO</text>
+
+  <!-- Layer 4 -->
+  <rect x="36" y="310" width="568" height="56" rx="10" fill="#151a22" stroke="#1e2531"/>
+  <text x="60" y="334" font-size="26" font-weight="600" fill="#f1f5f9">Hibernate &#8594; H2</text>
+  <text x="60" y="356" font-size="18" fill="#8795a9">in-memory database &#183; JPA mapping</text>
+  <text x="588" y="342" font-size="18" fill="#2dd4bf" text-anchor="end" letter-spacing="2">PERSISTENCE</text>
+</svg>

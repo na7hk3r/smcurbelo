@@ -1,5 +1,6 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { MotionConfig, LazyMotion, domAnimation, m, useScroll, useSpring } from 'framer-motion';
+import { dismissBootLoader } from './boot';
 import { useTheme } from './context/ThemeContext';
 import { useLanguage } from './context/LanguageContext';
 import Navbar from './components/Navbar/Navbar';
@@ -16,6 +17,11 @@ const App = (): ReactElement => {
   const { language } = useLanguage();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
+
+  // The boot loader in index.html has done its job once this tree is on screen.
+  useEffect(() => {
+    dismissBootLoader();
+  }, []);
 
   return (
     <MotionConfig reducedMotion="user">
