@@ -303,10 +303,17 @@
     }
     </script>
 
-    <!-- Preconnect to external origins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Fonts are served from this repo: no third-party request, no mutable
+         CDN. Same family and weights as the Google stylesheet they replace. -->
+    <style>
+      @font-face { font-family: 'Sora'; src: url('/fonts/sora-latin-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+      @font-face { font-family: 'Sora'; src: url('/fonts/sora-latin-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+      @font-face { font-family: 'Sora'; src: url('/fonts/sora-latin-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+      @font-face { font-family: 'Sora'; src: url('/fonts/sora-latin-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+      @font-face { font-family: 'Sora'; src: url('/fonts/sora-latin-800.woff2') format('woff2'); font-weight: 800; font-style: normal; font-display: swap; }
+    </style>
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/sora-latin-400.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/sora-latin-700.woff2" crossorigin />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <!-- The portrait is display:none at 580px and below: preloading it there
          spent 295 kB at High priority on an image the page never shows, in
