@@ -100,7 +100,13 @@ const Navbar: React.FC<NavbarProps> = ({ language }) => {
   return (
     <nav className={`navbar ${mobileMenu ? 'navbar--open' : ''}`} aria-label={language === 'en' ? 'Main navigation' : 'Navegación principal'}>
       <a href="#hero" aria-label={language === 'en' ? 'Sergio M. Curbelo — Home' : 'Sergio M. Curbelo — Inicio'}>
-        <img src={theme === 'dark' ? imageLinks.logo_black : imageLinks.logo_white} alt="" className="logo" />
+        <img
+          src={theme === 'dark' ? imageLinks.logo_black : imageLinks.logo_white}
+          alt=""
+          className="logo"
+          width={400}
+          height={108}
+        />
       </a>
 
       <button

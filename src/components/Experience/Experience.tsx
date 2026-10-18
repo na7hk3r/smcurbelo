@@ -66,7 +66,7 @@ const Experience: React.FC<ExperienceProps> = ({ language }) => {
             transition={{ duration: 0.55, delay: 0.1 + i * 0.08, ease }}
           >
             <span className="experience-card__icon" aria-hidden="true">
-              <img src={item.logo} alt={`${item.company} logo`} loading="lazy" />
+              <img src={item.logo} alt={`${item.company} logo`} loading="lazy" width={300} height={152} />
             </span>
             <div className="experience-card__body">
               <h3 className="experience-card__company">{item.company}</h3>

@@ -50,6 +50,12 @@ function serve(port) {
     if (!f) { res.writeHead(404); res.end('nf'); return; }
     res.writeHead(200, { 'content-type': TYPES[extname(f)] || 'application/octet-stream' });
     res.end(readFileSync(f));
+  }).on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(`port ${port} is already in use — stop whatever holds it and run this again`);
+      process.exit(1);
+    }
+    throw err;
   }).listen(port);
 }
 

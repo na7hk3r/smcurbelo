@@ -40,6 +40,8 @@ const About: React.FC<AboutProps> = ({ language }) => {
             src={imageLinks.about_img}
             loading="lazy"
             alt="Sergio Curbelo"
+            width={1400}
+            height={869}
           />
 
       <m.div

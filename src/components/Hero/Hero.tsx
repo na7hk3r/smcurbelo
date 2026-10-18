@@ -28,6 +28,8 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
           title: project.title[language],
           meta: project.tags.join(' · '),
           image: theme === 'light' && project.img_alt ? project.img_alt : project.img,
+          width: project.img_w,
+          height: project.img_h,
           href: project.live,
         }
       : null;
@@ -50,7 +52,15 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
   return (
     <section className="hero" id="hero">
       <div className="hero__bg-image" aria-hidden="true">
-        <img src={imageLinks.home_img} alt="" fetchPriority="high" decoding="async" />
+        <img
+          src={imageLinks.home_img}
+          alt=""
+          width={900}
+          height={900}
+          loading="lazy"
+          fetchPriority="high"
+          decoding="async"
+        />
       </div>
 
       <div className="hero__content">
@@ -107,7 +117,7 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
             {/* Intrinsic size declared so the box is reserved before the file
                 arrives; CSS renders it at the size below. The image is
                 decorative here — the caption already names the project. */}
-            <img className="hero__work-thumb" src={work.image} alt="" width={1400} height={1112} decoding="async" />
+            <img className="hero__work-thumb" src={work.image} alt="" width={work.width} height={work.height} decoding="async" />
             <figcaption className="hero__work-body">
               <h2 className="hero__work-name">{work.title}</h2>
               <p className="hero__work-meta">{work.meta}</p>

@@ -308,7 +308,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-    <link rel="preload" as="image" href="/images/home_img.webp" fetchpriority="high" />
+    <!-- The portrait is display:none at 580px and below: preloading it there
+         spent 295 kB at High priority on an image the page never shows, in
+         front of the text that is the largest paint on a phone. -->
+    <link rel="preload" as="image" href="/images/home_img.webp" media="(min-width: 581px)" fetchpriority="high" />
   </head>
   <body>
     <div id="boot-loader" class="boot-loader" role="status">

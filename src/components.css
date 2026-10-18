@@ -300,7 +300,11 @@ input:checked + .slider::before {
   width: 100%;
   min-height: 100vh;
   min-height: 100svh;
-  padding-block-start: clamp(6rem, 10vh, 10rem);
+  /* The navbar is sticky — it occupies flow — so the hero already starts below
+     it, and this padding is pure air above a vertically centred block (a larger
+     value pushes the content DOWN). At 6rem the Spanish role's fourth line put
+     the work card 6px past a 900px fold. */
+  padding-block-start: clamp(3rem, 6vh, 6rem);
   padding-inline: var(--gutter);
   max-width: var(--content-width);
   margin-inline: auto;
@@ -397,8 +401,8 @@ input:checked + .slider::before {
   align-items: center;
   gap: var(--space-s);
   width: min(100%, 26rem);
-  margin-block-start: var(--space-l);
-  padding: var(--space-xs);
+  margin-block-start: var(--space-m);
+  padding: 0.625rem;
   border-radius: var(--radius-lg);
   background: var(--surface-2);
   border: 1px solid var(--surface-3);
@@ -418,7 +422,7 @@ input:checked + .slider::before {
 .hero__work-thumb {
   flex: none;
   width: 5.5rem;
-  height: 4rem;
+  height: 3.5rem;
   border-radius: var(--radius-md);
   object-fit: cover;
   object-position: top center;

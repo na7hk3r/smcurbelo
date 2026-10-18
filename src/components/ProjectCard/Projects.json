@@ -6,6 +6,8 @@
       "es": "Nora OS"
     },
     "img": "/images/nora_os.webp",
+    "img_w": 1400,
+    "img_h": 1112,
     "img_alt": "/images/nora_os_alt.webp",
     "badge": {
       "en": "Featured project",
@@ -44,6 +46,8 @@
       "es": "Ushuaia CRM"
     },
     "img": "/images/ushuaia_crm.webp",
+    "img_w": 1400,
+    "img_h": 714,
     "relationship": "client",
     "category": "Desktop App",
     "tags": ["Electron", "React", "GitHub Actions"],
@@ -57,6 +61,8 @@
   {
     "id": "02",
     "img": "/images/natural.webp",
+    "img_w": 1400,
+    "img_h": 701,
     "title": {
       "en": "Naturalmente Vane",
       "es": "Naturalmente Vane"
@@ -78,6 +84,8 @@
       "es": "UY Construcciones"
     },
     "img": "/images/uy_construcciones.webp",
+    "img_w": 1400,
+    "img_h": 706,
     "relationship": "client",
     "category": "Corporate Website",
     "tags": ["JavaScript", "CSS3", "HTML5"],
@@ -91,6 +99,8 @@
   {
     "id": "04",
     "img": "/images/clinica.svg",
+    "img_w": 640,
+    "img_h": 400,
     "title": {
       "en": "Dental Clinic API",
       "es": "API Clínica Dental"
@@ -111,6 +121,8 @@
       "es": "SpaceX Launches"
     },
     "img": "/images/spacex_web.webp",
+    "img_w": 1400,
+    "img_h": 657,
     "relationship": "own",
     "category": "Web App",
     "tags": ["Astro", "Tailwind", "SpaceX API"],

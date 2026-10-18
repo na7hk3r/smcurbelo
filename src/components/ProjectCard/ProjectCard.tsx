@@ -33,7 +33,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ language }) => {
             >
               <article className={`project${project.badge ? ' project--featured' : ''}`}>
                 <div className="project__thumb">
-                  <img src={imgSrc} alt={project.title[language]} loading="lazy" />
+                  <img
+                    src={imgSrc}
+                    alt={project.title[language]}
+                    loading="lazy"
+                    width={project.img_w}
+                    height={project.img_h}
+                  />
                   {project.badge && (
                     <span className="project__badge">{project.badge[language]}</span>
                   )}

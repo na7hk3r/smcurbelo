@@ -6,6 +6,8 @@ interface CourseCardProps {
 }
 
 interface CourseItemData {
+  imgW: number;
+  imgH: number;
   img: string;
   alt: string;
   title: string;
@@ -31,6 +33,8 @@ const CourseCard: React.FC<CourseCardProps> = React.memo(function CourseCard({ l
   const courses: CourseItemData[] = useMemo(() => [
     {
       img: imageLinks.utu_logo,
+      imgW: 224,
+      imgH: 135,
       alt: 'UTU',
       title: language === 'en' ? "Bachelor's in IT" : 'Bachillerato (EMT) en IT',
       date: 'UTU, Uruguay · 2023 –',
@@ -40,6 +44,8 @@ const CourseCard: React.FC<CourseCardProps> = React.memo(function CourseCard({ l
     },
     {
       img: imageLinks.ctd_logo,
+      imgW: 224,
+      imgH: 139,
       alt: 'Certified Tech Developer',
       title: 'Certified Tech Developer',
       date: 'DigitalHouse, Argentina · 2023 – 2025',
@@ -50,6 +56,8 @@ const CourseCard: React.FC<CourseCardProps> = React.memo(function CourseCard({ l
     },
     {
       img: imageLinks.jap_logo,
+      imgW: 224,
+      imgH: 167,
       alt: 'Jóvenes a Programar',
       title: language === 'en' ? 'Fullstack Web Development' : 'Desarrollo Web Fullstack',
       date: 'Jóvenes a Programar, Uruguay · 2022 – 2023',
@@ -60,6 +68,8 @@ const CourseCard: React.FC<CourseCardProps> = React.memo(function CourseCard({ l
     },
     {
       img: imageLinks.one_logo,
+      imgW: 224,
+      imgH: 108,
       alt: 'Oracle ONE',
       title: language === 'en' ? 'Backend Specialization' : 'Especialización en Backend',
       date: 'Oracle Next Education | Alura · 2022 – 2023',
@@ -70,6 +80,8 @@ const CourseCard: React.FC<CourseCardProps> = React.memo(function CourseCard({ l
     },
     {
       img: imageLinks.voxy_logo,
+      imgW: 224,
+      imgH: 52,
       alt: 'Voxy',
       title: language === 'en' ? 'English B2' : 'Inglés B2',
       date: 'VOXY · 2022 – 2023',
@@ -79,6 +91,8 @@ const CourseCard: React.FC<CourseCardProps> = React.memo(function CourseCard({ l
     },
     {
       img: imageLinks.fcc_logo,
+      imgW: 224,
+      imgH: 125,
       alt: 'FreeCodeCamp',
       title: language === 'en' ? 'Javascript Certification' : 'Certificación en Javascript',
       date: 'FreeCodeCamp · 2022 – 2023',
@@ -89,6 +103,8 @@ const CourseCard: React.FC<CourseCardProps> = React.memo(function CourseCard({ l
     },
     {
       img: imageLinks.ibm_logo,
+      imgW: 224,
+      imgH: 102,
       alt: 'IBM Skills Network',
       title: language === 'en' ? 'Fullstack Web Development' : 'Desarrollo Web Fullstack',
       date: 'IBM Skills Network · 2023',
@@ -111,6 +127,8 @@ const CourseCard: React.FC<CourseCardProps> = React.memo(function CourseCard({ l
               <img
                 src={course.img}
                 alt={course.alt}
+                width={course.imgW}
+                height={course.imgH}
                 className="course__logo"
                 loading="lazy"
               />
