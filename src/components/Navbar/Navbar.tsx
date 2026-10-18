@@ -3,6 +3,7 @@ import ToggleButton from '../ToggleButton/ToggleButton';
 import LanguageToggleButton from '../LanguageToggleButton/LanguageToggleButton';
 import { imageLinks } from '../../assets/imageLinks';
 import { useTheme } from '../../context/ThemeContext';
+import { cv } from '../../constants/documents';
 
 interface NavbarProps {
   language: 'en' | 'es';
@@ -126,6 +127,14 @@ const Navbar: React.FC<NavbarProps> = ({ language }) => {
             </a>
           </li>
         ))}
+        {/* The CV is not a section, so it sits outside the scroll-spy list and
+            keeps the toggles last. The visible label stays "CV"; the
+            accessible name is the localized one, which contains it. */}
+        <li>
+          <a href={cv.href} download aria-label={cv.label[language]}>
+            CV
+          </a>
+        </li>
         <li className="toggle-buttons">
           <ToggleButton />
           <LanguageToggleButton />

@@ -3,29 +3,11 @@ import { useTheme } from '../../context/ThemeContext';
 import { m } from 'framer-motion';
 import ProjectsData from './Projects.json';
 import type { Project } from '../../types/project';
+import { projectLabels as labels } from '../../constants/projectLabels';
 
 interface ProjectCardProps {
   language: 'en' | 'es';
 }
-
-const labels = {
-  en: {
-    heading: 'Projects',
-    source: 'Code',
-    live: 'Live',
-    more: 'Read more',
-    less: 'Show less',
-    relationship: { client: 'Client', own: 'Personal', 'open-source': 'Open Source' },
-  },
-  es: {
-    heading: 'Proyectos',
-    source: 'Código',
-    live: 'Demo',
-    more: 'Leer más',
-    less: 'Mostrar menos',
-    relationship: { client: 'Cliente', own: 'Personal', 'open-source': 'Open Source' },
-  },
-};
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ language }) => {
   const l = labels[language];

@@ -2,6 +2,7 @@ import React from 'react';
 import { m } from 'framer-motion';
 import { imageLinks } from '../../assets/imageLinks';
 import { ease } from '../../constants/animation';
+import { cv } from '../../constants/documents';
 
 interface AboutProps {
   language: 'en' | 'es';
@@ -18,7 +19,6 @@ const About: React.FC<AboutProps> = ({ language }) => {
         'I work well both within a team and independently with clients. I care about understanding the problem before writing code, delivering with clarity, and building things that actually get used.',
       text3:
         'Web development · Desktop apps · REST APIs · E-commerce · CI/CD',
-      cv: 'Download CV',
     },
     es: {
       label: 'Sobre Mí',
@@ -29,7 +29,6 @@ const About: React.FC<AboutProps> = ({ language }) => {
         'Trabajo bien tanto dentro de un equipo como de forma independiente con clientes. Me interesa entender el problema antes de escribir código, entregar con claridad y construir cosas que realmente se usen.',
       text3:
         'Desarrollo web · Aplicaciones de escritorio · APIs REST · E-commerce · CI/CD',
-      cv: 'Descargar CV',
     },
   };
 
@@ -77,12 +76,12 @@ const About: React.FC<AboutProps> = ({ language }) => {
           </m.p>
         </div>
         <a
-          href="/Curbelo_2026.pdf"
+          href={cv.href}
           download
           className="btn btn--primary about__cv"
-          aria-label="Download CV"
+          aria-label={cv.label[language]}
         >
-          {content[language].cv}
+          {cv.label[language]}
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M8 3v8M5 8l3 3 3-3M3 13h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>

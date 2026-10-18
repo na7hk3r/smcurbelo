@@ -390,6 +390,86 @@ input:checked + .slider::before {
   font-size: var(--text-sm);
 }
 
+/* The featured project, in the first viewport. Same surface vocabulary as a
+   project card, one size down: the artifact leads, the interface recedes. */
+.hero__work {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  width: min(100%, 26rem);
+  margin-block-start: var(--space-l);
+  padding: var(--space-xs);
+  border-radius: var(--radius-lg);
+  background: var(--surface-2);
+  border: 1px solid var(--surface-3);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.4s var(--ease-out-expo),
+    box-shadow 0.4s var(--ease-out-expo),
+    border-color 0.4s var(--ease-out-expo);
+}
+
+.hero__work:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-border);
+}
+
+.hero__work-thumb {
+  flex: none;
+  width: 5.5rem;
+  height: 4rem;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  object-position: top center;
+  background: var(--surface-3);
+}
+
+.hero__work-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.hero__work-name {
+  font-size: var(--text-base);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--text-1);
+}
+
+.hero__work-meta {
+  font-size: var(--text-xs);
+  color: var(--text-3);
+  letter-spacing: 0.02em;
+}
+
+.hero__work-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-block-start: 0.2rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.hero__work-link:hover {
+  color: var(--accent-hover);
+}
+
+.hero__work-link svg {
+  transition: transform 0.3s var(--ease-out-expo);
+}
+
+.hero__work-link:hover svg,
+.hero__work-link:focus-visible svg {
+  transform: translate(2px, -2px);
+}
+
 @media (max-width: 960px) {
   .hero {
     min-height: auto;
@@ -409,6 +489,14 @@ input:checked + .slider::before {
 
   .hero__bg-image {
     display: none;
+  }
+
+  /* Where there is no portrait, the work card slides up between the role and
+     the CTAs: the artifact leads and the action stays within reach, which is
+     the order the owner approved for this breakpoint. DOM order is unchanged,
+     so the reading order stays the desktop one. */
+  .hero__actions {
+    order: 1;
   }
 
   .hero__actions {
@@ -1471,6 +1559,30 @@ button.contact__submit.contact__submit--sent {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+}
+
+.footer__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-m);
+}
+
+.footer__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-block: 0.35rem;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-2);
+  text-decoration: none;
+  transition: color 0.2s var(--ease-out-quart);
+}
+
+.footer__links a:hover {
+  color: var(--accent);
 }
 
 .footer__socials {
