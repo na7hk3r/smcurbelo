@@ -61,13 +61,13 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
             title: 'Sergio M. Curbelo — Fullstack Web Developer',
             description:
               'Fullstack Web Developer — I build real solutions for businesses and brands. React, Node.js, TypeScript, Electron, Spring Boot & more.',
-            url: 'https://smcurbelo.com/',
+            url: 'https://smcurbelo.vercel.app/',
           }
         : {
             title: 'Sergio M. Curbelo — Desarrollador Fullstack',
             description:
               'Desarrollador Fullstack — Construyo soluciones reales para empresas y marcas. React, Node.js, TypeScript, Electron, Spring Boot y más.',
-            url: 'https://smcurbelo.com/?lang=es',
+            url: 'https://smcurbelo.vercel.app/?lang=es',
           };
 
     const setMeta = (selector: string, attr: string, value: string): void => {

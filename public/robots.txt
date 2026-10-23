@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://smcurbelo.com/sitemap.xml
+Sitemap: https://smcurbelo.vercel.app/sitemap.xml

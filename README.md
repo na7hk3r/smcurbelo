@@ -7,14 +7,14 @@
 #### En este proyecto utilizo:
 
 - **React**: Biblioteca de JavaScript para la interfaz de usuario.
-- **<a href="https://smcurbelo.com" target="_blank">Framer Motion</a>**: Librería para animaciones.
-- **<a href="https://smcurbelo.com" target="_blank">react-parallax-tilt</a>**: Componente para efectos de inclinación y parallax.
+- **<a href="https://www.framer.com/motion/" target="_blank">Framer Motion</a>**: Librería para animaciones.
+- **<a href="https://www.npmjs.com/package/react-parallax-tilt" target="_blank">react-parallax-tilt</a>**: Componente para efectos de inclinación y parallax.
 - **CSS**: Para el diseño y la presentación.
 
 - _Implementación de buenas prácticas y optimización para mejora del SEO_
 
 <div align="center">
   
-  ### <a href="https://smcurbelo.com" target="_blank">Link🌐</a>
+  ### <a href="https://smcurbelo.vercel.app/" target="_blank">Link🌐</a>
 
 </div>
