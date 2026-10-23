@@ -42,7 +42,7 @@ Builds complete web and desktop products, from design to deployment — for team
 
 ## Brand Commitments
 
-- Name: Sergio Mathias Curbelo. Professional title: "Fullstack Web Developer" / "Desarrollador Fullstack".
+- Name: Sergio Mathias Curbelo. Professional title: "Fullstack Product Engineer" / "Desarrollador Fullstack".
 - Voice: first person, direct, no filler. English neutral-professional; Spanish Rioplatense with voseo ("Hablemos", "Intentá de nuevo", "escribime") — preserve that register.
 - External identity: GitHub `na7hk3r`, LinkedIn `smcurbelo`, email `sergiomcurbelo5@gmail.com`.
 - Existing logo (light/dark variants) and favicon; deployed at `smcurbelo.vercel.app` (custom domain `smcurbelo.com` not connected).

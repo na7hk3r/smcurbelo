@@ -58,9 +58,9 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     const localized =
       language === 'en'
         ? {
-            title: 'Sergio M. Curbelo — Fullstack Web Developer',
+            title: 'Sergio M. Curbelo — Fullstack Product Engineer',
             description:
-              'Fullstack Web Developer — I build real solutions for businesses and brands. React, Node.js, TypeScript, Electron, Spring Boot & more.',
+              'Fullstack Product Engineer — I build real solutions for businesses and brands. React, Node.js, TypeScript, Electron, Spring Boot & more.',
             url: 'https://smcurbelo.vercel.app/',
           }
         : {

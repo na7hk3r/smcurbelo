@@ -36,7 +36,7 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
 
   const content = {
     en: {
-      greeting: 'Fullstack Developer · Available',
+      greeting: 'Fullstack Product Engineer · Available',
       name: "I'm Sergio.",
       role: 'I build complete web and desktop products — from design to deployment. For teams or independently.',
       cta: 'See my work',
